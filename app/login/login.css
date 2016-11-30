@@ -1,0 +1,68 @@
+.nav-tab a:hover{
+	color: #000000;
+	background: #000000;
+
+}
+
+.container{
+	margin:auto;
+  padding-top: 25px;
+}
+
+.tab-content{
+    border: 1px solid #ddd;
+    width: 1000px;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+.formLine{
+	color: #428bca;
+	font-color: #428bca;
+}
+
+.tabs-container {
+    position:relative;
+    right: -50px;
+}
+
+.textOverflow{
+   width: 800px;
+   word-wrap: break-word;
+   color: black;
+}
+
+#buttonNext{
+  cursor: pointer;
+  font-size: 15px;
+
+}
+
+#buttonNext:hover{
+	background-color: #428bca;
+	color: white;
+}
+
+.form-control{
+  margin-bottom: 8px;
+}
+
+.bottomAdd{
+  width: 200px;
+}
+
+.selected{
+  background-color: #99ccff;
+  color: white;
+}
+
+.tab-form{
+  padding-left: 15px;
+  border: 15px;
+}  
+
+
+.rodape{
+  border: 15px;
+  margin: auto;
+}

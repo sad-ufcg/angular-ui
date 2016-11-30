@@ -1,0 +1,74 @@
+<!DOCTYPE html> 
+
+<div class="container panel panel-primary">
+	<!--Warning message-->
+	<div class="alert alert-warning">
+		<p class="lead">Aviso</p>
+
+		"Você não está conectado. Por favor, insira suas informações abaixo"
+	</div>	
+	<!--input the data user-->
+	<div class="tab-form">
+	  <form>
+	    <div class="form-group row">
+	      <label for="inputMatricula" class="col-sm-2 col-form-label">Matricula/Usuário</label>
+	      <div class="col-sm-10">
+	        <input type="text" class="form-control" id="inputMatricula" placeholder="Matricula" ng-model="user.mat">
+	      </div>
+	    </div>
+	    <div class="form-group row">
+	      <label for="inputSenha" class="col-sm-2 col-form-label">Senha</label>
+	      <div class="col-sm-10">
+	        <input type="password" class="form-control" id="inputPassword3" placeholder="Password" ng-model="user.pass">
+	      </div>
+	    </div>
+
+
+
+	    <fieldset class="form-group row">
+	    	<!--For the radio's checks-->
+	      <legend class="col-form-legend col-sm-2"></legend>
+	      <div class="col-sm-10">
+	      	<!--Aluno-->
+	        <div class="form-check">
+	          <label class="form-check-label">
+	            <input class="form-check-input" ng-model="user.type" type="radio" name="gridRadios" id="Aluno" value="option1" checked>
+	            Aluno
+	          </label>
+	        </div>
+	        <!--Professor-->
+	        <div class="form-check">
+	          <label class="form-check-label">
+	            <input class="form-check-input"  ng-model="user.type" type="radio" name="gridRadios" id="Professor" value="option2">
+	            Professor
+	          </label>
+	        </div>
+	        <!--Coordenação-->
+	        <div class="form-check">
+	          <label class="form-check-label">
+	            <input class="form-check-input"  ng-model="user.type" type="radio" name="gridRadios" id="Coordenacao" value="option3">
+	            Coordenação
+	          </label>
+	        </div>
+	        <!--Centro-->
+	        <div class="form-check">
+	          <label class="form-check-label">
+	            <input class="form-check-input"  ng-model="user.type" type="radio" name="gridRadios" id="Centro" value="option4">
+	            Centro
+	          </label>
+	        </div>	
+
+	      </div>
+	    </fieldset>
+	    
+	    <div class="form-group row">
+	      <div class="offset-sm-2 col-sm-10">
+	       <a href="#!/create"><button type="submit" class="btn btn-primary" ng-click= "doLogin(user)" >Entrar</button></a>
+	      </div>
+	    </div>
+	  </form>
+	</div>
+</div>
+
+
+

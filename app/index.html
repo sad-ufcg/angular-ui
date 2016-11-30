@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" ng-app="myApp" class="no-js"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>SAD - UFCG</title>
+  <meta name="description" content="">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+ 
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+  
+  <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/normalize.css">
+  <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/main.css">
+  <link rel="stylesheet" href="app.css">
+  <link rel="stylesheet" href="bootstrap.css"
+  <script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>  
+
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/angular-route/angular-route.js"></script>
+  <script src="app.js"></script>
+  <script src="create/create.js"></script>
+  <script src="answer/answer.js"></script>
+  <script src="login/login.js"></script>
+  <script src="components/version/version.js"></script>
+  <script src="components/version/version-directive.js"></script>
+  <script src="components/version/interpolate-filter.js"></script>
+
+</head>
+
+
+
+<body>
+  <div class="container">
+    <div class="formLine panel panel-primary text-center">
+      <div class="row">
+        <div class="col-sm-2 col-xs-3">
+          <a href="http://www.ufcg.edu.br/index1.php"><img src="img/brasaoUfcg.png" alt="Universidade Federal de Campina Grande"></a>
+          
+        </div>
+        <div class="col-sm-8 col-xs-8"> 
+          <h1>Sistema de Apoio Docente</h1> 
+        </div>
+      
+      </div>  
+    </div>
+  </div>  
+
+  <div class="container ">
+  <!-- Navbar content -->
+    <nav class="navbar navbar-light selected">
+      <ul class="nav navbar-nav nav-tab">
+        <li class="nav-item active">
+          <a class="nav-link" href="#!/login" data-toggle="tooltip" data-placement="tooltip" title="Login">Login <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#!/answer"  data-toggle="tooltip" data-placement="tooltip" title="Answer Questionnarie">Responder Questionário</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#!/create"  data-toggle="tooltip" data-placement="tooltip" title="Create Questionnarie">Criar Questionário</a>
+        </li>
+      </ul>
+
+    </nav>
+  </div> 
+  
+  <div class="formLine">
+      <div ng-view></div>
+    
+  </div>
+  <!--[if lt IE 7]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+  <![endif]-->
+
+    <!--footer-->
+  <footer>
+    <div class="container">
+      <div class="well well-sm">
+        ©2016 Desenvolvido pelo grupo <a href = "https://github.com/sad-ufcg">SAD-UFCG</a>. 
+        <address >
+            <strong>Universidade Federal de Campina Grande.</strong><br>
+            Rua Aprígio Veloso, S/N<br> 
+            Campina Grande, Brasil<br>
+          
+        </address>
+      </div>
+
+    <div> 
+  </footer>
+
+<script>
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();
+});
+</script>
+
+</body>
+
+
+</html>

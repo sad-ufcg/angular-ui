@@ -1,0 +1,86 @@
+
+
+<div class="container formLine">
+	<div class="container-tab">
+		<div class="tab-container">
+			<h1>Questionário de Avaliação da Docência</h1>
+			<h3 class="text-center">Nome da Disciplina</h3>
+
+			<div>
+							<!-- Trigger the modal with a button -->
+			<table class="table">
+
+				<tr>
+					<th></th>
+					<th class="col-md-3">Professor</th>
+					<th class="col-md-9">Disciplina</th>
+				</tr>
+
+				<tr ng-repeat="matter in matters track by $index" >
+				<td></td>
+				<td>{{matter.teacher}}</td>	
+				<td><button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#myModal">{{matter.name}}</button></td>
+				</tr>
+
+			</table>	
+
+							<!-- Modal -->
+				<div id="myModal" class="modal fade" role="dialog">
+				  <div class="modal-dialog">
+
+
+				    <!-- Modal content-->
+				    <div class="modal-content">
+				      <div class="modal-header">
+				        <button type="button" class="close" data-dismiss="modal">&times;</button>
+				        <h4 class="modal-title">{{matters.teacher}}</h4>
+				      </div>
+				      <div class="modal-body">
+				        <form class="form" role="form">
+							<div ng-repeat="question in questions">
+								<div class="form-group">
+									<div class="row">
+										
+										<div class="col-md-6">
+											<label for="email">{{question.message}}</label>
+
+											<div ng-repeat="answer in answers">	
+												<div class="radio">
+													  <label class="textOverflow">
+														  <input type="radio" name="optradio">
+														  {{answer}}
+													  </label>
+												</div>
+											</div>	
+										</div>
+										<div class="col-md-6">
+											<label for="comment">Comentários:</label>
+											<br>
+											<textarea class="form-control" rows="6" id="comment" placeholder="Comente!"></textarea>
+										</div>
+										
+									</div>													
+								</div>
+					
+							</div>
+					
+							<div class="text-right">
+								    <input type="button" class="btn btn-default"  value="Próximo" id = "buttonNext">
+							</div>
+							
+						</form>
+				      </div>
+				      <div class="modal-footer">
+				        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				      </div>
+				    </div>
+
+				  </div>
+				</div>
+			</div>	
+					
+			
+		</div>
+	</div>		
+	
+</div>
