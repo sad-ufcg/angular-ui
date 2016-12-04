@@ -18,36 +18,6 @@ angular.module("myApp.answer", ['ngRoute'])
 			
 		}
 
-		formService.getMatters = function(){
-
-			var dado = localStorage.getItem("matters");
-
-				if(dado == null){
-
-					var array =  [{teacher:"Matheus Gaudêncio", name:"Administração de Sistemas"},
-							{teacher:"Não sei quem é", name:"Banco de Dados I"}, 
-							{teacher:"Nazareno", name:"Sistema de Informação I"}, 
-							{teacher:"Carlos Wilson", name:"Gerência da Informação"}];
-
-						var arrayStr = JSON.stringify(array);
-						localStorage.setItem("matters", arrayStr);
-
-				}
-
-			var data = localStorage.getItem("matters");
-			var matters = JSON.parse(data);
-			
-			return matters;
-		}	
-
-		
-		formService.getQuestions = function(){
-			$http.get("http://localhost:3412/questions").success(function(data, status){
-
-					return data;			
-			})
-			
-		}	
 		return formService;
 	}])
 
