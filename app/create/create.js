@@ -82,20 +82,28 @@ angular.module("myApp.create", ['ngRoute'])
 
 			$scope.deleteQuestion = function(questions){
 
-				var dado = localStorage.getItem("questions");
-				var array = JSON.parse(dado);
-				array = questions.filter(function(question){
-					if (!question.selected) return localStorage.setItem("questions", JSON.stringify(array));;
-
-				});
-			
-
 				$scope.questions = questions.filter(function(question){
 					if (!question.selected) return question;
 
 				});	
+
+				removeLocalStorage(questions);
 			}
 
+			var removeLocalStorage = function(questions){
+
+				var dado = localStorage.getItem("questions");
+				var array = JSON.parse(dado);
+
+				array = questions.filter(function(question){
+					if(!question.selected) return question;
+				});
+				localStorage.setItem("questions", JSON.stringify(array));
+
+
+
+
+			}
 
 			begin();
 
