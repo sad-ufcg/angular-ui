@@ -1,6 +1,6 @@
 angular.module("myApp.create", ['ngRoute'])
 
-	.config(['$routeProvider', function($routeProvider) {
+	.config(['$routeProvider', function($routeProvider, $http) {
 	  $routeProvider.when('/create', {
 	    templateUrl: 'create/create.html',
 	    controller: 'CreateCtrl'
@@ -8,64 +8,35 @@ angular.module("myApp.create", ['ngRoute'])
 	}])
 
 
-	.factory("formService", function () {
-		formService = {};
 
-		formService.getQuestions = function(){
-			var questions = [{message:"Os pré-requisitos assumidos pela disciplina foram adequados?"},
-							 {message:"O programa da disciplina esteve de acordo com a ementa da mesma?"}
-							];
-			return questions;
-		}
-
-		formService.getType = function(){
-			var types = [{name: "Múltipla Escolha"},
-					 	{name: "Escolha Única"},
-					 	{name: "Apenas Texto"}
-						];
-			return types;	
-		}
-
-		return formService;
-
-	})
-
-	.controller('CreateCtrl',['$scope',function($scope, formService){
+	.controller('CreateCtrl',['$scope', '$http',function($scope,$http, formService){
 
 
 			var begin =  function(){
 
 					
-				var dado = localStorage.getItem("questions");
+				$scope.questions = [];	
 
-				if(dado == null){
-
-					var array = [{message:"Os pré-requisitos assumidos pela disciplina foram adequados?", type: "Vazio"},
-								 {message:"O programa da disciplina esteve de acordo com a ementa da mesma?", type: "Vazio"},
-								 {message: "vai aparecer em todo canto", type: "Vazio"}
-								];
-
-				var arrayStr = JSON.stringify(array);
-				localStorage.setItem("questions", arrayStr);
-
-				}
-				var dado = localStorage.getItem("questions");
-				$scope.questions = JSON.parse(dado);
-
-				$scope.types = ["Múltipla Escolha",
-					 			"Escolha Única",
-					 			"Apenas Texto"
-								];
+				$scope.types = [];
 			}
 
+			var loadQuestion = function() {
+				$http.get("http://localhost:3412/questions").success(function(data, status){
 
+					$scope.questions = data;
+
+				});
+			}
+
+			var loadTypes = function() {
+				$http.get("http://localhost:3412/types").success( function(data, status){
+
+					$scope.types = data
+
+				})
+			}
 
 			$scope.addQuestion = function(question){
-
-				var dado = localStorage.getItem("questions");
-				var array = JSON.parse(dado);
-				array.push(angular.copy(question));
-				localStorage.setItem("questions", JSON.stringify(array));
 
 				$scope.questions.push(angular.copy(question)); //Adiciona no fim do array			
 				delete $scope.question;
@@ -106,6 +77,8 @@ angular.module("myApp.create", ['ngRoute'])
 			}
 
 			begin();
+			loadQuestion();
+			loadTypes();
 
 
 	}])

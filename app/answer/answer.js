@@ -8,7 +8,7 @@ angular.module("myApp.answer", ['ngRoute'])
 	}])
 
 
-	.factory("formService", function(){
+	.factory("formService", ["$http", function($http){
 		formService = {};
 
 		formService.getAnswers = function(){
@@ -42,26 +42,46 @@ angular.module("myApp.answer", ['ngRoute'])
 
 		
 		formService.getQuestions = function(){
+			$http.get("http://localhost:3412/questions").success(function(data, status){
+
+					return data;			
+			})
 			
-			var dado = localStorage.getItem("questions");
-
-			var questions = JSON.parse(dado);
-
-			return questions;
 		}	
 		return formService;
-	})
+	}])
 
 
-	.controller("AnswerCtrl", function($scope, formService){
+	.controller("AnswerCtrl", ['$scope', '$http', 'formService',function($scope,$http, formService){
 		
 		var inicio = function(){
-			$scope.questions = formService.getQuestions();
+			$scope.questions = [];
 			$scope.answers = formService.getAnswers();
-			$scope.matters = formService.getMatters();
+			$scope.matters = [];
+
+		loadQuestion();
+		loadTeachers();	
 			
 		};
 
-		inicio();
+		var loadQuestion = function() {
+				$http.get("http://localhost:3412/questions").success(function(data, status){
 
-	})
+					$scope.questions = data;
+
+				});
+			}
+
+		var loadTeachers = function() {
+			$http.get("http://localhost:3412/teachers").success(function(data, status){
+
+				$scope.matters = data;
+
+			})
+		}	
+
+		inicio();
+		
+
+
+	}])
