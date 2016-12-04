@@ -26,6 +26,22 @@ npm start
 
 E depois basta digitar no browser : `http://localhost:8000`
 
+Além disto, é necessário rodar localmente o backend mocado, portanto, (no linux), faça: 
+
+```
+$ cd backend_moc
+$ node httpQuestions.js
+```
+
+Isto ira fazer com que um backend rode localmente na sua máquina e as funcionalidades da aplicação sejam inicializadas corretamente. 
+
+``` 
+localhost:3412/questions
+
+```
+
+
+
 
 ##Executando a aplicação enquanto desenvolve
 
