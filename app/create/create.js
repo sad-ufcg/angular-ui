@@ -38,8 +38,12 @@ angular.module("myApp.create", ['ngRoute'])
 
 			$scope.addQuestion = function(question){
 
-				$scope.questions.push(angular.copy(question)); //Adiciona no fim do array			
-				delete $scope.question;
+				$http.post("http://localhost:3412/questions", question).success(function(data){
+
+					delete $scope.question;
+					loadQuestion();
+				});
+
 
 			}
 
