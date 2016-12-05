@@ -40,7 +40,7 @@ localhost:3412/questions
 
 ```
 
-
+p.s. preocupe-se com o CORS
 
 
 ##Executando a aplicação enquanto desenvolve

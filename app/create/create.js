@@ -31,9 +31,9 @@ angular.module("myApp.create", ['ngRoute'])
 			var loadTypes = function() {
 				$http.get("http://localhost:3412/types").success( function(data, status){
 
-					$scope.types = data
+					$scope.types = data;
 
-				})
+				});
 			}
 
 			$scope.addQuestion = function(question){

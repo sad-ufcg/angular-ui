@@ -9,7 +9,7 @@ var questions = [{message:"Os pre-requisitos assumidos pela disciplina foram ade
 			];
 
 
-var types = ["Multipla Escolha", "Escolha Unica", "Apenas Texto"];
+var types = [{name:"Multipla escolha"}, {name:"Apenas Texto"}];
 
 var teacher =[{teacher:"Matheus Gaudêncio", name:"Administração de Sistemas"},
 			{teacher:"Não sei quem é", name:"Banco de Dados I"}, 
