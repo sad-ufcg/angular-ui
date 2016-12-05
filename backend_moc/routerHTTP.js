@@ -5,7 +5,7 @@ var createRouter = function(port){
 
 	var routes = {
 		GET: {},
-		POST: {}
+		POST: {},
 
 	};
 
@@ -24,7 +24,10 @@ var createRouter = function(port){
 
 	http.createServer(function(req, res){
 		res.setHeader('Acess-Control-Allow-Origin', '*');
-		if(!routes[req.method][req.url]) return res.end();
+		if(!routes[req.method][req.url]){
+			res.statusCode = 404;
+			return res.end();
+		} 
 		routes[req.method][req.url](req, res);
 	}).listen(port);
 

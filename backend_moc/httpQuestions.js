@@ -32,3 +32,10 @@ app.get('/teachers', function(req, res) {
 	res.write(JSON.stringify(teacher));
 	res.end();
 });
+
+app.post('/questions', function(req, res) {
+	var question = req.body;
+	questions.push(question);
+	res.end();
+
+});
