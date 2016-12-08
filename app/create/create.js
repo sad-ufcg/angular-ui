@@ -17,7 +17,8 @@ angular.module("myApp.create", ['ngRoute'])
 					
 				$scope.questions = [];	
 
-				$scope.types = [];
+				$scope.types = ["Multipla Escolha", "Vazio"];
+				loadQuestion();
 			}
 
 			var loadQuestion = function() {
@@ -28,13 +29,6 @@ angular.module("myApp.create", ['ngRoute'])
 				});
 			}
 
-			var loadTypes = function() {
-				$http.get("http://localhost:3412/types").success( function(data, status){
-
-					$scope.types = data;
-
-				});
-			}
 
 			$scope.addQuestion = function(question){
 
@@ -81,8 +75,7 @@ angular.module("myApp.create", ['ngRoute'])
 			}
 
 			begin();
-			loadQuestion();
-			loadTypes();
+			
 
 
 	}])
