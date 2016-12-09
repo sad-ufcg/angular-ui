@@ -9,7 +9,7 @@ angular.module("myApp.create", ['ngRoute'])
 
 
 
-	.controller('CreateCtrl',['$scope', '$http',function($scope,$http, formService){
+	.controller('CreateCtrl',['$scope', '$http',function($scope,$http, formService) {
 
 
 			var begin =  function(){
@@ -22,7 +22,7 @@ angular.module("myApp.create", ['ngRoute'])
 			}
 
 			var loadQuestion = function() {
-				$http.get("http://localhost:3412/questions").success(function(data, status){
+				$http.get("http://localhost:3412/questions").success(function(data, status) {
 
 					$scope.questions = data;
 
@@ -32,10 +32,10 @@ angular.module("myApp.create", ['ngRoute'])
 
 			$scope.addQuestion = function(question){
 
-				$http.post("http://localhost:3412/questions", question).success(function(data){
+				$http.post("http://localhost:3412/questions", question).success(function(data) {
 
-					delete $scope.question;
-					loadQuestion();
+				delete $scope.question;
+				loadQuestion();
 				});
 
 
@@ -51,12 +51,25 @@ angular.module("myApp.create", ['ngRoute'])
 
 			$scope.deleteQuestion = function(questions){
 
+
+		
 				$scope.questions = questions.filter(function(question){
 					if (!question.selected) return question;
 
 				});	
 
-				removeLocalStorage(questions);
+				console.log(questions[0]);
+
+
+				$http.delete("http://localhost:3412/questions", {message: questions[0].message, type: questions[0].type}).success(function(data) {
+					
+					delete $scope.question;
+					loadQuestion();
+
+				});
+
+				
+
 			}
 
 			var removeLocalStorage = function(questions){

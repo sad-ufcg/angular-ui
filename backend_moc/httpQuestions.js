@@ -22,6 +22,7 @@ var teacher =[{teacher:"Matheus Gaudêncio", name:"Administração de Sistemas"}
 app.interceptor(function (req, res, next) {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  res.setHeader('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
   next();
 });
 
@@ -54,6 +55,15 @@ app.post('/questions', function(req, res) {
 	res.end();
 
 });
+
+app.delete('/questions', function(req, res) {
+	var question = req.body;
+	var pos = questions.indexOf(question);
+	questions.slice(pos,1);
+	res.end();
+
+})
+
 
 app.options('/questions', function(req, res) {
 	res.end();
