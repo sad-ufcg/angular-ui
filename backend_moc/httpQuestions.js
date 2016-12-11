@@ -58,11 +58,13 @@ app.post('/questions', function(req, res) {
 
 app.delete('/questions', function(req, res) {
 	var question = req.body;
+	console.log(question);
 	var pos = questions.indexOf(question);
+	console.log(pos);
 	questions.slice(pos,1);
 	res.end();
 
-})
+});
 
 
 app.options('/questions', function(req, res) {

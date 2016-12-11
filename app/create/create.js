@@ -51,24 +51,15 @@ angular.module("myApp.create", ['ngRoute'])
 
 			$scope.deleteQuestion = function(questions){
 
-
-		
-				$scope.questions = questions.filter(function(question){
+				console.log(questions[0]);
+				
+				$http.delete("http://localhost:3412/questions",questions[0]).success(function(data) {
+					
+					$scope.questions = questions.filter(function(question){
 					if (!question.selected) return question;
 
-				});	
-
-				console.log(questions[0]);
-
-
-				$http.delete("http://localhost:3412/questions", {message: questions[0].message, type: questions[0].type}).success(function(data) {
-					
-					delete $scope.question;
-					loadQuestion();
-
+					});	
 				});
-
-				
 
 			}
 
@@ -81,9 +72,6 @@ angular.module("myApp.create", ['ngRoute'])
 					if(!question.selected) return question;
 				});
 				localStorage.setItem("questions", JSON.stringify(array));
-
-
-
 
 			}
 
