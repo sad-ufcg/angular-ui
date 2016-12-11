@@ -9,7 +9,7 @@ angular.module("myApp.create", ['ngRoute'])
 
 
 
-	.controller('CreateCtrl',['$scope', '$http',function($scope,$http, formService) {
+	.controller('CreateCtrl',['$scope', '$http', 'questionAPI',function($scope,$http, questionAPI) {
 
 
 			var begin =  function(){
@@ -17,12 +17,12 @@ angular.module("myApp.create", ['ngRoute'])
 					
 				$scope.questions = [];	
 
-				$scope.types = ["Multipla Escolha", "Vazio"];
+				$scope.types = ["Multipla Escolha"];
 				loadQuestion();
 			}
 
 			var loadQuestion = function() {
-				$http.get("http://localhost:3412/questions").success(function(data, status) {
+				questionAPI.getQuestions().success(function(data, status) {
 
 					$scope.questions = data;
 

@@ -8,25 +8,12 @@ angular.module("myApp.answer", ['ngRoute'])
 	}])
 
 
-	.factory("formService", ["$http", function($http){
-		formService = {};
 
-		formService.getAnswers = function(){
-		
-			var answers = ["Resposta 1", "Resposta 2", "Resposta 3", "Resposta 4", "Resposta 5"];
-			return answers;
-			
-		}
-
-		return formService;
-	}])
-
-
-	.controller("AnswerCtrl", ['$scope', '$http', 'formService',function($scope,$http, formService){
+	.controller("AnswerCtrl", ['$scope', '$http', 'questionAPI',function($scope,$http, questionAPI){
 		
 		var inicio = function(){
 			$scope.questions = [];
-			$scope.answers = formService.getAnswers();
+			$scope.answers = questionAPI.getAnswers();
 			$scope.matters = [];
 
 		loadQuestion();
@@ -35,7 +22,7 @@ angular.module("myApp.answer", ['ngRoute'])
 		};
 
 		var loadQuestion = function() {
-				$http.get("http://localhost:3412/questions").success(function(data, status){
+				questionAPI.getQuestions().success(function(data, status){
 
 					$scope.questions = data;
 
@@ -43,7 +30,7 @@ angular.module("myApp.answer", ['ngRoute'])
 			}
 
 		var loadTeachers = function() {
-			$http.get("http://localhost:3412/teachers").success(function(data, status){
+			questionAPI.getTeachers().success(function(data, status){
 
 				$scope.matters = data;
 
