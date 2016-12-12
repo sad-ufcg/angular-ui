@@ -43,6 +43,7 @@ angular.module("myApp.create", ['ngRoute'])
 
 
 			$scope.isQuestionSelected = function (questions){
+				
 					return questions.some(function (question){
 						return question.selected;
 				});
@@ -51,13 +52,14 @@ angular.module("myApp.create", ['ngRoute'])
 
 			$scope.deleteQuestion = function(questions){
 
-				console.log(questions[0]);
 				
 				$http.delete("http://localhost:3412/questions",questions[0]).success(function(data) {
 					
 					$scope.questions = questions.filter(function(question){
-					if (!question.selected) return question;
-
+					if (!question.selected){
+							console.log(question);
+							 return question;
+					}	 
 					});	
 				});
 

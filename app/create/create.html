@@ -20,13 +20,34 @@
 							<td><input type="checkbox" ng-model="question.selected"/></td>
 							<th>{{ question.message }}</th>
 							<th>{{ question.type }}</th>
-							<th><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></th>
-
-
+							<th><button type="button" class="btn btn-link" data-toggle="modal" data-target="#myModal"><i class="fa fa-pencil-square-o"></button></th>
 						</tr>
 					
 				</table>
 				</hr>
+
+				<!--MODAL-->
+
+				<div id="myModal" class="modal fade" role="dialog">
+					<div class="modal-dialog">
+						<div>
+							<div class="modal-content">
+								<div class="modal-header">
+									<!--HEADER-->	
+								</div>
+								<div class="modal-body">
+									<!--BODY-->
+								</div>
+								<div class="modal-footer">
+									<!--Footer-->
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+
+
 				<!--place the input fields-->
 				<input class = "form-control" type = "text" ng-model = "question.message" placeholder = "Questão"/>
 				<select class = "form-control" ng-model="question.type" ng-options = "type for type in types">
