@@ -1,7 +1,7 @@
 
 
-<div class="container panel panel-primary">
-	<div class="tab-container">
+<div class="container formLine">
+	<div class="container-tab">
 		<div class = "tab-content">
 			<h1>Novo Questionário</h1>
 			<p>Caro Professor, este é o local de criar seu questionário.</p>
@@ -12,6 +12,7 @@
 							<th></th>
 							<th>Questões</th>
 							<th>Tipo</th>
+							<th>Editar</th>
 						</tr>
 					</thead>
 						<!--ng-repeat-->
@@ -19,6 +20,9 @@
 							<td><input type="checkbox" ng-model="question.selected"/></td>
 							<th>{{ question.message }}</th>
 							<th>{{ question.type }}</th>
+							<th><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></th>
+
+
 						</tr>
 					
 				</table>
