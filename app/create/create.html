@@ -20,7 +20,7 @@
 							<td><input type="checkbox" ng-model="question.selected"/></td>
 							<th>{{ question.message }}</th>
 							<th>{{ question.type }}</th>
-							<th><button type="button" class="btn btn-link" data-toggle="modal" data-target="#editModal"><i class="fa fa-pencil-square-o"></button></th>
+							<th><button ng-click = "enableEditQuestion(question)" type="button" class="btn btn-link" data-toggle="modal" data-target="#editModal"><i class="fa fa-pencil-square-o"></button></th>	
 						</tr>
 					
 				</table>
@@ -40,7 +40,8 @@
 								<form>
 								<div class="form-group">
 								<label for="recipient-name" class="control-label">Questão atual</label>
-								<input type="text" class="form-control" id="recipient-name">
+								<div class="alert alert-info" role="alert">{{questionBeEdit.message}}</div>
+
 								</div>
 								<div class="form-group">
 								<label for="message-text" class="control-label">Nova questão:</label>

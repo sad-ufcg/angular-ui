@@ -8,7 +8,7 @@ angular.module("myApp.create", ['ngRoute'])
 	}])
 
 
-
+	//http://jsfiddle.net/timriley/GVCP2/
 	.controller('CreateCtrl',['$scope', '$http', 'questionAPI',function($scope,$http, questionAPI) {
 
 
@@ -43,7 +43,6 @@ angular.module("myApp.create", ['ngRoute'])
 
 
 			$scope.isQuestionSelected = function (questions){
-				
 					return questions.some(function (question){
 						return question.selected;
 				});
@@ -57,11 +56,18 @@ angular.module("myApp.create", ['ngRoute'])
 					
 					$scope.questions = questions.filter(function(question){
 					if (!question.selected){
-							console.log(question);
 							 return question;
 					}	 
 					});	
 				});
+
+			}
+
+			$scope.enableEditQuestion = function(question){
+
+				$scope.questionBeEdit = question; 
+
+				console.log(question);
 
 			}
 
