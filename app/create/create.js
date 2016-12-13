@@ -23,7 +23,6 @@ angular.module("myApp.create", ['ngRoute'])
 
 			var loadQuestion = function() {
 				questionAPI.getQuestions().success(function(data, status) {
-
 					$scope.questions = data;
 
 				});
@@ -51,14 +50,17 @@ angular.module("myApp.create", ['ngRoute'])
 
 			$scope.deleteQuestion = function(questions){
 
-				
 				$http.delete("http://localhost:3412/questions",questions[0]).success(function(data) {
-					
+
+
 					$scope.questions = questions.filter(function(question){
 					if (!question.selected){
 							 return question;
 					}	 
 					});	
+
+					
+
 				});
 
 			}
@@ -66,8 +68,23 @@ angular.module("myApp.create", ['ngRoute'])
 			$scope.enableEditQuestion = function(question){
 
 				$scope.questionBeEdit = question; 
+				$scope.editEnable = true;
 
-				console.log(question);
+
+			}
+
+			$scope.saveEditQuestion = function(question) {
+
+				$scope.questions.forEach(function(quest) {
+					if(quest.message == $scope.questionBeEdit.message){
+
+						quest.message = question.msg;
+						$scope.editEnable = false;
+
+
+					}
+
+				});
 
 			}
 
