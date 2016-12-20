@@ -15,6 +15,9 @@ angular.module("myApp.answer", ['ngRoute'])
 			$scope.questions = [];
 			$scope.answers = questionAPI.getAnswers();
 			$scope.matters = [];
+			$scope.save = function(formulario){
+				$scope.form = formulario;
+			};
 
 		loadQuestion();
 		loadTeachers();	
@@ -38,7 +41,5 @@ angular.module("myApp.answer", ['ngRoute'])
 		}	
 
 		inicio();
-		
-
 
 	}])

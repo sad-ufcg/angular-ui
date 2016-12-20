@@ -3,11 +3,11 @@ var routerHTTP = require('./routerHTTP')
 
 var app = routerHTTP(3412);
 
-var questions = [{message:"Os pre-requisitos assumidos pela disciplina foram adequados?", type: "Vazio"},
+var questions = [{message:"Os pre-requisitos assumidos pela disciplina foram adequados?", type: "Vazio", id:"1"},
 			 
-			 {message:"O programa da disciplina esteve de acordo com a ementa da mesma?", type: "Vazio"},
+			 {message:"O programa da disciplina esteve de acordo com a ementa da mesma?", type: "Vazio", id:"2"},
 			 
-			 {message: "vai aparecer em todo canto", type: "Vazio"}
+			 {message: "vai aparecer em todo canto", type: "Vazio", id:"3"}
 			];
 
 
