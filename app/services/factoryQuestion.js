@@ -1,13 +1,13 @@
-angular.module("myApp").factory("questionAPI", function ($http) {
+angular.module("myApp").factory("questionAPI", function ($http, config) {
 
 	var _getQuestions = function () {
 
-		return $http.get("http://localhost:3412/questions");
+		return $http.get(config.baseUrl + "/questions");
 	};
 
 	var _getTeachers = function () {
 
-		return $http.get("http://localhost:3412/teachers");
+		return $http.get(config.baseUrl + "/teachers");
 	};
 
 	var _getAnswers = function () {
