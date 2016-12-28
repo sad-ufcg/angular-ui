@@ -86,6 +86,8 @@ angular.module("myApp.create", ['ngRoute'])
 
 				});
 
+				question.msg = null;
+
 			}
 
 			var removeLocalStorage = function(questions){
