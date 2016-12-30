@@ -6,7 +6,7 @@ angular.module("myApp.create").provider("idGenerator", function() {
 
 			generate: function () {
 
-				return Math.floor(Math.random() * 123648)
+				return Math.floor(Math.random() * 23695) | 1
 			}
 
 		};
