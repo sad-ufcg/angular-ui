@@ -12,8 +12,16 @@ angular.module('myApp', [
 
 
 
-config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
+config(['$locationProvider', '$routeProvider', '$httpProvider', function($locationProvider, $routeProvider, $httpProvider) {
   $locationProvider.hashPrefix('!');
 
   $routeProvider.otherwise({redirectTo: '/login'});
+
+   $httpProvider.defaults.headers.common = {};
+   $httpProvider.defaults.headers.post = {};
+   $httpProvider.defaults.headers.get = {};
+   $httpProvider.defaults.headers.delete = {};
+   $httpProvider.defaults.headers.put = {};
+   $httpProvider.defaults.headers.patch = {};
+
 }]);
