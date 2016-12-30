@@ -1,6 +1,6 @@
 angular.module("myApp.create", ['ngRoute'])
 
-	.config(['$routeProvider', function($routeProvider, $http) {
+	.config(['$routeProvider', function($routeProvider, $http, config) {
 	  $routeProvider.when('/create', {
 	    templateUrl: 'create/create.html',
 	    controller: 'CreateCtrl'
@@ -8,16 +8,18 @@ angular.module("myApp.create", ['ngRoute'])
 	}])
 
 
+
 	//http://jsfiddle.net/timriley/GVCP2/
-	.controller('CreateCtrl',['$scope', '$http', 'questionAPI',function($scope,$http, questionAPI) {
+	.controller('CreateCtrl',['$scope', '$http', 'questionAPI', 'config','idGenerator',function($scope,$http, questionAPI, 
+		config, idGenerator) {
 
 
 			var begin =  function(){
 
-					
+				
 				$scope.questions = [];	
 
-				$scope.types = ["Multipla Escolha"];
+				$scope.tipoResposta = ["TEXTO", "MULTIPLA_ESCOLHA", "SELECAO"];
 				loadQuestion();
 			}
 
@@ -31,14 +33,18 @@ angular.module("myApp.create", ['ngRoute'])
 
 			$scope.addQuestion = function(question){
 
-				$http.post("http://localhost:3412/questions", question).success(function(data) {
+				var temp_quest = {"id":idGenerator.generate(), "enunciado": question.enunciado, 
+					"tipoResposta": question.tipoResposta};
+
+				console.log(temp_quest);	
+				$http.post(config.baseUrl + "/question", temp_quest).success(function(data) {
 
 				delete $scope.question;
 				loadQuestion();
 				});
 
 
-			}
+			}	
 
 
 			$scope.isQuestionSelected = function (questions){
@@ -50,16 +56,14 @@ angular.module("myApp.create", ['ngRoute'])
 
 			$scope.deleteQuestion = function(questions){
 
-				$http.delete("http://localhost:3412/questions",questions[0]).success(function(data) {
-
+				$http.delete(config.baseUrl + "/question",questions[0]).success(function(data) {
 
 					$scope.questions = questions.filter(function(question){
-					if (!question.selected){
-							 return question;
-					}	 
-					});	
+						if (!question.selected){
+							return question;
+						}	
 
-					
+					});	
 
 				});
 
@@ -70,15 +74,14 @@ angular.module("myApp.create", ['ngRoute'])
 				$scope.questionBeEdit = question; 
 				$scope.editEnable = true;
 
-
 			}
 
 			$scope.saveEditQuestion = function(question) {
 
 				$scope.questions.forEach(function(quest) {
-					if(quest.message == $scope.questionBeEdit.message){
+					if(quest.enunciado == $scope.questionBeEdit.enunciado){
 
-						quest.message = question.msg;
+						quest.enunciado = question.msg;
 						$scope.editEnable = false;
 
 
@@ -90,17 +93,6 @@ angular.module("myApp.create", ['ngRoute'])
 
 			}
 
-			var removeLocalStorage = function(questions){
-
-				var dado = localStorage.getItem("questions");
-				var array = JSON.parse(dado);
-
-				array = questions.filter(function(question){
-					if(!question.selected) return question;
-				});
-				localStorage.setItem("questions", JSON.stringify(array));
-
-			}
 
 			begin();
 			

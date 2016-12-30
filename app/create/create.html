@@ -18,8 +18,8 @@
 						<!--ng-repeat-->
 						<tr ng-class="{selected: question.selected}" ng-repeat="question in questions">
 							<td><input type="checkbox" ng-model="question.selected"/></td>
-							<th>{{ question.message }}</th>
-							<th>{{ question.type }}</th>
+							<th>{{ question.enunciado }}</th>
+							<th>{{ question.tipoResposta }}</th>
 							<th><button ng-click = "enableEditQuestion(question)" type="button" class="btn btn-link" data-toggle="modal" data-target="#editModal"><i class="fa fa-pencil-square-o"></button></th>	
 						</tr>
 					
@@ -60,13 +60,13 @@
 
 
 				<!--place the input fields-->
-				<input class = "form-control" type = "text" ng-model = "question.message" placeholder = "Nova Questão"/>
-				<select class = "form-control" ng-model="question.type" ng-options = "type for type in types">
+				<input class = "form-control" type = "text" ng-model = "question.enunciado" placeholder = "Nova Questão"/>
+				<select class = "form-control" ng-model="question.tipoResposta" ng-options = "tipoResposta for tipoResposta in tipoResposta">
 					 <option value = "">Selecione um tipo de questão</option>
 				</select>
 				<!--pass as parameter message and the type of question-->
 				<div class="bottomAdd" style="text-align: center;">
-					<button class = "btn btn-primary btn-block" ng-click = "addQuestion(question)" ng-disabled = "!question.message || !question.type">
+					<button class = "btn btn-primary btn-block" ng-click = "addQuestion(question)" ng-disabled = "!question.enunciado || !question.tipoResposta">
 						Adicionar Questão
 					</button> 
 					<button class = "btn btn-danger btn-block" ng-click = "deleteQuestion(questions)" ng-show="isQuestionSelected(questions)">

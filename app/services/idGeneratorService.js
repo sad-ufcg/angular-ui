@@ -6,14 +6,7 @@ angular.module("myApp.create").provider("idGenerator", function() {
 
 			generate: function () {
 
-				var id = "";
-
-				while(id.length < 15) {
-
-					id += String.fromCharCode(Math.floor(Math.random() * 64 ) + 32);
-
-				}
-				return id; 
+				return Math.floor(Math.random() * 123648)
 			}
 
 		};

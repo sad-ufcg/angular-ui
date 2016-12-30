@@ -2,7 +2,7 @@ angular.module("myApp").factory("questionAPI", function ($http, config) {
 
 	var _getQuestions = function () {
 
-		return $http.get(config.baseUrl + "/questions");
+		return $http.get(config.baseUrl + "/question");
 	};
 
 	var _getTeachers = function () {
