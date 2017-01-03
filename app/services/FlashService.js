@@ -41,7 +41,7 @@ angular.module("myApp")
     };
 
     return {
-    	Sucess : _Success,
+    	Success : _Success,
     	Error : _Error
     }
 

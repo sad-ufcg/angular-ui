@@ -1,143 +1,74 @@
 angular.module("myApp")
 
 
-.factory("AuthenticationService", ['$http', '$cookies', '$rootScope', '$timeout', 'UserService', function($http, $cookies, $rootScope, $timeout, UserService) {
+.factory("AuthenticationService", 
+	['$http', '$cookies', '$rootScope', '$timeout', 'UserService', 'Base64', 
+	function($http, $cookies, $rootScope, $timeout, UserService,Base64) {
 
 
-		var _Login = function (username, password, callback) {
+        var service = {};
 
-			$timeout(function() {
-				var response;
+        service.Login = Login;
+        service.SetCredentials = SetCredentials;
+        service.ClearCredentials = ClearCredentials;
 
-				UserService.getByUsername(username).then(function (user) {
+        return service;
 
-					if(user !== null && password === user.password) {
-						response = {success: true};
-					}else{
-						response = {success: false, message: "Matrícula ou senha inválida"};
-					}
-					callback(response);
-				});
+        function Login(username, password, callback) {
 
-			}, 1000);
+            /* Dummy authentication for testing, uses $timeout to simulate api call
+             ----------------------------------------------*/
+            $timeout(function () {
+                var response;
+                UserService.GetByUsername(username)
+                    .then(function (user) {
+                        if (user !== null && user.password === password) {
+                            response = { success: true };
+                        } else {
+                            response = { success: false, message: 'Username or password is incorrect' };
+                        }
+                        callback(response);
+                    });
+            }, 1000);
 
-		};
+            /* Use this for real authentication
+             ----------------------------------------------*/
+            //$http.post('/api/authenticate', { username: username, password: password })
+            //    .success(function (response) {
+            //        callback(response);
+            //    });
 
-		var _SetCredentials = function (username, password) {
+        }
 
-			var authdata = Base64.enconde(username + ":" + password);
+        function SetCredentials(username, password) {
+            var authdata = Base64.encode(username + ':' + password);
 
-			$rootScope.globals = {
-				currentUser: {
-					username : username,
-					authdata : authdata
-				}
-			};
+            $rootScope.globals = {
+                currentUser: {
+                    username: username,
+                    authdata: authdata
+                }
+            };
 
-			$http.defaults.headers.common["Authorization"] =  "Basic" + authdata;
+            // set default auth header for http requests
+            $http.defaults.headers.common['Authorization'] = 'Basic ' + authdata;
 
-			//for keep user logged during 2 days
+            // store user details in globals cookie that keeps user logged in for 1 week (or until they logout)
+            var cookieExp = new Date();
+            cookieExp.setDate(cookieExp.getDate() + 7);
+            $cookies.putObject('globals', $rootScope.globals, { expires: cookieExp });
+        }
 
-			var cookieExp = new Date(); 
-			cookieExp.setDate(cookieExp + 2);
-			$cookies.putObject('globals', $rootScope.globals, {expires : cookieExp});
+        function ClearCredentials() {
+            $rootScope.globals = {};
+            $cookies.remove('globals');
+            $http.defaults.headers.common.Authorization = 'Basic';
+        }
+    
 
-		};
+    // Base64 encoding service used by AuthenticationService
 
-		var _ClearCredentials = function() {
 
-			$rootScope.globals = {};
-			$cookies.remove('globals');
-			$http.defaults.headers.common.Authorization = "Basic";
-
-		};
-
-		var Base64 = {
- 
-	        keyStr: 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=',
-	 
-	        encode: function (input) {
-	            var output = "";
-	            var chr1, chr2, chr3 = "";
-	            var enc1, enc2, enc3, enc4 = "";
-	            var i = 0;
-	 
-	            do {
-	                chr1 = input.charCodeAt(i++);
-	                chr2 = input.charCodeAt(i++);
-	                chr3 = input.charCodeAt(i++);
-	 
-	                enc1 = chr1 >> 2;
-	                enc2 = ((chr1 & 3) << 4) | (chr2 >> 4);
-	                enc3 = ((chr2 & 15) << 2) | (chr3 >> 6);
-	                enc4 = chr3 & 63;
-	 
-	                if (isNaN(chr2)) {
-	                    enc3 = enc4 = 64;
-	                } else if (isNaN(chr3)) {
-	                    enc4 = 64;
-	                }
-	 
-	                output = output +
-	                    this.keyStr.charAt(enc1) +
-	                    this.keyStr.charAt(enc2) +
-	                    this.keyStr.charAt(enc3) +
-	                    this.keyStr.charAt(enc4);
-	                chr1 = chr2 = chr3 = "";
-	                enc1 = enc2 = enc3 = enc4 = "";
-	            } while (i < input.length);
-	 
-	            return output;
-	        },
- 
-	        decode: function (input) {
-	            var output = "";
-	            var chr1, chr2, chr3 = "";
-	            var enc1, enc2, enc3, enc4 = "";
-	            var i = 0;
-	 
-	            // remove all characters that are not A-Z, a-z, 0-9, +, /, or =
-	            var base64test = /[^A-Za-z0-9\+\/\=]/g;
-	            if (base64test.exec(input)) {
-	                window.alert("Há caracteres inválidos para a entrada.\n" +
-	                    "Caracteres válidos: A-Z, a-z, 0-9, '+', '/',e '='\n" +
-	                    "Erro esperado ao decodificar.");
-	            }
-	            input = input.replace(/[^A-Za-z0-9\+\/\=]/g, "");
-	 
-	            do {
-	                enc1 = this.keyStr.indexOf(input.charAt(i++));
-	                enc2 = this.keyStr.indexOf(input.charAt(i++));
-	                enc3 = this.keyStr.indexOf(input.charAt(i++));
-	                enc4 = this.keyStr.indexOf(input.charAt(i++));
-	 
-	                chr1 = (enc1 << 2) | (enc2 >> 4);
-	                chr2 = ((enc2 & 15) << 4) | (enc3 >> 2);
-	                chr3 = ((enc3 & 3) << 6) | enc4;
-	 
-	                output = output + String.fromCharCode(chr1);
-	 
-	                if (enc3 != 64) {
-	                    output = output + String.fromCharCode(chr2);
-	                }
-	                if (enc4 != 64) {
-	                    output = output + String.fromCharCode(chr3);
-	                }
-	 
-	                chr1 = chr2 = chr3 = "";
-	                enc1 = enc2 = enc3 = enc4 = "";
-	 
-	            } while (i < input.length);
-	 
-	            return output;
-	        }
-    };	
-
-    return {
-    	Login : _Login,
-    	SetCredentials : _SetCredentials,
-    	ClearCredentials : _ClearCredentials
-    }
 
 
 }])
