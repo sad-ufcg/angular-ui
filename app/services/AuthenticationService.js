@@ -16,8 +16,7 @@ angular.module("myApp")
 
         function Login(username, password, callback) {
 
-            /* Dummy authentication for testing, uses $timeout to simulate api call
-             ----------------------------------------------*/
+      
             $timeout(function () {
                 var response;
                 UserService.GetByUsername(username)
@@ -25,18 +24,12 @@ angular.module("myApp")
                         if (user !== null && user.password === password) {
                             response = { success: true };
                         } else {
-                            response = { success: false, message: 'Username or password is incorrect' };
+                            response = { success: false, message: 'Matricula ou senha incorretas' };
                         }
                         callback(response);
                     });
             }, 1000);
 
-            /* Use this for real authentication
-             ----------------------------------------------*/
-            //$http.post('/api/authenticate', { username: username, password: password })
-            //    .success(function (response) {
-            //        callback(response);
-            //    });
 
         }
 
@@ -64,12 +57,6 @@ angular.module("myApp")
             $cookies.remove('globals');
             $http.defaults.headers.common.Authorization = 'Basic';
         }
-    
-
-    // Base64 encoding service used by AuthenticationService
-
-
-
 
 }])
 
