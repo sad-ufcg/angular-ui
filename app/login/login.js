@@ -3,38 +3,37 @@ angular.module("myApp.login", ['ngRoute'])
 .config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/login', {
     templateUrl: 'login/login.html',
-    controller: 'loginCrtl'
+    controller: 'LoginControler'
   });
 }])
 
 
-.factory("formService", function () {
-	formService = {};
+.controller("LoginControler", ['$location', 'FlashService','AuthenticationService',  function ($location, AuthenticationService, FlashService) {
 
-	formService.getUsers = function(){
-		var users = [{matricula: "123456789", senha:"1234"},
-					 {matricula: "115115115", senha: "admin"}
-					];
-		return users;
-	}
+	var vm = this;
 
-	return formService;
+    vm.login = login;
 
-	
+    console.log(vm);
 
-})
+    (function initController() {
+        // reset login status
+        AuthenticationService.ClearCredentials();
+    })();
 
+    function login() {
+        vm.dataLoading = true;
+        console.log(vm.username);
+        AuthenticationService.Login(vm.username, vm.password, function (response) {
+        	console.log(vm.username);
+            if (response.success) {
+                AuthenticationService.SetCredentials(vm.username, vm.password);
+                $location.path('/');
+            } else {
+                FlashService.Error(response.message);
+                vm.dataLoading = false;
+            }
+        });
+    };
 
-.controller("loginCrtl", function($scope, formService){
-
-		var begin = function(){
-		}
-
-		$scope.doLogin = function(user){
-				 $location.path('/create');		
-		}
-		
-		begin();
-
-		
-})
+}])

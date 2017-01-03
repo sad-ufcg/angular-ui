@@ -3,6 +3,7 @@
 // Declare app level module which depends on views, and components
 angular.module('myApp', [
   'ngRoute',
+  'ngCookies',
   'myApp.login',
   'myApp.create',
   'myApp.answer',
@@ -23,5 +24,8 @@ config(['$locationProvider', '$routeProvider', '$httpProvider', function($locati
    $httpProvider.defaults.headers.delete = {};
    $httpProvider.defaults.headers.put = {};
    $httpProvider.defaults.headers.patch = {};
+
+
+   
 
 }]);

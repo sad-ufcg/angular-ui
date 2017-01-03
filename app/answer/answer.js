@@ -40,5 +40,4 @@ angular.module("myApp.answer", ['ngRoute'])
 		inicio();
 		
 
-
 	}])

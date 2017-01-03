@@ -33,22 +33,16 @@ angular.module("myApp.create", ['ngRoute'])
 
 			$scope.addQuestion = function(question){
 
-				var temp_quest = {id:idGenerator.generate(), enunciado: question.enunciado, 
-					tipoResposta: question.tipoResposta};
+				var temp_quest = {"id":idGenerator.generate(), 	"enunciado": question.enunciado, 
+					"tipoResposta": question.tipoResposta};
 
 				console.log(temp_quest);	
 
-				$http.post(config.baseUrl + "/question", temp_quest,{
-				            'Content-Type': 'application/json'
-				}).success(function(data) {
+				$http.post(config.baseUrl + "/question", JSON.stringify(temp_quest)).success(function(data) {
 
-
-
-				delete $scope.question;
-				loadQuestion();
+					delete $scope.question;
+					loadQuestion();
 				});
-
-
 			}	
 
 
