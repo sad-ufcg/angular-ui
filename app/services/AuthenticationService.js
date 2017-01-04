@@ -1,9 +1,9 @@
 angular.module("myApp")
 
 
-.factory("AuthenticationService", 
+.factory('AuthenticationService', 
 	['$http', '$cookies', '$rootScope', '$timeout', 'UserService', 'Base64', 
-	function($http, $cookies, $rootScope, $timeout, UserService,Base64) {
+	   function($http, $cookies, $rootScope, $timeout, UserService,Base64) {
 
 
         var service = {};
