@@ -3,12 +3,22 @@ var routerHTTP = require('./routerHTTP')
 
 var app = routerHTTP(3412);
 
-var questions = [{id: 1,message:"Os pre-requisitos assumidos pela disciplina foram adequados?", type: "Vazio"},
-			 
-			 {id: 2, message:"O programa da disciplina esteve de acordo com a ementa da mesma?", type: "Vazio"},
-			 
-			 {id: 3, message: "vai aparecer em todo canto", type: "Vazio"}
-			];
+var questions = [{
+					  "id": 1,
+					  "enunciado": "teste",
+					  "tipoResposta": "TEXTO",
+					  "comentario": false
+					},
+
+				{	  "id": 2,
+					  "enunciado": "O programa da disciplina esteve de acordo com a ementa da mesma?",
+					  "tipoResposta": "TEXTO",
+					  "comentario": false },
+
+				{	  "id": 3,
+					  "enunciado": "vai aparecer em todo canto",
+					  "tipoResposta": "TEXTO",
+					  "comentario": false }];
 
 
 var types = ["Múltipla Escolha"];
@@ -33,7 +43,7 @@ app.interceptor(function (req, res, next) {
 
 
 
-app.get('/questions', function(req, res) {
+app.get('/question', function(req, res) {
 	res.write(JSON.stringify(questions));
 	res.end();
 });
