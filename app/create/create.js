@@ -55,14 +55,20 @@ angular.module("myApp.create", ['ngRoute'])
 
 			$scope.deleteQuestion = function(questions){
 
-				$http.delete(config.baseUrl + "/question",questions[0]).success(function(data) {
+				console.log(questions);
 
-					$scope.questions = questions.filter(function(question){
-						if (!question.selected){
-							return question;
-						}	
+				questions.forEach(function(single_question) {
 
-					});	
+					$http.delete(config.baseUrl + "/question" + single_question.id, {params: single_question}).success(function(data) {
+
+						$scope.questions = questions.filter(function(question){
+							if (!question.selected){
+								return question;
+							}	
+
+						});	
+
+					});
 
 				});
 
