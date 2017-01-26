@@ -21,6 +21,7 @@ angular.module("myApp.create", ['ngRoute'])
 
 				$scope.tipoResposta = ["TEXTO", "MULTIPLA_ESCOLHA", "SELECAO"];
 				loadQuestion();
+				
 			}
 
 			var loadQuestion = function() {
@@ -88,19 +89,13 @@ angular.module("myApp.create", ['ngRoute'])
 
 						quest.enunciado = question.msg;
 						$scope.editEnable = false;
-
-
 					}
 
 				});
-
 				question.msg = null;
-
 			}
 
-
 			begin();
-			
 
 
 	}])
