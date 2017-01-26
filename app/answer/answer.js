@@ -16,8 +16,9 @@ angular.module("myApp.answer", ['ngRoute'])
 			$scope.answers = questionAPI.getAnswers();
 			$scope.matters = [];
 
-		loadQuestion();
-		loadTeachers();	
+			loadQuestion();
+			loadTeachers();	
+			console.log($scope.matters);
 			
 		};
 
