@@ -7,7 +7,37 @@ angular.module("myApp.student-groups", ['ngRoute', 'angularFileUpload'])
 	  });
 	}])
 
-	 .controller('StudentGroupsController', ['$scope', 'FileUploader', function($scope, FileUploader) {
+	 .controller('StudentGroupsController', ['$scope', 'FileUploader','questionAPI', function($scope,FileUploader,questionAPI) {
+
+
+	 	var begin = function() {
+
+	 		$scope.teachers = [];
+	 		$scope.years = yearsRange(2000, 2017);
+	 		loadTeacher();
+
+	 	}
+
+
+	 	var loadTeacher = function () {
+
+	 		questionAPI.getTeachers().success(function(data, status) {
+	 			$scope.teachers = data;
+	 		});
+
+	 	}
+
+
+	 	
+
+	 	var yearsRange = function(min, max){
+	 		var input = [];
+	 		for(var i = max; i >= min; i--)
+	 			input.push(i);
+	 		return input;
+	 	}
+
+	 	begin();
 
         var uploader = $scope.uploader = new FileUploader({
             url: 'upload.php'
