@@ -23,10 +23,10 @@ var questions = [{
 
 var types = ["Múltipla Escolha"];
 
-var teacher =[{teacher:"Matheus Gaudêncio", name:"Administração de Sistemas"},
-			{teacher:"Não sei quem é", name:"Banco de Dados I"}, 
-			{teacher:"Nazareno", name:"Sistema de Informação I"}, 
-			{teacher:"Carlos Wilson", name:"Gerência da Informação"}];			
+var teacher =[{name:"Matheus Gaudêncio", matter:"Administração de Sistemas"},
+			{name:"Não sei quem é", matter:"Banco de Dados I"}, 
+			{name:"Nazareno", matter:"Sistema de Informação I"}, 
+			{name:"Carlos Wilson", matter:"Gerência da Informação"}];			
 
 
 app.interceptor(function (req, res, next) {
