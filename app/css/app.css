@@ -44,13 +44,14 @@
 .tab-content{
     border: 5px;
     width: 950px;
-    padding-left: 50px;
+    padding-left: 100px;
     padding-right: 50px;
+    padding-top: 25px;
 }
-
 .formLine{
   color: #428bca;
   font-color: #428bca;
+  padding: 5px;
 }
 
 .tabs-container {
@@ -98,7 +99,7 @@
 }
 
 .tab-form{
-  padding-left: 5px;
+  padding: 5px;
   border: 5px;
   width: 800px;
 }  
