@@ -1,4 +1,4 @@
-angular.module("myApp.student-groups", ['ngRoute'])
+angular.module("myApp.student-groups", ['ngRoute', 'angularFileUpload'])
 
 	.config(['$routeProvider', function($routeProvider, $http, config) {
 	  $routeProvider.when('/student-groups', {
@@ -8,6 +8,7 @@ angular.module("myApp.student-groups", ['ngRoute'])
 	}])
 
 	 .controller('StudentGroupsController', ['$scope', 'FileUploader', function($scope, FileUploader) {
+
         var uploader = $scope.uploader = new FileUploader({
             url: 'upload.php'
         });
