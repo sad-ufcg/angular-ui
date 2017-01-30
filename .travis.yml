@@ -12,9 +12,18 @@ install:
   - sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
   - sudo apt-get update -q
   - sudo apt-get install -q google-chrome-stable
+	- sudo apt-get install python-software-properties
+	- sudo add-apt-repository ppa:ondrej/php
+
+	- sudo apt-get purge php5-fpm -y
+	- sudo apt-get install php7.0 php7.0-fpm 
+
 
 before_script:
   - npm install
+	- npm install angular-file-upload
+
+	
 
 script:
   - npm run test-single-run
