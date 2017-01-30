@@ -4,21 +4,21 @@ var routerHTTP = require('./routerHTTP')
 var app = routerHTTP(3412);
 
 var questions = [{
-					  "id": 1,
-					  "enunciado": "teste",
-					  "tipoResposta": "TEXTO",
-					  "comentario": false
+					  id: 1,
+					  enunciado: "teste",
+					 tipoResposta: "TEXTO",
+					  comentario: false
 					},
 
-				{	  "id": 2,
-					  "enunciado": "O programa da disciplina esteve de acordo com a ementa da mesma?",
-					  "tipoResposta": "TEXTO",
-					  "comentario": false },
+				{	  id: 2,
+					  enunciado: "O programa da disciplina esteve de acordo com a ementa da mesma?",
+					  tipoResposta: "TEXTO",
+					  comentario: false },
 
-				{	  "id": 3,
-					  "enunciado": "vai aparecer em todo canto",
-					  "tipoResposta": "TEXTO",
-					  "comentario": false }];
+				{	 id: 3,
+					  enunciado: "vai aparecer em todo canto",
+					  tipoResposta: "TEXTO",
+					  comentario: false }];
 
 
 var types = ["Múltipla Escolha"];
@@ -59,7 +59,7 @@ app.get('/teachers', function(req, res) {
 	res.end();
 });
 
-app.post('/questions', function(req, res) {
+app.post('/question', function(req, res) {
 
 	var question = req.body;
 	questions.push(JSON.parse(question));
@@ -67,7 +67,7 @@ app.post('/questions', function(req, res) {
 
 });
 
-app.delete('/questions', function(req, res) {
+app.delete('/question', function(req, res) {
 	var question = req.body;
 	console.log(question);
 	var pos = questions.indexOf(question);
@@ -78,7 +78,7 @@ app.delete('/questions', function(req, res) {
 });
 
 
-app.options('/questions', function(req, res) {
+app.options('/question', function(req, res) {
 	res.end();
 });
 
