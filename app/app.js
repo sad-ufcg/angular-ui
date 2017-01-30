@@ -15,12 +15,12 @@ angular.module('myApp', [
 .config(['$locationProvider', '$routeProvider', '$httpProvider', function($locationProvider, $routeProvider, $httpProvider) {
   $locationProvider.hashPrefix('!');
 
- $httpProvider.defaults.headers.common = { 'Content-Type' : 'application/json, text/javascript'};
- $httpProvider.defaults.headers.post = { 'Content-Type' : 'application/json, text/javascript'};
- $httpProvider.defaults.headers.get = { 'Content-Type' : 'application/json'};
- $httpProvider.defaults.headers.delete = { 'Content-Type' : 'application/json'};
- $httpProvider.defaults.headers.put = { 'Content-Type' : 'application/json, text/javascript'};
- $httpProvider.defaults.headers.patch = { 'Content-Type' : 'application/json'};
+ $httpProvider.defaults.headers.common = {};
+ $httpProvider.defaults.headers.post = { };
+ $httpProvider.defaults.headers.get = { };
+ $httpProvider.defaults.headers.delete = { };
+ $httpProvider.defaults.headers.put = { };
+ $httpProvider.defaults.headers.patch = { };
 
  $routeProvider.otherwise({redirectTo: '/login'});
 
