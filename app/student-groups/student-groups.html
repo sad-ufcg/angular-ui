@@ -97,7 +97,7 @@
                             <div class="progress-bar" role="progressbar" ng-style="{ 'width': uploader.progress + '%' }"></div>
                         </div>
                     </div>
-                    <button type="button" class="btn btn-success btn-s" ng-click="uploader.uploadAll()" ng-disabled="!uploader.getNotUploadedItems().length">
+                    <button type="button" class="btn btn-success btn-s" ng-click="addClass(group)" ng-disabled="!uploader.getNotUploadedItems().length">
                         <span class="fa fa-cloud-upload"></span> Salvar
                     </button>
                     

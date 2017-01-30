@@ -10,6 +10,7 @@ angular.module("myApp.student-groups", ['ngRoute', 'angularFileUpload'])
 	 .controller('StudentGroupsController', ['$scope', 'FileUploader','questionAPI', function($scope,FileUploader,questionAPI) {
 
 
+	 	//Begin the controller
 	 	var begin = function() {
 
 	 		$scope.teachers = [];
@@ -19,6 +20,7 @@ angular.module("myApp.student-groups", ['ngRoute', 'angularFileUpload'])
 	 	}
 
 
+	 	//Load all the teachers from DB
 	 	var loadTeacher = function () {
 
 	 		questionAPI.getTeachers().success(function(data, status) {
@@ -27,9 +29,20 @@ angular.module("myApp.student-groups", ['ngRoute', 'angularFileUpload'])
 
 	 	}
 
+	 	$scope.addClass = function(group){
 
-	 	
+	 		var queueFile = uploader.getNotUploadedItems();
 
+	 		var newClass = {id : group.id, year : group.year, semester: group.semester, 
+	 						teacher: group.teacher, file: queueFile[0] };
+	 		console.log(newClass);
+
+	 		uploader.uploadAll()
+
+	 	}
+
+
+	 	//range for inputs
 	 	var yearsRange = function(min, max){
 	 		var input = [];
 	 		for(var i = max; i >= min; i--)
