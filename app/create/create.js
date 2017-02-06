@@ -10,7 +10,7 @@ angular.module("myApp.create", ['ngRoute'])
 
 
 	//http://jsfiddle.net/timriley/GVCP2/
-	.controller('CreateCtrl',['$scope', '$http', 'questionAPI', 'config','idGenerator',function($scope,$http, questionAPI, 
+	.controller('CreateCtrl',['$scope', '$http', 'questionAPI', 'config',function($scope,$http, questionAPI, 
 		config, idGenerator) {
 
 
@@ -34,12 +34,7 @@ angular.module("myApp.create", ['ngRoute'])
 
 			$scope.addQuestion = function(question){
 
-				var temp_quest = {"id":idGenerator.generate(), 	"enunciado": question.enunciado, 
-					"tipoResposta": question.tipoResposta};
-
-				console.log(temp_quest);	
-
-				$http.post(config.baseUrl + "/question", JSON.stringify(temp_quest)).success(function(data) {
+				saveQuestion(question).success(function(data) {
 
 					delete $scope.question;
 					loadQuestion();
