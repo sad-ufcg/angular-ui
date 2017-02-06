@@ -35,6 +35,7 @@ angular.module("myApp.student-groups", ['ngRoute', 'angularFileUpload'])
 
 	 		var newClass = {id : group.id, year : group.year, semester: group.semester, 
 	 						teacher: group.teacher, file: queueFile[0] };
+	 						
 	 		console.log(newClass);
 
 	 		uploader.uploadAll()
