@@ -372,14 +372,18 @@ return /******/ (function(modules) { // webpackBootstrap
 	                return item._prepareToUploading();
 	            });
 	            items[0].upload();
+	            
+
 	        };
 	        /**
 	         * Cancels all uploads
 	         */
+
 	
 	
 	        FileUploader.prototype.cancelAll = function cancelAll() {
 	            var items = this.getNotUploadedItems();
+	            
 	            forEach(items, function (item) {
 	                return item.cancel();
 	            });
