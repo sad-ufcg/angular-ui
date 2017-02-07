@@ -34,7 +34,7 @@ angular.module("myApp.create", ['ngRoute'])
 
 			$scope.addQuestion = function(question){
 
-				saveQuestion(question).success(function(data) {
+				questionAPI.saveQuestion(question).success(function(data) {
 
 					delete $scope.question;
 					loadQuestion();
@@ -52,17 +52,18 @@ angular.module("myApp.create", ['ngRoute'])
 			$scope.deleteQuestion = function(questions){
 
 				console.log(questions);
-
-				questions.forEach(function(single_question) {
-
-					$http.delete(config.baseUrl + "/question" + single_question.id, {params: single_question}).success(function(data) {
-
-						$scope.questions = questions.filter(function(question){
+				$scope.questions = questions.filter(function(question){
 							if (!question.selected){
 								return question;
 							}	
 
 						});	
+
+				questions.forEach(function(single_question) {
+
+					$http.delete(config.baseUrl + "/question" + single_question.id, {params: single_question}).success(function(data) {
+
+						
 
 					});
 
