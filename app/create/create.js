@@ -10,13 +10,11 @@ angular.module("myApp.create", ['ngRoute'])
 
 
 	//http://jsfiddle.net/timriley/GVCP2/
-	.controller('CreateCtrl',['$scope', '$http', 'questionAPI', 'config',function($scope,$http, questionAPI, 
-		config, idGenerator) {
+	.controller('CreateCtrl',['$scope', 'questionAPI', 'config',function($scope, questionAPI, config) {
 
 
 			var begin =  function(){
 
-				
 				$scope.questions = [];	
 
 				$scope.tipoResposta = ["TEXTO", "MULTIPLA_ESCOLHA", "SELECAO"];
@@ -51,17 +49,13 @@ angular.module("myApp.create", ['ngRoute'])
 
 			$scope.deleteQuestion = function(questions){
 
-				console.log(questions);
-
 				
-
 				$scope.questions = questions.filter(function(question){
 							if (question.selected){
 								questionAPI.deleteQuestion(question);
 							}else{
 								return question;
 							}	
-
 				});	
 
 
@@ -69,22 +63,22 @@ angular.module("myApp.create", ['ngRoute'])
 
 			$scope.enableEditQuestion = function(question){
 
-				$scope.questionBeEdit = question; 
-				$scope.editEnable = true;
+				$scope.enuciado = question;
 
 			}
 
-			$scope.saveEditQuestion = function(question) {
+			$scope.saveEditQuestion = function(newEnunciado) {
 
-				$scope.questions.forEach(function(quest) {
-					if(quest.enunciado == $scope.questionBeEdit.enunciado){
+				var news = $scope.enuciado;
 
-						quest.enunciado = question.msg;
-						$scope.editEnable = false;
-					}
+				questionAPI.setQuestion(news, newEnunciado).success(function(data) {
 
-				});
-				question.msg = null;
+					delete $scope.newEnunciado;
+					delete $scope.enunciado;
+					loadQuestion();
+
+				})
+
 			}
 
 			begin();

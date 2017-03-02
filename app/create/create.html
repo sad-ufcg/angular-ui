@@ -17,7 +17,7 @@
 					</thead>
 						<!--ng-repeat-->
 						<tr ng-class="{selected: question.selected}" ng-repeat="question in questions">
-							<td><input type="checkbox" ng-model="question.selected"/></td>
+							<td><input type="checkbox" aria-hidden="true" ng-model="question.selected"/></td>
 							<th>{{ question.enunciado }}</th>
 							<th>{{ question.tipoResposta }}</th>
 							<th><button ng-click = "enableEditQuestion(question)" type="button" class="btn btn-link" data-toggle="modal" data-target="#editModal"><i class="fa fa-pencil-square-o"></button></th>	
@@ -40,18 +40,18 @@
 								<form>
 								<div class="form-group">
 								<label for="recipient-name" class="control-label">Questão atual</label>
-								<div class="alert alert-info" role="alert">{{questionBeEdit.message}}</div>
+								<div class="alert alert-info" role="alert">{{enuciado.enunciado}}</div>
 
 								</div>
 								<div class="form-group">
 								<label for="message-text" class="control-label">Nova questão:</label>
-								<input class="form-control" type = "text" class="form-control" ng-model="question.msg">
+								<input class="form-control" type = "text" class="form-control" ng-model="message">
 								</div>
 								</form>
 							</div>
 							<div class="modal-footer">
 								<button class="btn btn-default" data-dismiss="modal">Cancelar</button>
-								<button class="btn btn-primary" ng-click="saveEditQuestion(question)" ng-disabled="!question.msg" placeholder="Nova Questão" data-dismiss="modal">Concluir edição</button>
+								<button class="btn btn-primary" ng-click="saveEditQuestion(message)" ng-disabled="!message" placeholder="Nova Questão" data-dismiss="modal">Concluir edição</button>
 							</div>
 						</div>
 					</div>

@@ -30,7 +30,17 @@ angular.module("myApp").factory("questionAPI", function ($http, config, idGenera
 	                $scope.ServerResponse = data;
 	            });
 
-		
+	}
+
+	var _setQuestion = function(newQuestion, newEnunciado){
+
+		newQuestion.enunciado = newEnunciado;
+		console.log(newQuestion);
+
+		return $http.put(config.baseUrl + "/question/" + newQuestion.id, newQuestion).success(function (data, status, headers) {
+
+			});
+
 
 	}
 
@@ -39,7 +49,8 @@ angular.module("myApp").factory("questionAPI", function ($http, config, idGenera
 		getTeachers: _getTeachers,
 		getAnswers : _getAnswers, 
 		saveQuestion : _saveQuestion,
-		deleteQuestion : _deleteQuestion
+		deleteQuestion : _deleteQuestion,
+		setQuestion : _setQuestion
 	}
 
 })

@@ -29,7 +29,7 @@ angular.module('myApp', [
     $httpProvider.defaults.headers.post['Content-Type'] = 'application/json; charset=utf-8';
 	 $httpProvider.defaults.headers.get = { };
 	 $httpProvider.defaults.headers.delete = { };
-	 $httpProvider.defaults.headers.put = { };
+	 $httpProvider.defaults.headers.put['Content-Type'] = 'application/json; charset=utf-8';
 	 $httpProvider.defaults.headers.patch = { };
 
 	  $httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';
