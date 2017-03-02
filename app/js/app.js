@@ -12,17 +12,29 @@ angular.module('myApp', [
 
 ])
 
+.controller('app', function($http){
+
+	var self = this;
+	$http.get('/resources/').then(function(response){
+		self.greeting = response.data;
+	})
+
+})
+
+
 .config(['$locationProvider', '$routeProvider', '$httpProvider', function($locationProvider, $routeProvider, $httpProvider) {
   $locationProvider.hashPrefix('!');
 
- $httpProvider.defaults.headers.common = {};
- $httpProvider.defaults.headers.post = { };
- $httpProvider.defaults.headers.get = { };
- $httpProvider.defaults.headers.delete = { };
- $httpProvider.defaults.headers.put = { };
- $httpProvider.defaults.headers.patch = { };
+	$httpProvider.defaults.headers.post['Accept'] = 'application/json, text/javascript';
+    $httpProvider.defaults.headers.post['Content-Type'] = 'application/json; charset=utf-8';
+	 $httpProvider.defaults.headers.get = { };
+	 $httpProvider.defaults.headers.delete = { };
+	 $httpProvider.defaults.headers.put = { };
+	 $httpProvider.defaults.headers.patch = { };
 
- $routeProvider.otherwise({redirectTo: '/login'});
+	  $httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';
+
+	 $routeProvider.otherwise({redirectTo: '/login'});
 
 
 }]);

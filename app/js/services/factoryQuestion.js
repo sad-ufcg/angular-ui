@@ -17,10 +17,20 @@ angular.module("myApp").factory("questionAPI", function ($http, config, idGenera
 
 	var _saveQuestion = function(question){
 
-		var temp_quest = {"id":idGenerator.generate(), 	"enunciado": question.enunciado, 
+		var temp_quest = {"enunciado": question.enunciado, 
 					"tipoResposta": question.tipoResposta};
 
 		return $http.post(config.baseUrl + "/question", JSON.stringify(temp_quest)); 			
+
+	}
+
+	var _deleteQuestion = function(question){
+
+		return $http.delete(config.baseUrl + "/question/" + question.id, question).success(function (data, status, headers) {
+	                $scope.ServerResponse = data;
+	            });
+
+		
 
 	}
 
@@ -28,7 +38,8 @@ angular.module("myApp").factory("questionAPI", function ($http, config, idGenera
 		getQuestions : _getQuestions,
 		getTeachers: _getTeachers,
 		getAnswers : _getAnswers, 
-		saveQuestion : _saveQuestion
+		saveQuestion : _saveQuestion,
+		deleteQuestion : _deleteQuestion
 	}
 
 })
