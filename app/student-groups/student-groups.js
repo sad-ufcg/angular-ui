@@ -7,7 +7,8 @@ angular.module("myApp.student-groups", ['ngRoute', 'angularFileUpload'])
 	  });
 	}])
 
-	 .controller('StudentGroupsController', ['$scope', 'FileUploader','questionAPI', function($scope,FileUploader,questionAPI) {
+	 .controller('StudentGroupsController', ['$scope', 'FileUploader','questionAPI', 'courseAPI',
+         function($scope,FileUploader,questionAPI, courseAPI) {
 
 
 	 	//Begin the controller
@@ -33,7 +34,8 @@ angular.module("myApp.student-groups", ['ngRoute', 'angularFileUpload'])
 
             console.log(group);
             console.log(file);
-
+            courseAPI.saveCourse(group);
+            delete $scope.group;
         }
 
         $scope.test = function(){
