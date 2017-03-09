@@ -2,10 +2,26 @@ angular.module("myApp").factory("courseAPI", function ($http, $q, config) {
 
 	var _saveCourse = function(group){
 
-		group.id = _generateId(group);
 		
-		return $http.post(config.baseUrl + "/course", JSON.stringify(group)); 
+		var course = _createCourse(_generateId(group), group.matter, group.number, group.teacher, 
+														group.semester);
 
+
+		return $http.post(config.baseUrl + "/course", JSON.stringify(course)); 
+
+
+	}
+
+
+	var _createCourse = function(id, name, courseNumber, teacher, semester){
+
+		return{
+			id : id,
+			name: name, 
+			courseNumber: courseNumber,
+			teacher : teacher, 
+			semester : semester
+		};
 
 	}
 
