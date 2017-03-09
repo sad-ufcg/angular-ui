@@ -31,7 +31,7 @@ angular.module("myApp.answer", ['ngRoute'])
 			}
 
 		var loadTeachers = function() {
-			questionAPI.getTeachers().success(function(data, status){
+			questionAPI.getTeachers().then(function(data, status){
 
 				$scope.matters = data;
 

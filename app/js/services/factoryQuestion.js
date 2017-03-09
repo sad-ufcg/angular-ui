@@ -1,4 +1,4 @@
-angular.module("myApp").factory("questionAPI", function ($http, config, idGenerator) {
+angular.module("myApp").factory("questionAPI", function ($http, config, $q, idGenerator) {
 
 	var _getQuestions = function () {
 
@@ -7,7 +7,12 @@ angular.module("myApp").factory("questionAPI", function ($http, config, idGenera
 
 	var _getTeachers = function () {
 
-		return $http.get(config.baseUrl + "/teachers");
+		var teachers = [{id: 123,name:" Matheus Gaudêncio", matter:"Administração de Sistemas"},
+			{id: 999, name:" Não sei quem é", matter:"Banco de Dados I"}, 
+			{id: 223, name:" Nazareno", matter:"Sistema de Informação I"}, 
+			{id: 21, name:" Carlos Wilson", matter:"Gerência da Informação"}];	
+
+		return $q.when(teachers);
 	};
 
 	var _getAnswers = function () {
@@ -39,7 +44,7 @@ angular.module("myApp").factory("questionAPI", function ($http, config, idGenera
 
 		return $http.put(config.baseUrl + "/question/" + newQuestion.id, newQuestion).success(function (data, status, headers) {
 
-			});
+	});
 
 
 	}

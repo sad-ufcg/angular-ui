@@ -16,7 +16,6 @@ angular.module("myApp.create", ['ngRoute'])
 			var begin =  function(){
 
 				$scope.questions = [];	
-
 				$scope.tipoResposta = ["TEXTO", "MULTIPLA_ESCOLHA", "SELECAO"];
 				loadQuestion();
 				
@@ -33,7 +32,6 @@ angular.module("myApp.create", ['ngRoute'])
 			$scope.addQuestion = function(question){
 
 				questionAPI.saveQuestion(question).success(function(data) {
-
 					delete $scope.question;
 					loadQuestion();
 				});
@@ -57,7 +55,6 @@ angular.module("myApp.create", ['ngRoute'])
 								return question;
 							}	
 				});	
-
 
 			}
 

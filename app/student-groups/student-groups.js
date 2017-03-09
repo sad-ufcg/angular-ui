@@ -14,7 +14,7 @@ angular.module("myApp.student-groups", ['ngRoute', 'angularFileUpload'])
 	 	var begin = function() {
 
 	 		$scope.teachers = [];
-	 		$scope.years = yearsRange(2000, 2017);
+	 		$scope.years = yearsRange(2012, 2017);
 	 		loadTeacher();
 
 	 	}
@@ -23,11 +23,22 @@ angular.module("myApp.student-groups", ['ngRoute', 'angularFileUpload'])
 	 	//Load all the teachers from DB
 	 	var loadTeacher = function () {
 
-	 		questionAPI.getTeachers().success(function(data, status) {
+	 		questionAPI.getTeachers().then(function(data, status) {
 	 			$scope.teachers = data;
 	 		});
 
 	 	}
+
+        $scope.addCourse = function(group, file){
+
+            console.log(group);
+            console.log(file);
+
+        }
+
+        $scope.test = function(){
+            console.log("EITA");
+        }
 
 	 	$scope.addClass = function(group){
 
@@ -53,9 +64,12 @@ angular.module("myApp.student-groups", ['ngRoute', 'angularFileUpload'])
 
 	 	begin();
 
+
+
         var uploader = $scope.uploader = new FileUploader({
             url: 'upload.php'
         });
+
 
         // FILTERS
       
