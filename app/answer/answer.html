@@ -18,7 +18,7 @@
 					<tr ng-repeat="course in courses track by $index" >
 						<td></td>
 						<td>{{course.name}}</td>	
-						<td><button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#myModal">{{course.courseName}}</button></td>
+						<td><button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#myModal" ng-click="loadQuiz(course)">{{course.courseName}}</button></td>
 					</tr>
 
 				</table>	
@@ -30,6 +30,7 @@
 
 						<!-- Modal content-->
 						<div class="modal-content">
+							
 							<!--Body-->
 							<div class="modal-body">
 								<form name="quizForm" ng-submit="submitAnswers()" class="form" role="form">
@@ -57,15 +58,15 @@
 											</div>
 										</div>													
 									</div>
-									<input type='submit' value="Submit Answers">{{selected_ids}}
+									<div class="modal-footer">
+										<button type="submit" class="btn btn-primary">Enviar Respostas</button>
+										<button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+									</div>
 
 								</form>
 							</div>
 
-							<div class="modal-footer">
-								<input type='submit' value="Submit Answers">{{selected_ids}}
-								<button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
-							</div>
+							
 						</div>
 
 					</div>

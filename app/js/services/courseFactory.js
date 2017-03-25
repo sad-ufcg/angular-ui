@@ -4,7 +4,7 @@ angular.module("myApp").factory("courseAPI", function ($http, $q, config) {
 
 		
 		var course = _createCourse(_generateId(group), group.matter, group.number, group.teacher, 
-														group.semester);
+			group.semester);
 
 
 		return $http.post(config.baseUrl + "/course", JSON.stringify(course)); 

@@ -1,14 +1,14 @@
 angular.module("myApp").factory("mocAPI", function(config, $q) {
 
 
-	var _getTeachers = function () {
+	var _getCourses = function () {
 
-		var teachers = [{id: 123,name:" Matheus Gaudêncio", courseName:"Administração de Sistemas"},
-		{id: 999, name:" Não sei quem é", courseName:"Banco de Dados I"},
-		{id: 223, name:" Nazareno", courseName:"Sistema de Informação I"},
-		{id: 21, name:" Carlos Wilson", courseName:"Gerência da Informação"}];
+		var course = [{id: "adsis20162",name:" Matheus Gaudêncio", courseName:"Administração de Sistemas"},
+		{id: "bd120161", name:" Não sei quem é", courseName:"Banco de Dados I"},
+		{id: "si120161", name:" Nazareno", courseName:"Sistema de Informação I"},
+		{id: "gi20161", name:" Carlos Wilson", courseName:"Gerência da Informação"}];
 
-		return $q.when(teachers);
+		return $q.when(course);
 	};
 
 	var _getAnswers = function () {
@@ -25,7 +25,7 @@ angular.module("myApp").factory("mocAPI", function(config, $q) {
 
 	return {
 
-		getTeachers : _getTeachers,
+		getCourses : _getCourses,
 		getAnswers : _getAnswers
 
 	}

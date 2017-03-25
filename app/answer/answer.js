@@ -1,46 +1,52 @@
 angular.module("myApp.answer", ['ngRoute'])
 
-	.config(['$routeProvider', function($routeProvider) {
-	  $routeProvider.when('/answer', {
-	    templateUrl: 'answer/answer.html',
-	    controller: 'AnswerCtrl'
-	  });
-	}])
+.config(['$routeProvider', function($routeProvider) {
+	$routeProvider.when('/answer', {
+		templateUrl: 'answer/answer.html',
+		controller: 'AnswerCtrl'
+	});
+}])
 
 
 
-	.controller("AnswerCtrl", ['$scope', '$http', 'questionAPI', 'answerAPI',
-		function($scope,$http, questionAPI, answerAPI){
+.controller("AnswerCtrl", ['$scope', '$http', 'answerAPI',
+	function($scope,$http, answerAPI){
 
 		var inicio = function(){
 			$scope.quiz = answerAPI.getQuiz();
 
 			$scope.courses = [];
 
-			loadTeachers();
+			loadCourses();
 
 		};
 
 
-		var loadTeachers = function() {
-			answerAPI.getTeachers().then(function(data, status){
-
+		var loadCourses = function() {
+			answerAPI.getCourses().then(function(data, status){
 				$scope.courses = data;
-
 			})
 		}
 
-		
+		$scope.loadQuiz = function(course){
 
-		var selected_ids = [];
-		 $scope.submitAnswers = function() {
+			$scope.quiz = answerAPI.getQuiz(course.id, course.courseName)
 
-		 	console.log($scope.quiz)
-		    angular.forEach($scope.quiz.options, function(answer) {
-		      selected_ids.push(answer.selected_id);
-		    });
-		    selected_ids= []
-		  }
+		}
+
+
+
+
+		$scope.submitAnswers = function() {
+			var selected_ids = [];
+
+			var questions = $scope.quiz.questions
+			questions.forEach(function(question) {
+				selected_ids.push(question.selected_id)
+			})
+			
+			console.log(selected_ids)
+		}
 
 		inicio();
 

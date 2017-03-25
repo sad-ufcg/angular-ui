@@ -15,7 +15,6 @@ angular.module("myApp.create", ['ngRoute'])
 
 			var begin =  function(){
 
-				$scope.questions = [];	
 				$scope.tipoResposta = ["TEXTO", "MULTIPLA_ESCOLHA", "SELECAO"];
 				loadQuestion();
 				
@@ -23,7 +22,11 @@ angular.module("myApp.create", ['ngRoute'])
 
 			var loadQuestion = function() {
 				
-				$scope.questions = questionAPI.getQuestions();
+				questionAPI.getQuestions().then(
+					function(response){
+						$scope.questions = response.data
+					});
+
 					
 
 			}
@@ -38,11 +41,6 @@ angular.module("myApp.create", ['ngRoute'])
 			}	
 
 
-			$scope.isQuestionSelected = function (questions){
-					return questions.some(function (question){
-						return question.selected;
-				});
-			}
 
 
 			$scope.deleteQuestion = function(questions){

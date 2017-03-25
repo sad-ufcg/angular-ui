@@ -1,17 +1,18 @@
 angular.module("myApp").factory("answerAPI", function ($http, config, mocAPI) {
 
 
-	var _getQuiz = function() {
+	var _getQuiz = function(id, name) {
 
-		var quiz = {id:'1', questions: _organizeQuestion()};
-
-		return quiz;
+		return {
+			id: id, 
+			courseName: name,
+			questions: _organizeQuestion()
+		}
 
 	}
 
 	var _getQuestions = function () {
 
-		_organizeCourses()
 
 		return _organizeQuestion()
 
@@ -32,27 +33,12 @@ angular.module("myApp").factory("answerAPI", function ($http, config, mocAPI) {
 
 			function(error){
 				console.log("Error " + error.status)
-			}
-		);
+			});
 
 		return questions;
 
 	}
 
-	var _organizeCourses = function() {
-
-		var questions = _organizeQuestion()
-		var teachers = [{id: 123,name:" Matheus Gaudêncio", courseName:"Administração de Sistemas"},
-			{id: 999, name:" Não sei quem é", courseName:"Banco de Dados I"},
-			{id: 223, name:" Nazareno", courseName:"Sistema de Informação I"},
-			{id: 21, name:" Carlos Wilson", courseName:"Gerência da Informação"}];
-
-		teachers.forEach(function(teacher){
-			teacher.questions = questions;
-		})
-
-
-	}
 
 	var _getAnswers = function () {
 
@@ -60,9 +46,9 @@ angular.module("myApp").factory("answerAPI", function ($http, config, mocAPI) {
 
 	}
 
-	var _getTeachers = function() {
+	var _getCourses = function() {
 
-		return mocAPI.getTeachers()
+		return mocAPI.getCourses()
 
 	}
 	return {
@@ -70,7 +56,7 @@ angular.module("myApp").factory("answerAPI", function ($http, config, mocAPI) {
 		getQuiz : _getQuiz, 
 		getQuestions : _getQuestions,
 		getAnswers : _getAnswers,
-		getTeachers : _getTeachers
+		getCourses : _getCourses
 
 	}
 
