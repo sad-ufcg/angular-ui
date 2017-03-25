@@ -9,36 +9,40 @@ angular.module("myApp.answer", ['ngRoute'])
 
 
 
-	.controller("AnswerCtrl", ['$scope', '$http', 'questionAPI',function($scope,$http, questionAPI){
-		
-		var inicio = function(){
-			$scope.questions = [];
-			$scope.answers = questionAPI.getAnswers();
-			$scope.matters = [];
+	.controller("AnswerCtrl", ['$scope', '$http', 'questionAPI', 'answerAPI',
+		function($scope,$http, questionAPI, answerAPI){
 
-			loadQuestion();
-			loadTeachers();	
-			console.log($scope.matters);
-			
+		var inicio = function(){
+			$scope.quiz = answerAPI.getQuiz();
+
+			$scope.courses = [];
+
+			loadTeachers();
+
 		};
 
-		var loadQuestion = function() {
-				questionAPI.getQuestions().success(function(data, status){
-
-					$scope.questions = data;
-
-				});
-			}
 
 		var loadTeachers = function() {
-			questionAPI.getTeachers().then(function(data, status){
+			answerAPI.getTeachers().then(function(data, status){
 
-				$scope.matters = data;
+				$scope.courses = data;
 
 			})
-		}	
+		}
+
+		
+
+		var selected_ids = [];
+		 $scope.submitAnswers = function() {
+
+		 	console.log($scope.quiz)
+		    angular.forEach($scope.quiz.options, function(answer) {
+		      selected_ids.push(answer.selected_id);
+		    });
+		    selected_ids= []
+		  }
 
 		inicio();
-		
+
 
 	}])

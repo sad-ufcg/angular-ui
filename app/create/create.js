@@ -22,10 +22,10 @@ angular.module("myApp.create", ['ngRoute'])
 			}
 
 			var loadQuestion = function() {
-				questionAPI.getQuestions().success(function(data, status) {
-					$scope.questions = data;
+				
+				$scope.questions = questionAPI.getQuestions();
+					
 
-				});
 			}
 
 
