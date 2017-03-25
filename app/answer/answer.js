@@ -12,9 +12,8 @@ angular.module("myApp.answer", ['ngRoute'])
 .controller("AnswerCtrl", ['$scope', '$http', 'answerAPI',
 	function($scope,$http, answerAPI){
 
-		var inicio = function(){
-			$scope.quiz = answerAPI.getQuiz();
-
+		var begin = function(){
+			
 			$scope.courses = [];
 
 			loadCourses();
@@ -23,6 +22,7 @@ angular.module("myApp.answer", ['ngRoute'])
 
 
 		var loadCourses = function() {
+
 			answerAPI.getCourses().then(function(data, status){
 				$scope.courses = data;
 			})
@@ -34,21 +34,18 @@ angular.module("myApp.answer", ['ngRoute'])
 
 		}
 
-
-
-
 		$scope.submitAnswers = function() {
-			var selected_ids = [];
 
+			var selected_ids = [];
 			var questions = $scope.quiz.questions
 			questions.forEach(function(question) {
 				selected_ids.push(question.selected_id)
 			})
+			answerAPI.submitAnswers($scope.quiz.id, selected_ids)
 			
-			console.log(selected_ids)
 		}
 
-		inicio();
+		begin();
 
 
 	}])

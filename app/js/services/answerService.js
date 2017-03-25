@@ -51,12 +51,23 @@ angular.module("myApp").factory("answerAPI", function ($http, config, mocAPI) {
 		return mocAPI.getCourses()
 
 	}
+
+	var _submitAnswers = function(id, selected){
+
+		var obj_answer = {id: id, questions: selected}
+		console.log(obj_answer)
+		//waiting antunes config the backend
+		//return $http.post(config.baseUrl + "/question", JSON.stringify(obj_answer));
+
+	}
 	return {
 
 		getQuiz : _getQuiz, 
 		getQuestions : _getQuestions,
 		getAnswers : _getAnswers,
-		getCourses : _getCourses
+		getCourses : _getCourses, 
+		submitAnswers: _submitAnswers
+
 
 	}
 
