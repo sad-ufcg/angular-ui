@@ -3,11 +3,8 @@ angular.module("myApp").factory("answerAPI", function ($http, config, mocAPI) {
 
 	var _getQuiz = function(id, name) {
 
-		return {
-			id: id, 
-			courseName: name,
-			questions: _organizeQuestion()
-		}
+
+		return new Quiz(id, _organizeQuestion());
 
 	}
 
@@ -21,7 +18,7 @@ angular.module("myApp").factory("answerAPI", function ($http, config, mocAPI) {
 	var _organizeQuestion = function(){
 		/*Add the default answer's options*/
 
-		var questions = [];
+		let questions = [];
 		$http.get(config.baseUrl + "/question").then(
 
 			function(response){
@@ -40,26 +37,34 @@ angular.module("myApp").factory("answerAPI", function ($http, config, mocAPI) {
 	}
 
 
-	var _getAnswers = function () {
+	let _getAnswers = function () {
 
 		return mocAPI.getAnswers()
 
 	}
 
-	var _getCourses = function() {
+	let _getCourses = function() {
 
 		return mocAPI.getCourses()
 
 	}
 
-	var _submitAnswers = function(id, selected){
+	let _submitAnswers = function(quiz){
 
-		var obj_answer = {id: id, questions: selected}
-		console.log(obj_answer)
+		let selected_ids = [];
+		let questions = quiz.questions
+		questions.forEach(function(question) {
+			selected_ids.push(question.selected_id);
+		})
+
+		let answerObj = new Quiz(quiz.id, selected_ids);
+		console.log(answerObj);
+
+		//let obj_answer = {id: id, questions: selected_ids}
 		//waiting antunes config the backend
 		//return $http.post(config.baseUrl + "/question", JSON.stringify(obj_answer));
-
 	}
+
 	return {
 
 		getQuiz : _getQuiz, 
