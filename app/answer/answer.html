@@ -33,8 +33,7 @@
 							
 							<!--Body-->
 							<div class="modal-body">
-								<form name="quizForm" ng-submit="submitAnswers()" class="form" role="form">
-									<input type="hidden" name="question_paper_id" ng-model="quiz.id">
+								<form name="quizForm" class="form" role="form">
 									<div ng-repeat="question in quiz.questions">
 										<div class="form-group row">	
 
@@ -59,8 +58,8 @@
 										</div>													
 									</div>
 									<div class="modal-footer">
-										<button type="submit" class="btn btn-primary">Enviar Respostas</button>
-										<button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+										<button ng-click="sendAnswer()" class="btn btn-primary" data-dismiss="modal">Enviar Respostas</button> 
+										<button type="button" class="btn btn-default"  data-dismiss="modal">Fechar</button>
 									</div>
 
 								</form>

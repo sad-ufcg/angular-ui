@@ -34,15 +34,12 @@ angular.module("myApp.answer", ['ngRoute'])
 
 		}
 
-		$scope.submitAnswers = function() {
+		$scope.sendAnswer = function () {
 
-			var selected_ids = [];
-			var questions = $scope.quiz.questions
-			questions.forEach(function(question) {
-				selected_ids.push(question.selected_id)
-			})
-			answerAPI.submitAnswers($scope.quiz.id, selected_ids)
-			
+
+			answerAPI.submitAnswers($scope.quiz);
+
+
 		}
 
 		begin();
