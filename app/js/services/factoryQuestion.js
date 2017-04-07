@@ -55,6 +55,6 @@ angular.module("myApp").factory("questionAPI", function ($http, config, $q, idGe
 		saveQuestion : _saveQuestion,
 		deleteQuestion : _deleteQuestion,
 		setQuestion : _setQuestion
-			}
+	}
 
 })

@@ -13,33 +13,22 @@ angular.module("myApp.answer", ['ngRoute'])
 	function($scope,$http, answerAPI){
 
 		var begin = function(){
-			
-			$scope.courses = [];
-
 			loadCourses();
-
 		};
 
 
 		var loadCourses = function() {
-
 			answerAPI.getCourses().then(function(data, status){
 				$scope.courses = data;
 			})
 		}
 
 		$scope.loadQuiz = function(course){
-
 			$scope.quiz = answerAPI.getQuiz(course.id, course.courseName)
-
 		}
 
 		$scope.sendAnswer = function () {
-
-
 			answerAPI.submitAnswers($scope.quiz);
-
-
 		}
 
 		begin();

@@ -1,11 +1,11 @@
 angular.module("myApp.create", ['ngRoute'])
 
-	.config(['$routeProvider', function($routeProvider, $http, config) {
-	  $routeProvider.when('/create', {
-	    templateUrl: 'create/create.html',
-	    controller: 'CreateCtrl'
-	  });
-	}])
+.config(['$routeProvider', function($routeProvider, $http, config) {
+	$routeProvider.when('/create', {
+		templateUrl: 'create/create.html',
+		controller: 'CreateCtrl'
+	});
+}])
 
 
 
@@ -13,70 +13,65 @@ angular.module("myApp.create", ['ngRoute'])
 	.controller('CreateCtrl',['$scope', 'questionAPI', 'config',function($scope, questionAPI, config) {
 
 
-			var begin =  function(){
+		var begin =  function(){
 
-				$scope.tipoResposta = ["TEXTO", "MULTIPLA_ESCOLHA", "SELECAO"];
-				loadQuestion();
-				
-			}
+			$scope.tipoResposta = ["TEXTO", "MULTIPLA_ESCOLHA", "SELECAO"];
+			loadQuestion();
 
-			var loadQuestion = function() {
-				
-				questionAPI.getQuestions().then(
-					function(response){
-						$scope.questions = response.data
-					});
+		}
 
-					
+		var loadQuestion = function() {
 
-			}
-
-
-			$scope.addQuestion = function(question){
-
-				questionAPI.saveQuestion(question).success(function(data) {
-					delete $scope.question;
-					loadQuestion();
+			questionAPI.getQuestions().then(
+				function(response){
+					$scope.questions = response.data
 				});
-			}	
+		}
 
 
+		$scope.addQuestion = function(question){
+
+			questionAPI.saveQuestion(question).success(function(data) {
+				delete $scope.question;
+				loadQuestion();
+			});
+		}	
 
 
-			$scope.deleteQuestion = function(questions){
+		$scope.deleteQuestion = function(questions){
 
-				
-				$scope.questions = questions.filter(function(question){
-							if (question.selected){
-								questionAPI.deleteQuestion(question);
-							}else{
-								return question;
-							}	
-				});	
 
-			}
+			$scope.questions = questions.filter(function(question){
+				if (question.selected){
+					questionAPI.deleteQuestion(question);
+				}else{
+					return question;
+				}	
+			});	
 
-			$scope.enableEditQuestion = function(question){
+		}
 
-				$scope.enuciado = question;
+		$scope.enableEditQuestion = function(question){
 
-			}
+			$scope.enuciado = question;
 
-			$scope.saveEditQuestion = function(newEnunciado) {
+		}
 
-				var news = $scope.enuciado;
+		$scope.saveEditQuestion = function(newEnunciado) {
 
-				questionAPI.setQuestion(news, newEnunciado).success(function(data) {
+			var news = $scope.enuciado;
 
-					delete $scope.newEnunciado;
-					delete $scope.enunciado;
-					loadQuestion();
+			questionAPI.setQuestion(news, newEnunciado).success(function(data) {
 
-				})
+				delete $scope.newEnunciado;
+				delete $scope.enunciado;
+				loadQuestion();
 
-			}
+			})
 
-			begin();
+		}
+
+		begin();
 
 
 	}])
