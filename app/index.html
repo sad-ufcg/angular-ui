@@ -33,13 +33,15 @@
 
   <script src="bower_components/angular/angular.js"></script>
   <script src="bower_components/angular-route/angular-route.js"></script>
+
+  <!--Main JS-->
   <script src="js/app.js"></script>
 
   <!--Controllers-->
-  <script src="create/create.js"></script>
-  <script src="answer/answer.js"></script>
-  <script src="login/login.js"></script>
-  <script src="student-groups/student-groups.js"></script>
+  <script src="js/controllers/create.js"></script>
+  <script src="js/controllers/answer.js"></script>
+  <script src="js/controllers/login.js"></script>
+  <script src="js/controllers/student-groups.js"></script>
 
   <!--Services-->
   <script src="js/services/factoryQuestion.js"></script>
@@ -52,8 +54,6 @@
   <script src="js/models/Quiz.js"></script>
   <script src="js/models/Question.js"></script>
 
-
-
   <!--value-->
   <script src="js/value/configValue.js"></script>
 
@@ -63,12 +63,12 @@
   <script src="js/auth/UserServiceLocalStorage.js"></script>
   <script src="js/auth/Base64.js"></script>
 
-  <script src="lib/angular-file-upload.js"></script>
-  <script src="lib/console-sham.js"></script>
+  <script src="js/lib/angular-file-upload.js"></script>
+  <script src="js/lib/console-sham.js"></script>
 
-  <script src="components/version/version.js"></script>
-  <script src="components/version/version-directive.js"></script>
-  <script src="components/version/interpolate-filter.js"></script>
+  <script src="js/components/version/version.js"></script>
+  <script src="js/components/version/version-directive.js"></script>
+  <script src="js/components/version/interpolate-filter.js"></script>
   <script>
     $(document).ready(function(){
       $('[data-toggle="tooltip"]').tooltip();
@@ -83,7 +83,7 @@
     <div class="formLine panel panel-primary text-center">
       <div class="row">
         <div class="col-sm-2 col-xs-3">
-          <a href="http://www.ufcg.edu.br/index1.php"><img src="img/brasaoUfcg.png" alt="Universidade Federal de Campina Grande"></a>
+          <a href="http://www.ufcg.edu.br/index1.php"><img src="views/img/brasaoUfcg.png" alt="Universidade Federal de Campina Grande"></a>
           
         </div>
         <div class="col-sm-8 col-xs-8"> 
@@ -120,7 +120,7 @@
     
   </div>
   <!--footer-->
-  <div ng-include = "'footer.html'"></div>
+  <div ng-include = "'views/footer.html'"></div>
 
 
 

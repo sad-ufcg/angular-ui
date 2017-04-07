@@ -33,10 +33,7 @@ angular.module("myApp").factory("questionAPI", function ($http, config, $q, idGe
 
 			function(response){
 				$scope.ServerResponse = data;
-			}, 
-			function(error)
-
-			)
+			})
 
 	}
 
