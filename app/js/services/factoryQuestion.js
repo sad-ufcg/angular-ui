@@ -22,18 +22,22 @@ angular.module("myApp").factory("questionAPI", function ($http, config, $q, idGe
 
 	var _saveQuestion = function(question){
 
-		var temp_quest = {"enunciado": question.enunciado,
-		"tipoResposta": question.tipoResposta};
-
+		var temp_quest = new Question(question.enunciado, question.tipoResposta);
 		return $http.post(config.baseUrl + "/question", JSON.stringify(temp_quest));
 
 	}
 
 	var _deleteQuestion = function(question){
 
-		return $http.delete(config.baseUrl + "/question/" + question.id, question).success(function (data, status, headers) {
-			$scope.ServerResponse = data;
-		});
+		return $http.delete(config.baseUrl + "/question/" + question.id, question).then(
+
+			function(response){
+				$scope.ServerResponse = data;
+			}, 
+			function(error)
+
+			)
+
 	}
 
 	var _setQuestion = function(newQuestion, newEnunciado){
@@ -41,10 +45,8 @@ angular.module("myApp").factory("questionAPI", function ($http, config, $q, idGe
 		newQuestion.enunciado = newEnunciado;
 		console.log(newQuestion);
 
-		return $http.put(config.baseUrl + "/question/" + newQuestion.id, newQuestion).success(function (data, status, headers) {
-
-		});
-
+		return $http.put(config.baseUrl + "/question/" + newQuestion.id, newQuestion);
+		
 
 	}
 
@@ -55,6 +57,6 @@ angular.module("myApp").factory("questionAPI", function ($http, config, $q, idGe
 		saveQuestion : _saveQuestion,
 		deleteQuestion : _deleteQuestion,
 		setQuestion : _setQuestion
-	}
+	}	
 
 })

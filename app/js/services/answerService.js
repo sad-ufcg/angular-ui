@@ -27,7 +27,7 @@ angular.module("myApp").factory("answerAPI", function ($http, config, mocAPI) {
 					questions.push(quest);
 				})
 			},
-
+			
 			function(error){
 				console.log("Error " + error.status)
 			});
@@ -53,10 +53,7 @@ angular.module("myApp").factory("answerAPI", function ($http, config, mocAPI) {
 
 		let selected_ids = [];
 		let questions = quiz.questions
-		questions.forEach(function(question) {
-			selected_ids.push(question.selected_id);
-		})
-
+		selected_ids = questions.filter((question) => question.selected_id);
 		let answerObj = new Quiz(quiz.id, selected_ids);
 		console.log(answerObj);
 

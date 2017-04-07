@@ -26,16 +26,32 @@ angular.module("myApp.create", ['ngRoute'])
 				function(response){
 					$scope.questions = response.data
 				});
+
+
+
 		}
 
 
 		$scope.addQuestion = function(question){
 
-			questionAPI.saveQuestion(question).success(function(data) {
-				delete $scope.question;
-				loadQuestion();
-			});
+			questionAPI.saveQuestion(question).then(
+
+				function(response){
+					delete $scope.question;
+					loadQuestion();
+				}, function(error){
+					console.log("Não foi possível adicionar nova questão");
+				})
+
+	
 		}	
+
+
+		$scope.isQuestionSelected = function (questions){
+			return questions.some(function (question){
+				return question.selected;
+			});
+		}
 
 
 		$scope.deleteQuestion = function(questions){
