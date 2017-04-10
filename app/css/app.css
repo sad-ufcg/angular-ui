@@ -1,5 +1,7 @@
 /* app css stylesheet */
-
+.form-horizontal .radio-inline {
+  padding-top: 0px;
+}
 .menu {
   list-style: none;
   border-bottom: 0.1em solid black;

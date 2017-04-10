@@ -7,7 +7,7 @@ angular.module("myApp").factory("answerAPI", function ($http, config, mocAPI) {
 					return response.data;
 				});
 	}
-
+	
 	let _submitAnswers = function(token, quiz, text, radio){
 
 		let selected_ids = [];
@@ -16,13 +16,6 @@ angular.module("myApp").factory("answerAPI", function ($http, config, mocAPI) {
 		let answerObj = new Quiz(quiz.id, selected_ids);
 		console.log(answerObj);
 		
-		/*
-	    send('questionnaireanswers', {'token': {'id': t}, 
-            'answers':
-            [{'question': {'id': 1}, "answerText": "banana2", "choiceNumber": 1},
-             {'question': {'id': 2}, "answerText": "banana3", "choiceNumber": 1},
-             {'question': {'id': 4}, "answerText": "banana2", "choiceNumber": 1}]})
-		*/
 		let answers = [];
 		console.log(text);
 		console.log(radio);
@@ -42,13 +35,7 @@ angular.module("myApp").factory("answerAPI", function ($http, config, mocAPI) {
 	}
 
 	return {
-
 		getQuiz : _getQuiz, 
 		submitAnswers: _submitAnswers
-
-
 	}
-
-
-
 })

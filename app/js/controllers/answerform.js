@@ -22,6 +22,7 @@ angular.module("myApp.answerform", [ 'ngRoute' ])
 					$scope.text_question = {};
 					$scope.token = $route.current.params.token;
 					$scope.curso = $route.current.params.curso;
+					$scope.visible = {};
 					
 					console.log($scope.curso);
 					console.log(quiz);
@@ -30,6 +31,10 @@ angular.module("myApp.answerform", [ 'ngRoute' ])
 						//...
 					};
 
+					$scope.toggle = function(q, id){
+						q[id] = !q[id];
+					}
+					
 					$scope.sendAnswer = function(token) {
 						console.log($scope.quiz);
 						answerAPI.submitAnswers(token, $scope.quiz, $scope.text_question, $scope.radio_question);
