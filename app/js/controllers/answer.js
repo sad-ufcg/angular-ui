@@ -10,7 +10,7 @@ angular.module("myApp.answer", ['ngRoute'])
 
 
 .controller("AnswerCtrl", ['$scope', '$http', 'answerAPI',
-	function($scope,$http, answerAPI){
+	function($scope,$http, answperAPI){
 
 		var begin = function(){
 			loadCourses();

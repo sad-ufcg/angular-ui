@@ -1,0 +1,108 @@
+<div class="container formLine">
+	<div class="container-tab">
+		<div class="tab-container">
+			<h1>Questionário Docente</h1>
+			<h3 class="text-center">{{curso}}</h3>
+			<div>
+
+				<div class="col-md-12">
+					<label for="option_question_{{question.id}}">Inicializar todas
+						as respostas de múltipla escolha abaixo como...</label>
+					<div>
+						<label class="textOverflow"> <span> <input
+								type="radio" name="padrao" value="1" ng-click="selectAll(1)">
+								Discordo Totalmente
+						</span>
+						</label> <label class="textOverflow"> <span> <input
+								type="radio" name="padrao" value="2" ng-click="selectAll(2)">
+								Discordo
+						</span>
+						</label> <label class="textOverflow"> <span> <input
+								type="radio" name="padrao" value="3" ng-click="selectAll(3)"
+								checked="checked"> Neutro
+						</span>
+						</label> <label class="textOverflow"> <span> <input
+								type="radio" name="padrao" value="4" ng-click="selectAll(4)">
+								Concordo
+						</span>
+						</label> <label class="textOverflow"> <span> <input
+								type="radio" name="padrao" value="5" ng-click="selectAll(5)">
+								Concordo Totalmente
+						</span>
+						</label> <label class="textOverflow"> <span> <input
+								type="radio" name="padrao" value="-1" ng-click="selectAll(-1)">
+								Não quero responder
+						</span>
+						</label>
+					</div>
+				</div>
+				<div>
+					<form name="quizForm" class="form" role="form">
+						<div ng-repeat="question in quiz">
+							<div class="form-group row">
+								<hr />
+							</div>
+							<div class="form-group row">
+
+								<label>{{question.enunciado}}</label>
+								<div class="col-md-12">
+									<div class="col-md-6" ng-if="question.tipoResposta == 'TEXTO'">
+										<label for="option_question_{{question.id}}">Resposta:</label>
+										<textarea class="form-control" rows="6"
+											ng-model="text_question[question.id]"
+											id="option_question_{{question.id}}" placeholder="opcional"></textarea>
+									</div>
+									<div class="col-md-6"
+										ng-if="question.tipoResposta == 'MULTIPLA_ESCOLHA'"></div>
+									<div class="col-md-6"
+										ng-if="question.tipoResposta == 'SELECAO'">
+										<label for="option_question_{{question.id}}">Resposta:</label>
+										<div ng-init="radio_question[question.id]=3">
+											<label class="textOverflow"> <span> <input
+													type="radio" ng-model="radio_question[question.id]"
+													name="option_question_{{question.id}}" value="1">
+													Discordo Totalmente
+											</span>
+											</label> <label class="textOverflow"> <span> <input
+													type="radio" ng-model="radio_question[question.id]"
+													name="option_question_{{question.id}}" value="2">
+													Discordo
+											</span>
+											</label> <label class="textOverflow"> <span> <input
+													type="radio" ng-model="radio_question[question.id]"
+													name="option_question_{{question.id}}" value="3">
+													Neutro
+											</span>
+											</label> <label class="textOverflow"> <span> <input
+													type="radio" ng-model="radio_question[question.id]"
+													name="option_question_{{question.id}}" value="4">
+													Concordo
+											</span>
+											</label> <label class="textOverflow"> <span> <input
+													type="radio" ng-model="radio_question[question.id]"
+													name="option_question_{{question.id}}" value="5">
+													Concordo Totalmente
+											</span>
+											</label> <label class="textOverflow"> <span> <input
+													type="radio" ng-model="radio_question[question.id]"
+													name="option_question_{{question.id}}" value="-1">
+													Não quero responder
+											</span>
+											</label>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button ng-click="sendAnswer(token)" class="btn btn-primary"
+								data-dismiss="modal">Enviar Respostas</button>
+							<button ng-click="sendNegar(token)" class="btn btn-danger"
+								data-dismiss="modal">Não quero/posso opinar</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+
+	</div>

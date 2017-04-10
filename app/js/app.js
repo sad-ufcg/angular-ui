@@ -7,6 +7,7 @@ angular.module('myApp', [
   'myApp.login',
   'myApp.create',
   'myApp.answer',
+  'myApp.answerform',
   'myApp.student-groups',
   'myApp.version'
 
