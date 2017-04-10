@@ -1,96 +1,74 @@
 <div class="container formLine">
 	<div class="container-tab">
 		<div class="tab-container">
-			<h1>Questionário Docente</h1>
-			<h3 class="text-center">{{curso}}</h3>
+			<h1 {{curso}}</h3>
 			<div>
-
 				<div class="col-md-12">
-					<label for="option_question_{{question.id}}">Inicializar todas
-						as respostas de múltipla escolha abaixo como...</label>
-					<div>
-						<label class="textOverflow"> <span> <input
-								type="radio" name="padrao" value="1" ng-click="selectAll(1)">
-								Discordo Totalmente
-						</span>
-						</label> <label class="textOverflow"> <span> <input
-								type="radio" name="padrao" value="2" ng-click="selectAll(2)">
-								Discordo
-						</span>
-						</label> <label class="textOverflow"> <span> <input
-								type="radio" name="padrao" value="3" ng-click="selectAll(3)"
-								checked="checked"> Neutro
-						</span>
-						</label> <label class="textOverflow"> <span> <input
-								type="radio" name="padrao" value="4" ng-click="selectAll(4)">
-								Concordo
-						</span>
-						</label> <label class="textOverflow"> <span> <input
-								type="radio" name="padrao" value="5" ng-click="selectAll(5)">
-								Concordo Totalmente
-						</span>
-						</label> <label class="textOverflow"> <span> <input
-								type="radio" name="padrao" value="-1" ng-click="selectAll(-1)">
-								Não quero responder
-						</span>
-						</label>
-					</div>
-				</div>
-				<div>
-					<form name="quizForm" class="form" role="form">
+					<form name="quizForm" class="form-horizontal" role="form">
+						<div class="form-group row">
+							<label for="option_question_{{question.id}}">Inicializar
+								todas as respostas de múltipla escolha abaixo como...</label>
+							<div>
+								<label class="radio-inline"> <input type="radio"
+									name="padrao" value="1" ng-click="selectAll(1)">
+									Discordo Totalmente
+								</label> <label class="radio-inline"> <input type="radio"
+									name="padrao" value="2" ng-click="selectAll(2)">
+									Discordo
+								</label> <label class="radio-inline"> <input type="radio"
+									name="padrao" value="3" ng-click="selectAll(3)"
+									checked="checked"> Neutro
+								</label> <label class="radio-inline"> <input type="radio"
+									name="padrao" value="4" ng-click="selectAll(4)">
+									Concordo
+								</label> <label class="radio-inline"> <input type="radio"
+									name="padrao" value="5" ng-click="selectAll(5)">
+									Concordo Totalmente
+								</label> <label class="radio-inline"> <input type="radio"
+									name="padrao" value="-1" ng-click="selectAll(-1)"> Não
+									quero responder
+								</label>
+							</div>
+						</div>
+						<hr />
 						<div ng-repeat="question in quiz">
 							<div class="form-group row">
-								<hr />
-							</div>
-							<div class="form-group row">
-
 								<label>{{question.enunciado}}</label>
-								<div class="col-md-12">
-									<div class="col-md-6" ng-if="question.tipoResposta == 'TEXTO'">
-										<label for="option_question_{{question.id}}">Resposta:</label>
-										<textarea class="form-control" rows="6"
-											ng-model="text_question[question.id]"
-											id="option_question_{{question.id}}" placeholder="opcional"></textarea>
-									</div>
-									<div class="col-md-6"
-										ng-if="question.tipoResposta == 'MULTIPLA_ESCOLHA'"></div>
-									<div class="col-md-6"
-										ng-if="question.tipoResposta == 'SELECAO'">
-										<label for="option_question_{{question.id}}">Resposta:</label>
-										<div ng-init="radio_question[question.id]=3">
-											<label class="textOverflow"> <span> <input
-													type="radio" ng-model="radio_question[question.id]"
-													name="option_question_{{question.id}}" value="1">
-													Discordo Totalmente
-											</span>
-											</label> <label class="textOverflow"> <span> <input
-													type="radio" ng-model="radio_question[question.id]"
-													name="option_question_{{question.id}}" value="2">
-													Discordo
-											</span>
-											</label> <label class="textOverflow"> <span> <input
-													type="radio" ng-model="radio_question[question.id]"
-													name="option_question_{{question.id}}" value="3">
-													Neutro
-											</span>
-											</label> <label class="textOverflow"> <span> <input
-													type="radio" ng-model="radio_question[question.id]"
-													name="option_question_{{question.id}}" value="4">
-													Concordo
-											</span>
-											</label> <label class="textOverflow"> <span> <input
-													type="radio" ng-model="radio_question[question.id]"
-													name="option_question_{{question.id}}" value="5">
-													Concordo Totalmente
-											</span>
-											</label> <label class="textOverflow"> <span> <input
-													type="radio" ng-model="radio_question[question.id]"
-													name="option_question_{{question.id}}" value="-1">
-													Não quero responder
-											</span>
-											</label>
-										</div>
-									</div>
+								<div class="col-md-12" ng-if="question.tipoResposta == 'TEXTO'">
+									<textarea class="form-control" rows="2"
+										ng-model="text_question[question.id]"
+										id="option_question_{{question.id}}" placeholder="opcional"></textarea>
+								</div>
+								<div class="col-md-12"
+									ng-if="question.tipoResposta == 'SELECAO'"></div>
+								<div class="col-md-12"
+									ng-if="question.tipoResposta == 'MULTIPLA_ESCOLHA'"
+									ng-init="radio_question[question.id]=3" class="form-group">
+									<label class="radio-inline"> <input type="radio"
+										ng-model="radio_question[question.id]"
+										name="option_question_{{question.id}}" value="1">
+										Discordo Totalmente
+									</label> <label class="radio-inline"> <input type="radio"
+										ng-model="radio_question[question.id]"
+										name="option_question_{{question.id}}" value="2">
+										Discordo
+									</label> <label class="radio-inline"> <input type="radio"
+										ng-model="radio_question[question.id]"
+										name="option_question_{{question.id}}" value="3">
+										Neutro
+									</label> <label class="radio-inline"> <input type="radio"
+										ng-model="radio_question[question.id]"
+										name="option_question_{{question.id}}" value="4">
+										Concordo
+									</label> <label class="radio-inline"> <input type="radio"
+										ng-model="radio_question[question.id]"
+										name="option_question_{{question.id}}" value="5">
+										Concordo Totalmente
+									</label> <label class="radio-inline"> <input type="radio"
+										ng-model="radio_question[question.id]"
+										name="option_question_{{question.id}}" value="-1"> Não
+										quero responder
+									</label>
 								</div>
 							</div>
 						</div>
