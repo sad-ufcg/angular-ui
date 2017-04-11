@@ -42,12 +42,11 @@ angular.module("myApp.answerform", [ 'ngRoute' ])
 					}
 
 					$scope.sendAnswer = function(token) {
-						answerAPI.submitAnswers(token, $scope.quiz,
+						answerAPI.submitAnswers(token,
 								$scope.text_question, $scope.radio_question)
 								.then(function successCallback(response) {
 									ngToast.create(response.data);
 								}, function errorCallback(response) {
-									console.log(response);
 									ngToast.create({
 										  className: 'warning',
 										  content: response.status + " (" + response.statusText + "): " + response.data
@@ -56,10 +55,14 @@ angular.module("myApp.answerform", [ 'ngRoute' ])
 					}
 
 					$scope.sendNegar = function(token) {
-						// TODO negar
-						console.log($scope.quiz);
-						answerAPI.submitAnswers(token, $scope.quiz,
-								$scope.text_question, $scope.radio_question);
+						answerAPI.submitNoAnswers(token).then(function successCallback(response) {
+							ngToast.create(response.data);
+						}, function errorCallback(response) {
+							ngToast.create({
+								  className: 'warning',
+								  content: response.status + " (" + response.statusText + "): " + response.data
+								});
+						});
 					}
 
 					$scope.selectAll = function(value) {
@@ -67,7 +70,6 @@ angular.module("myApp.answerform", [ 'ngRoute' ])
 						for ( var id in $scope.radio_question) {
 							$scope.radio_question[id] = value;
 						}
-						console.log(">>> " + value);
 					}
 
 					begin();
