@@ -9,16 +9,12 @@ angular.module("myApp").factory("answerAPI", function ($http, config, mocAPI) {
 	}
 	
 	let _submitAnswers = function(token, quiz, text, radio){
-
 		let selected_ids = [];
 		let questions = quiz;
 		selected_ids = questions.filter((question) => question.selected_id);
 		let answerObj = new Quiz(quiz.id, selected_ids);
-		console.log(answerObj);
 		
 		let answers = [];
-		console.log(text);
-		console.log(radio);
 		for (var v in text) {
 			answers.push({'question': {'id': v}, 'answerText': text[v]});
 		}
@@ -26,12 +22,8 @@ angular.module("myApp").factory("answerAPI", function ($http, config, mocAPI) {
 			answers.push({'question': {'id': v}, 'choiceNumber': radio[v]});
 		}
 		let answer = {'token': {'id': token}, 'answers': answers};
-		console.log(answer);
-		return $http.post(config.baseUrl + "/questionnaireanswers", JSON.stringify(answer));
-		// let obj_answer = {id: id, questions: selected_ids}
-		// waiting antunes config the backend
-		// return $http.post(config.baseUrl + "/question",
-		// JSON.stringify(obj_answer));
+		return $http.post(config.baseUrl + "/questionnaireanswers", JSON.stringify(answer),
+						   {headers: {'Accept': "text/plain"}});
 	}
 
 	return {

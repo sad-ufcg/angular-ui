@@ -9,8 +9,8 @@ angular.module('myApp', [
   'myApp.answer',
   'myApp.answerform',
   'myApp.student-groups',
-  'myApp.version'
-
+  'myApp.version',
+  'ngToast'
 ])
 
 .controller('app', function($http){
