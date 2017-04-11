@@ -2,6 +2,54 @@
 .form-horizontal .radio-inline {
   padding-top: 0px;
 }
+
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,300,600,400italic);
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-font-smoothing: antialiased;
+  -o-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+
+body {
+  font-family: "Roboto", Helvetica, Arial, sans-serif;
+  font-weight: 100;
+  font-size: 13px;
+  line-height: 30px;
+  color: #777;
+  background:  #428bca;
+
+}
+
+#formAnswer{
+  background: #F9F9F9;
+  padding: 25px;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+#formAnswer h1 {
+  display: block;
+  font-size: 50px;
+  font-weight: 350px;
+  margin-bottom: 15px;
+
+}
+
+#formAnswer span {
+  text-align: center;
+}
+
+.page-header {
+  margin-left:20px;
+}
+  
 .menu {
   list-style: none;
   border-bottom: 0.1em solid black;
@@ -51,8 +99,6 @@
     padding-top: 25px;
 }
 .formLine{
-  color: #428bca;
-  font-color: #428bca;
   padding: 5px;
 }
 

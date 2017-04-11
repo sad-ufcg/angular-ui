@@ -1,7 +1,23 @@
-<div class="container formLine">
-	<div class="container-tab">
-		<div class="tab-container">
-			<h2>Disciplina: {{curso}}</h2>
+<div class="container"  id="formAnswer">
+	<div>
+		<div>
+
+			<!--header-->
+			<div class="modal-header page-header row">
+
+			<div class="col-md-2">
+	          <a href="http://www.ufcg.edu.br/index1.php"><img src="views/img/brasaoUfcg.png" alt="Universidade Federal de Campina Grande"></a>
+	          
+	        </div>
+
+				<div class="col-md-8"><h1>Sistema de Avaliação Docente</h1></div>
+
+				<div class="col-md-2">
+	          <a href="www.dsc.ufcg.edu.br"><img src="views/img/dsc.png" alt="Universidade Federal de Campina Grande"></a>
+	          
+	        </div>
+			</div>
+
 			<div>
 				<form name="quizForm" class="form-horizontal" role="form">
 					<div class="col-md-12">
@@ -36,6 +52,14 @@
 							</div>
 						</div>
 						<hr />
+
+						<div class="table">
+							<span class="col-md-6">Enunciado</span>
+							<span class="col-md-4">Opções</span>
+							<span class="col-md-2">Comentário</span>
+
+						</div>
+
 						<div ng-repeat="question in quiz">
 							<div class="form-group row">
 								<div class="col-md-12" ng-if="question.tipoResposta == 'TEXTO'"
@@ -50,7 +74,7 @@
 								<div class="col-md-12"
 									ng-if="question.tipoResposta == 'MULTIPLA_ESCOLHA'"
 									ng-init="radio_question[question.id]=-1" class="form-group">
-									<div class="col-md-7">
+									<div class="col-md-6">
 										<label>{{question.enunciado}}</label>
 									</div>
 									<div class="col-md-4">
@@ -74,9 +98,9 @@
 											name="option_question_{{question.id}}" value="-1">N/A
 										</label>
 									</div>
-									<div class="col-md-1">
-										<a href="" ng-click="toggle(visible, question.id + 1)">Comentar...</a>
-									</div>
+									<span class="col-md-2">
+										<a href="" ng-click="toggle(visible, question.id + 1)">Comentarios</a>
+									</span>
 								</div>
 							</div>
 						</div>
@@ -86,9 +110,11 @@
 							<button ng-click="sendNegar(token)" class="btn btn-danger"
 								data-dismiss="modal">Não quero/posso opinar</button>
 						</div>
+
 					</div>
 				</form>
 			</div>
 		</div>
 
 	</div>
+</div>

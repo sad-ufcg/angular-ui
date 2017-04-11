@@ -28,10 +28,7 @@ angular.module("myApp").factory("answerAPI", function ($http, config, mocAPI) {
 		let answer = {'token': {'id': token}, 'answers': answers};
 		console.log(answer);
 		return $http.post(config.baseUrl + "/questionnaireanswers", JSON.stringify(answer));
-		// let obj_answer = {id: id, questions: selected_ids}
-		// waiting antunes config the backend
-		// return $http.post(config.baseUrl + "/question",
-		// JSON.stringify(obj_answer));
+		
 	}
 
 	return {

@@ -17,7 +17,8 @@ angular.module("myApp.answerform", [ 'ngRoute' ])
 		[ '$scope', '$http', '$route', 'answerAPI', 'quiz',
 				function($scope, $http, $route, answerAPI, quiz) {
 
-					$scope.quiz = quiz;
+					$scope.quiz = quiz//.filter((question) => question.tipoResposta == 'MULTIPLA_ESCOLHA');
+					console.log($scope.quiz)
 					$scope.radio_question = {};
 					$scope.text_question = {};
 					$scope.token = $route.current.params.token;
