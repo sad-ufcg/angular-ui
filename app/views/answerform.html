@@ -1,120 +1,136 @@
 <div class="container"  id="formAnswer">
-	<div>
-		<div>
+	<!--header-->
+	<div class="modal-header ">
 
-			<!--header-->
-			<div class="modal-header page-header row">
-
+		<div class="page-header row">
 			<div class="col-md-2">
-	          <a href="http://www.ufcg.edu.br/index1.php"><img src="views/img/brasaoUfcg.png" alt="Universidade Federal de Campina Grande"></a>
-	          
-	        </div>
+				<a href="http://www.ufcg.edu.br/index1.php"><img src="views/img/brasaoUfcg.png" alt="Universidade Federal de Campina Grande"></a>
 
-				<div class="col-md-8"><h1>Sistema de Avaliação Docente</h1></div>
-
-				<div class="col-md-2">
-	          <a href="www.dsc.ufcg.edu.br"><img src="views/img/dsc.png" alt="Universidade Federal de Campina Grande"></a>
-	          
-	        </div>
 			</div>
 
-			<div>
-				<form name="quizForm" class="form-horizontal" role="form">
-					<div class="col-md-12">
-						<div class="form-group row">
-							<div class="col-md-12">
-								<div class="col-md-12">Obrigado por participar da
-									avaliação docente. Escolha uma nota de 1 (Discordo plenamente)
-									a 5 (Concordo plenamente) para cada quesito abaixo. Lembrando, a participação é anônima.
-								</div>
-								<br />	
-								<hr />
-								<div class="col-md-7">
-									<label for="padrao">Iniciar todas as respostas de
-										múltipla escolha abaixo como...</label>
-								</div>
-								<div class="col-md-5">
-									<label class="radio-inline"> <input type="radio"
-										name="padrao" value="1" ng-click="selectAll(1)"> 1
-									</label> <label class="radio-inline"> <input type="radio"
-										name="padrao" value="2" ng-click="selectAll(2)"> 2
-									</label> <label class="radio-inline"> <input type="radio"
-										name="padrao" value="3" ng-click="selectAll(3)"> 3
-									</label> <label class="radio-inline"> <input type="radio"
-										name="padrao" value="4" ng-click="selectAll(4)"> 4
-									</label> <label class="radio-inline"> <input type="radio"
-										name="padrao" value="5" ng-click="selectAll(5)"> 5
-									</label> <label class="radio-inline"> <input type="radio"
-										name="padrao" value="-1" ng-click="selectAll(-1)"
-										checked="checked"> N/A
-									</label>
-								</div>
-							</div>
-						</div>
-						<hr />
+			<div class="col-md-8"><h1>Sistema de Avaliação Docente</h1></div>
 
-						<div class="table">
-							<span class="col-md-6">Enunciado</span>
-							<span class="col-md-4">Opções</span>
-							<span class="col-md-2">Comentário</span>
+			<div class="col-md-2">
+				<a href="http://www.dsc.ufcg.edu.br"><img src="views/img/dsc.png" alt="Universidade Federal de Campina Grande"></a>
 
-						</div>
-
-						<div ng-repeat="question in quiz">
-							<div class="form-group row">
-								<div class="col-md-12" ng-if="question.tipoResposta == 'TEXTO'"
-									ng-show='visible[question.id]'>
-									<label>{{question.enunciado}}</label>
-									<textarea class="form-control" rows="2"
-										ng-model="text_question[question.id]"
-										id="option_question_{{question.id}}" placeholder="opcional"></textarea>
-								</div>
-								<div class="col-md-12"
-									ng-if="question.tipoResposta == 'SELECAO'"></div>
-								<div class="col-md-12"
-									ng-if="question.tipoResposta == 'MULTIPLA_ESCOLHA'"
-									ng-init="radio_question[question.id]=-1" class="form-group">
-									<div class="col-md-6">
-										<label>{{question.enunciado}}</label>
-									</div>
-									<div class="col-md-4">
-										<label class="radio-inline"> <input type="radio"
-											ng-model="radio_question[question.id]"
-											name="option_question_{{question.id}}" value="1"> 1
-										</label> <label class="radio-inline"> <input type="radio"
-											ng-model="radio_question[question.id]"
-											name="option_question_{{question.id}}" value="2"> 2
-										</label> <label class="radio-inline"> <input type="radio"
-											ng-model="radio_question[question.id]"
-											name="option_question_{{question.id}}" value="3"> 3
-										</label> <label class="radio-inline"> <input type="radio"
-											ng-model="radio_question[question.id]"
-											name="option_question_{{question.id}}" value="4"> 4
-										</label> <label class="radio-inline"> <input type="radio"
-											ng-model="radio_question[question.id]"
-											name="option_question_{{question.id}}" value="5"> 5
-										</label> <label class="radio-inline"> <input type="radio"
-											ng-model="radio_question[question.id]"
-											name="option_question_{{question.id}}" value="-1">N/A
-										</label>
-									</div>
-									<span class="col-md-2">
-										<a href="" ng-click="toggle(visible, question.id + 1)">Comentarios</a>
-									</span>
-								</div>
-							</div>
-						</div>
-						<div class="modal-footer">
-							<button ng-click="sendAnswer(token)" class="btn btn-primary"
-								data-dismiss="modal">Enviar Respostas</button>
-							<button ng-click="sendNegar(token)" class="btn btn-danger"
-								data-dismiss="modal">Não quero/posso opinar</button>
-						</div>
-
-					</div>
-				</form>
 			</div>
 		</div>
 
+		<div>
+			<h2><small>Disciplina:</small> {{curso}}</h2>
+			<p><strong>Observação:</strong> É garantido o <strong>ANONIMATO</strong> então não se preocupe em ser exposto por um(a) professor(a).</p>
+			<div class="panel-group" id="accordion">
+				<div class="panel panel-info">
+					<div class="panel-heading">
+						<h4 class="panel-title">
+							<a  data-toggle="collapse" data-parent="#accordion" data-target="#info">Informações Gerais</a>
+						</h4>
+					</div>
+					<div id="info" class="panel-collapse collapse in">
+						<div class="panel-body">
+
+							<!--Resposta rápida-->
+							<div class="form-group row">
+								<div class="col-md-12">
+									<div class="col-md-12">Obrigado por participar da
+										avaliação docente. Escolha uma nota de 1 (Discordo plenamente)
+										a 5 (Concordo plenamente) para cada quesito abaixo. Lembrando, a participação é anônima.
+									</div>
+									<br />	
+									<hr />
+									<div class="col-md-7">
+										<label for="padrao">Iniciar todas as respostas de
+											múltipla escolha abaixo como...</label>
+									</div>
+									<div class="col-md-5">
+										<label class="radio-inline"> <input type="radio"
+											name="padrao" value="1" ng-click="selectAll(1)"> 1
+										</label> <label class="radio-inline"> <input type="radio"
+											name="padrao" value="2" ng-click="selectAll(2)"> 2
+										</label> <label class="radio-inline"> <input type="radio"
+											name="padrao" value="3" ng-click="selectAll(3)"> 3
+										</label> <label class="radio-inline"> <input type="radio"
+											name="padrao" value="4" ng-click="selectAll(4)"> 4
+										</label> <label class="radio-inline"> <input type="radio"
+											name="padrao" value="5" ng-click="selectAll(5)"> 5
+										</label> <label class="radio-inline"> <input type="radio"
+											name="padrao" value="-1" ng-click="selectAll(-1)"
+											checked="checked"> N/A
+										</label>
+									</div>
+								</div>
+
+							</div>
+							<!--Fim da resposta rápida-->
+
+						</div>
+					</div>
+
+				</div>
+
+
+			</div>
 	</div>
+
+
+	<!--Body-->
+	<div class="modal-body">
+		<form name="quizForm" class="form-horizontal" role="form">
+			<div ng-repeat="question in quiz">
+				<div class="row list-group">
+
+					<div class="col-md-12" ng-if="question.tipoResposta == 'TEXTO'"
+						ng-show='visible[question.id]'>
+						<textarea class="form-control" rows="1"
+							ng-model="text_question[question.id]"
+							id="option_question_{{question.id}}" placeholder="opcional"></textarea>
+					</div>
+					
+					<div class="col-md-12 list-group-item"
+						ng-if="question.tipoResposta == 'MULTIPLA_ESCOLHA'"
+						ng-init="radio_question[question.id]=-1">
+
+						<span class="col-md-6">
+							<label>{{question.enunciado}}</label>
+						</span>
+
+						<span class="col-md-4">
+							<label class="radio-inline"> <input type="radio"
+								ng-model="radio_question[question.id]"
+								name="option_question_{{question.id}}" value="1"> 1
+							</label> <label class="radio-inline"> <input type="radio"
+								ng-model="radio_question[question.id]"
+								name="option_question_{{question.id}}" value="2"> 2
+							</label> <label class="radio-inline"> <input type="radio"
+								ng-model="radio_question[question.id]"
+								name="option_question_{{question.id}}" value="3"> 3
+							</label> <label class="radio-inline"> <input type="radio"
+								ng-model="radio_question[question.id]"
+								name="option_question_{{question.id}}" value="4"> 4
+							</label> <label class="radio-inline"> <input type="radio"
+								ng-model="radio_question[question.id]"
+								name="option_question_{{question.id}}" value="5"> 5
+							</label> <label class="radio-inline"> <input type="radio"
+								ng-model="radio_question[question.id]"
+								name="option_question_{{question.id}}" value="-1">N/A
+							</label>
+						</span>
+
+						<span class="col-md-2">
+							<a ng-click="toggle(visible, question.id + 1)">Comentarios</a>
+						</span>
+
+					</div>
+				</div>
+			</div>
+		</form>	
+		
+	</div>
+	<div class="modal-footer">
+		<button ng-click="sendAnswer(token)" class="btn btn-primary"
+		data-dismiss="modal">Enviar Respostas</button>
+		<button ng-click="sendNegar(token)" class="btn btn-danger"
+		data-dismiss="modal">Não quero/posso opinar</button>
+	</div>
+
 </div>
