@@ -14,7 +14,6 @@ angular.module("myApp").factory("answerAPI", function ($http, config, mocAPI) {
 		let questions = quiz;
 		selected_ids = questions.filter((question) => question.selected_id);
 		let answerObj = new Quiz(quiz.id, selected_ids);
-		console.log(answerObj);
 		
 		let answers = [];
 		console.log(text);
