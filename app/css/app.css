@@ -1,4 +1,10 @@
 /* app css stylesheet */
+
+a {
+	color: #333;
+	font-color: #333;
+}
+
 .form-horizontal .radio-inline {
   padding-top: 0px;
 }
@@ -99,6 +105,8 @@ body {
     padding-top: 25px;
 }
 .formLine{
+  color: #333;
+  font-color: #333;
   padding: 5px;
 }
 
