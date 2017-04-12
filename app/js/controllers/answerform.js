@@ -54,7 +54,7 @@ angular.module("myApp.answerform", [ 'ngRoute' ])
 						}
 						console.log(">>> " + value);
 					}
-					$('.collapse').collapse('show');
+					$('.collapse').collapse('hide');
 
 					begin();
 
