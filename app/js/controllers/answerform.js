@@ -23,16 +23,12 @@ angular.module("myApp.answerform", [ 'ngRoute' ])
 				'quiz',
 				function($scope, $http, $route, ngToast, answerAPI, quiz) {
 
-					$scope.quiz = quiz//.filter((question) => question.tipoResposta == 'MULTIPLA_ESCOLHA');
-					console.log($scope.quiz)
+					$scope.quiz = quiz;
 					$scope.radio_question = {};
 					$scope.text_question = {};
 					$scope.token = $route.current.params.token;
 					$scope.curso = $route.current.params.curso;
 					$scope.visible = {};
-
-					console.log($scope.curso);
-					console.log(quiz);
 
 					var begin = function() {
 						// ...
@@ -67,7 +63,6 @@ angular.module("myApp.answerform", [ 'ngRoute' ])
 					}
 
 					$scope.selectAll = function(value) {
-						console.log($scope.radio_question);
 						for ( var id in $scope.radio_question) {
 							$scope.radio_question[id] = value;
 						}
