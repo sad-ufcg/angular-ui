@@ -8,7 +8,7 @@ angular.module("myApp").factory("answerAPI", function ($http, config, mocAPI) {
 				});
 	}
 	
-	let _submitAnswers = function(token, text, radio){
+		let _submitAnswers = function(token, text, radio){
 		let answers = [];
 		for (var v in text) {
 			answers.push({'question': {'id': v}, 'answerText': text[v]});
