@@ -31,15 +31,11 @@ body {
   line-height: 30px;
   color: #777;
   background:  #428bca;
-
-
-
 }
 
 
 #formAnswer{
   background: #F9F9F9;
-  padding: 25px;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }
 
@@ -53,6 +49,10 @@ body {
 
 .page-header {
   margin-left:20px;
+}
+
+.list-group {
+  margin: 3px;
 }
   
 .menu {
