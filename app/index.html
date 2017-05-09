@@ -46,34 +46,19 @@
   <script src="js/app.js"></script>
 
   <!--Controllers-->
-  <script src="js/controllers/create.js"></script>
-  <script src="js/controllers/answer.js"></script>
+ 
   <script src="js/controllers/answerform.js"></script>
   <script src="js/controllers/login.js"></script>
-  <script src="js/controllers/student-groups.js"></script>
 
   <!--Services-->
-  <script src="js/services/factoryQuestion.js"></script>
-  <script src="js/services/defaultService.js"></script>
+
   <script src="js/services/answerService.js"></script>
-  <script src="js/services/courseFactory.js"></script>
-  <script src="js/services/idGeneratorService.js"></script>
 
   <!--models-->
-  <script src="js/models/Quiz.js"></script>
-  <script src="js/models/Question.js"></script>
+
 
   <!--value-->
   <script src="js/value/configValue.js"></script>
-
-  <!--Oauth-->
-  <script src="js/auth/AuthenticationService.js"></script>
-  <script src="js/auth/FlashService.js"></script>
-  <script src="js/auth/UserServiceLocalStorage.js"></script>
-  <script src="js/auth/Base64.js"></script>
-
-  <script src="js/lib/angular-file-upload.js"></script>
-  <script src="js/lib/console-sham.js"></script>
 
   <script src="components/version/version.js"></script>
   <script src="components/version/version-directive.js"></script>
@@ -91,42 +76,7 @@
 
 <body>
   <toast></toast>
-  <!--
-  <div class="container">
-    <div class="formLine panel panel-primary text-center">
-      <div class="row">
-        <div class="col-sm-2 col-xs-3">
-          <a href="http://www.ufcg.edu.br/index1.php"><img src="views/img/brasaoUfcg.png" alt="Universidade Federal de Campina Grande"></a>
-          
-        </div>
-        <div class="col-sm-8 col-xs-8"> 
-          <h1><a href="#!/login">Sistema de Apoio Docente</a></h1> 
-        </div>
-
-      </div>  
-    </div>
-  </div>  
-
-  <div class="container ">
-    <nav class="navbar navbar-light selected">
-      <ul class="nav navbar-nav nav-tab">
-        <li class="nav-item active">
-          <a class="nav-link" href="#!/login" data-toggle="tooltip" data-placement="tooltip" title="Login">Login <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#!/answer"  data-toggle="tooltip" data-placement="tooltip" title="Answer Questionnarie">Responder Questionário</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#!/create"  data-toggle="tooltip" data-placement="tooltip" title="Create Questionnarie">Criar Questionário</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#!/student-groups"  data-toggle="tooltip" data-placement="tooltip" title="Student Groups">Criar Turmas</a>
-        </li>
-      </ul>
-
-    </nav>
-  </div> 
-  -->
+  
   <div>
     <div ng-view></div>
     

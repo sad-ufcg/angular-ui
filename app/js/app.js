@@ -5,10 +5,9 @@ angular.module('myApp', [
   'ngRoute',
   'ngCookies',
   'myApp.login',
-  'myApp.create',
-  'myApp.answer',
+  
   'myApp.answerform',
-  'myApp.student-groups',
+
   'myApp.version',
   'ngToast'
 ])
