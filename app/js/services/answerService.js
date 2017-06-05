@@ -1,4 +1,4 @@
-angular.module("myApp").factory("answerAPI", function ($http, config, mocAPI) {
+angular.module("myApp").factory("answerAPI", function ($http, config) {
 
 
 	var _getQuiz = function(id, name) {
