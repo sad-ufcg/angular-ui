@@ -4,8 +4,9 @@
   "description": "OpenSource da UFCG",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1", 
-    "start": "python -m SimpleHTTPServer"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "http-server -a localhost -p 8000 -c-1",
+    "prestart": "npm install"
   },
   "repository": {
     "type": "git",
@@ -25,7 +26,15 @@
     "angular-animate": "^1.6.6",
     "angular-aria": "^1.6.6",
     "angular-material": "^1.1.4",
+    "angular-material-icons": "^0.7.1",
     "angular-messages": "^1.6.6",
-    "angular-ui-router": "^1.0.3"
+    "angular-sanitize": "^1.6.6",
+    "angular-ui-router": "^1.0.3",
+    "bootstrap": "^3.3.7",
+    "jquery": "^3.2.1",
+    "material-icons": "^0.1.0"
+  },
+  "devDependencies": {
+    "http-server": "^0.10.0"
   }
 }
