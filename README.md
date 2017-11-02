@@ -33,10 +33,10 @@ cd backend_moc
 node httpQuestions.js
 ```
 
-Isto irá fazer com que um backend rode localmente na sua máquina e as funcionalidades da aplicação sejam inicializadas corretamente. 
+Isto irá fazer com que um backend rode localmente na sua máquina e as funcionalidades da aplicação sejam inicializadas corretamente. Para ver outros end points disponívels abra o arquivo `httpQuestions.js`.
 
 ```
-http://localhost:3412/questions
+http://localhost:3412/question
 ```
 
 p.s. preocupe-se com o CORS.
