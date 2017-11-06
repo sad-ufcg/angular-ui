@@ -1,39 +1,51 @@
-const app = angular.module('sadApp', ['ngMaterial', 'ui.router']);
+const app = angular.module('sadApp', ['ngAnimate','ngAria', 'ngSanitize', 'ngMaterial', 'ui.router']);
 
-app.config(['$stateProvider', '$locationProvider', '$urlRouterProvider',
-    function ($stateProvider, $locationProvider, $urlRouterProvider) {
+app.constant('baseUrl', 'http://localhost:8080');
 
-      
-        $urlRouterProvider.otherwise('/');
-        $locationProvider.html5Mode(false);
-        $locationProvider.hashPrefix('');
+app.config(function ($stateProvider, $locationProvider, $urlRouterProvider) {
 
-
-        $stateProvider
-            .state("sad", {
-                abstract: true,
-                templateUrl: "view/main-content.html",
-                controller: "MainController as mainCtrl",
-
-            })
-
-            .state("sad.home", {
-                url: "/home",
-                views: {
-                    content: {
-                        templateUrl: 'view/home.html',
-                        controller: 'HomeController as homeCtrl'
-                    }
+    $stateProvider
+        .state("sad", {
+            abstract: true,
+            views: {
+                main: {
+                    templateUrl: "view/main-content.html",
+                    controller: "MainController as mainCtrl"
                 }
-            })
+            }
+        })
+        .state("sad.home", {
+            url: "/home",
+            views: {
+                content: {
+                    templateUrl: 'view/home.html'
+                }
+            }
+        })
+        .state("sad.form", {
+            url: "/form/:id/:curso/:token",
+            views: {
+                content: {
+                    templateUrl: 'view/form.html',
+                    controller: 'FormController as formCtrl'
+                }
+            }, 
+            resolve: {
+                quiz: function (AnswerService){
+                    return AnswerService.getQuiz();
+                }
+            }
+        });
 
-        app.run(['$rootScope', '$state', function ($rootScope, $state) {
+    $urlRouterProvider.otherwise('/home');
+    $locationProvider.html5Mode(false);
+    $locationProvider.hashPrefix('');
 
-            $state.defaultErrorHandler(function (error) {
-                console.log(error);
-               
-            })
-        }]);
+    app.run(['$rootScope', '$state', function ($rootScope, $state) {
 
-
+        $state.defaultErrorHandler(function (error) {
+            console.log(error);
+        })
     }]);
+
+});
