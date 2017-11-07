@@ -23,37 +23,15 @@
             number-question="formCtrl.numberQuestion"></sad-question-card>
 
 
+        <sad-question-card-footer number-question="formCtrl.numberQuestion"
+                                  number-of-questions="formCtrl.numberOfQuestions"
+                                  percentage-value="formCtrl.determinateValue"
+                                  radio-question="formCtrl.radio_question"
+                                  question="formCtrl.actual_question"
+                                  previous-question="formCtrl.previous()"
+                                  next-question="formCtrl.next()"></sad-question-card-footer>
 
-
-        <!-- Form Footer -->
-        <footer class="card-footer" layout="column" layout-align="center stretch">
-            <div class="question-card">
-                <div class="row">
-                    <div class="col-xs-6 col-md-8">
-                        <div layout="column" layout-align="center stretch">
-                            <div layout="row" layout-align="start start">
-                                <span>{{formCtrl.numberQuestion}} de {{formCtrl.numberOfQuestions}} perguntas</span>
-                            </div>
-                            <div layout="row" layout-align="start start">
-                                <md-progress-linear md-mode="determinate" value="{{formCtrl.determinateValue}}"></md-progress-linear>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-xs-6 col-md-4">
-                        <div layout="row" layout-align="end center">
-                            <md-button class="md-smaller card-button-box" ng-click="formCtrl.previous()">
-                                <md-icon class="card-button">keyboard_arrow_up</md-icon>
-                            </md-button>
-                            <md-button class="md-smaller card-button-box" ng-disabled="!formCtrl.radio_question[formCtrl.actual_question.id]" ng-click="formCtrl.next()">
-                                <md-icon class="card-button">keyboard_arrow_down</md-icon>
-                            </md-button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </footer>
-
+    
     </section>
 
 </md-content>
