@@ -1,0 +1,65 @@
+@import url(http://fonts.googleapis.com/css?family=Ruda:400,700,900);
+@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro);
+
+
+html,
+body {
+    background-color: #ffffff;
+    height: 100%;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+section {
+    height: 100%;
+}
+
+.ng-scope {
+    height: 100%;
+}
+
+.my-container {
+    width: 100%;
+    height: 100%;
+}
+
+.card {
+    min-width: 100%;
+    height: auto !important;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.content {
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+
+    margin-top: 2%;
+
+    width: 100%;
+    background-color: transparent;
+}
+
+.md-toolbar-tools {
+    padding: 0 0;
+    background-color: #4d82cb;
+}
+
+.card-toolbar {
+    margin: 0 0;
+    width: 100%;
+
+    color: #dbe3ff;
+    background-color: #4d82cb;
+
+    font-size: 0.9em;
+    text-align: center;
+}
+
+.card-header {
+    text-align: justify;
+}
+

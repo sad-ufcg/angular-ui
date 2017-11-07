@@ -5,12 +5,13 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "http-server -a localhost -p 8000 -c-1",
-    "prestart": "npm install"
+    "start": "http-server -a localhost -p 8000 -c-1 -o",
+    "prestart": "npm install",
+    "setup-index": "gulp index"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/sad-ufcg/angular-ui.git"
+    "url": "git+https://github.com/sad-ufcg/frontend-typeform-style.git"
   },
   "keywords": [
     "SAD"
@@ -18,9 +19,9 @@
   "author": "SAD",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/sad-ufcg/angular-ui/issues"
+    "url": "https://github.com/sad-ufcg/frontend-typeform-style/issues"
   },
-  "homepage": "https://github.com/sad-ufcg/angular-ui#readme",
+  "homepage": "https://github.com/sad-ufcg/frontend-typeform-style#readme",
   "dependencies": {
     "angular": "^1.6.6",
     "angular-animate": "^1.6.6",
@@ -35,6 +36,8 @@
     "material-icons": "^0.1.0"
   },
   "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-inject": "^4.3.0",
     "http-server": "^0.10.0"
   }
 }

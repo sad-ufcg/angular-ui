@@ -1,0 +1,99 @@
+<md-content>
+
+    <!-- Header Home -->
+    <md-toolbar md-scroll-shrink>
+        <div class="md-toolbar-tools">
+            <div class="row card-toolbar" layout="row" layout-align="center center">
+                <div class="col-xs-4 col-sm-4">UFCG</div>
+                <div class="col-xs-4 col-sm-4">Disciplina: {{formCtrl.curso}}</div>
+                <div class="col-xs-4 col-sm-4">2017.1</div>
+            </div>
+        </div>
+    </md-toolbar>
+
+    <section class="home" ng-if="formCtrl.inHome">
+        <div ng-include="'view/home.html'">
+        </div>
+    </section>
+
+    <section ng-if="!formCtrl.inHome" layout="column" layout-align="center stretch">
+
+        <!-- Question card -->
+        <div class="card" layout="row" layout-align="start center">
+            <div class="content">
+                <div class="question-card">
+                    <div class="card">
+                        <div class="card-header-question">
+                            <span class="md-title">{{formCtrl.numberQuestion}}. {{formCtrl.actual_question.enunciado}}</span>
+                        </div>
+                        <br/>
+                        <div class="card-content">
+                            <form ng-if="formCtrl.actual_question.tipoResposta !== 'TEXTO'" ng-submit="submit()">
+                                <md-radio-group ng-model="formCtrl.radio_question[formCtrl.actual_question.id]">
+                                    <div class="card-answer-opts" layout="column" layout-align="center start">
+                                        <div class="checkbox">
+                                            <md-radio-button value="1"> 1&nbsp;&nbsp;&nbsp;&nbsp; </md-radio-button>
+                                        </div>
+                                        <div class="checkbox">
+                                            <md-radio-button value="2"> 2&nbsp;&nbsp;&nbsp;&nbsp; </md-radio-button>
+                                        </div>
+                                        <div class="checkbox">
+                                            <md-radio-button value="3"> 3&nbsp;&nbsp;&nbsp;&nbsp; </md-radio-button>
+                                        </div>
+                                        <div class="checkbox">
+                                            <md-radio-button value="4"> 4&nbsp;&nbsp;&nbsp;&nbsp; </md-radio-button>
+                                        </div>
+                                        <div class="checkbox">
+                                            <md-radio-button value="5"> 5&nbsp;&nbsp;&nbsp;&nbsp; </md-radio-button>
+                                        </div>
+                                        <div class="checkbox">
+                                            <md-radio-button value="-1">N/A</md-radio-button>
+                                        </div>
+                                    </div>
+                                </md-radio-group>
+                            </form>
+                        </div>
+                        <br/>
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label>Comentário</label>
+                            <textarea name="bio" ng-model="formCtrl.text_question[formCtrl.actual_question.id + 1]" md-maxlength="255" max-rows="2"></textarea>
+                        </md-input-container>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Form Footer -->
+        <footer class="card-footer" layout="column" layout-align="center stretch">
+            <div class="question-card">
+                <div class="row">
+                    <div class="col-xs-6 col-md-8">
+                        <div layout="column" layout-align="center stretch">
+                            <div layout="row" layout-align="start start">
+                                <span>{{formCtrl.numberQuestion}} de {{formCtrl.numberOfQuestions}} perguntas</span>
+                            </div>
+                            <div layout="row" layout-align="start start">
+                                <md-progress-linear md-mode="determinate" value="{{formCtrl.determinateValue}}"></md-progress-linear>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-6 col-md-4">
+                        <div layout="row" layout-align="end center">
+                            <md-button class="md-smaller card-button-box" ng-click="formCtrl.previous()">
+                                <md-icon class="card-button">keyboard_arrow_up</md-icon>
+                            </md-button>
+                            <md-button class="md-smaller card-button-box"
+                                       ng-disabled="!formCtrl.radio_question[formCtrl.actual_question.id]"
+                                       ng-click="formCtrl.next()">
+                                <md-icon class="card-button">keyboard_arrow_down</md-icon>
+                            </md-button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+    </section>
+
+</md-content>
