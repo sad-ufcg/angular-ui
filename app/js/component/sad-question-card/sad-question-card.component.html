@@ -1,0 +1,43 @@
+<div class="card" layout="row" layout-align="start center">
+    <div class="content">
+        <div class="question-card">
+            <div class="card">
+                <div class="card-header-question">
+                    <span class="md-title">{{questionCardCtrl.numberQuestion}}. {{questionCardCtrl.question.enunciado}}</span>
+                </div>
+                <br/>
+                <div class="card-content">
+                    <form ng-if="questionCardCtrl.question.tipoResposta !== 'TEXTO'" ng-submit="submit()">
+                        <md-radio-group ng-model="questionCardCtrl.radioQuestion[questionCardCtrl.question.id]">
+                            <div class="card-answer-opts" layout="column" layout-align="center start">
+                                <div class="checkbox">
+                                    <md-radio-button value="1"> 1&nbsp;&nbsp;&nbsp;&nbsp; </md-radio-button>
+                                </div>
+                                <div class="checkbox">
+                                    <md-radio-button value="2"> 2&nbsp;&nbsp;&nbsp;&nbsp; </md-radio-button>
+                                </div>
+                                <div class="checkbox">
+                                    <md-radio-button value="3"> 3&nbsp;&nbsp;&nbsp;&nbsp; </md-radio-button>
+                                </div>
+                                <div class="checkbox">
+                                    <md-radio-button value="4"> 4&nbsp;&nbsp;&nbsp;&nbsp; </md-radio-button>
+                                </div>
+                                <div class="checkbox">
+                                    <md-radio-button value="5"> 5&nbsp;&nbsp;&nbsp;&nbsp; </md-radio-button>
+                                </div>
+                                <div class="checkbox">
+                                    <md-radio-button value="-1">N/A</md-radio-button>
+                                </div>
+                            </div>
+                        </md-radio-group>
+                    </form>
+                </div>
+                <br/>
+                <md-input-container class="md-block" flex-gt-sm>
+                    <label>Comentário</label>
+                    <textarea name="bio" ng-model="questionCardCtrl.textQuestion[questionCardCtrl.question.id + 1]" md-maxlength="255" max-rows="2"></textarea>
+                </md-input-container>
+            </div>
+        </div>
+    </div>
+</div>
