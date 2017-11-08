@@ -1,4 +1,46 @@
 <!-- View -->
-<div>
-    <div flex ui-view="content"></div>
+<div layout="column" class="main-admin">
+
+
+
+    <section layout="row" flex>
+
+        <!-- Container #3 -->
+        <md-sidenav md-is-locked-open="true" class="md-whiteframe-4dp">
+            <md-toolbar class="md-primary">
+                <div class="md-toolbar-tools">
+
+                    <md-list-item layout="row">
+                        <img ng-src="{{adminCtrl.ufcgBrasao}}" class="md-avatar">
+                        <h2 flex md-truncate>SAD UFCG</h2>
+                        <img ng-src="{{adminCtrl.ccBrasao}}" class="md-avatar">
+                    </md-list-item>
+
+                </div>
+            </md-toolbar>
+
+            <md-divider></md-divider>
+
+            <md-list>
+                <!-- List item #1 -->
+                <md-list-item ng-click="null()">
+                    <md-icon class="icon-menu">library_add</md-icon>
+                    <p>Cadastrar Turmas</p>
+
+                </md-list-item>
+
+
+            </md-list>
+        </md-sidenav>
+
+
+        <section>
+            <md-content class="content">
+                <div flex ui-view="content"></div>
+            </md-content>
+        </section>
+
+    </section>
+
+
 </div>

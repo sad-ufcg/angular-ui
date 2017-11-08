@@ -24,6 +24,8 @@
             radioQuestion: '=',
             textQuestion: '=',
             numberQuestion: '<'
+            /*FIXME: não é aconselhável ter uma relação de "2way binding" com 
+            atributo fora do escopo do componente */
         }
     });
 

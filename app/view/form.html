@@ -1,16 +1,5 @@
 <md-content>
 
-    <!-- Header Home -->
-    <md-toolbar md-scroll-shrink>
-        <div class="md-toolbar-tools">
-            <div class="row card-toolbar" layout="row" layout-align="center center">
-                <div class="col-xs-4 col-sm-4">UFCG</div>
-                <div class="col-xs-4 col-sm-4">Disciplina: {{formCtrl.curso}}</div>
-                <div class="col-xs-4 col-sm-4">2017.1</div>
-            </div>
-        </div>
-    </md-toolbar>
-
     <section class="home" ng-if="formCtrl.inHome">
         <div ng-include="'view/home.html'">
         </div>

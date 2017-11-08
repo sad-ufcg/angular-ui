@@ -1,8 +1,13 @@
+'use strict';
 const app = angular.module('sadApp', ['ngAnimate', 'ngAria', 'ngSanitize', 'ngMaterial', 'ui.router']);
 
 app.constant('baseUrl', 'http://localhost:8080');
 
-app.config(function ($stateProvider, $locationProvider, $urlRouterProvider) {
+app.config(function ($stateProvider, $locationProvider, $urlRouterProvider, $mdThemingProvider) {
+
+    $mdThemingProvider.theme('default')
+        .primaryPalette('indigo')
+        .accentPalette('orange');
 
     $stateProvider
         .state("sad-aluno", {
