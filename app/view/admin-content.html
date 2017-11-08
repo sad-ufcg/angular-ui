@@ -6,10 +6,10 @@
         <!-- Container #3 -->
         <md-sidenav md-is-locked-open="true" class="md-whiteframe-4dp">
 
-            <md-toolbar class="md-primary">
+            <md-toolbar class="md-primary" ng-click="adminCtrl.goToHome()">
 
-                <div class="md-toolbar-tools">
-                    <md-list-item layout="row">
+                <div class="md-toolbar-tools" >
+                    <md-list-item layout="row" >
                         <img ng-src="{{adminCtrl.ufcgBrasao}}" class="md-avatar">
                         <h1 flex md-truncate>SAD UFCG</h1>
                         <img ng-src="{{adminCtrl.ccBrasao}}" class="md-avatar">
@@ -23,9 +23,9 @@
             <!-- botões/funcionalidades --> 
             <md-list>
 
-                <md-list-item ng-click="null()">
-                    <md-icon class="icon-menu">library_add</md-icon>
-                    <p>Cadastrar Turmas</p>
+                <md-list-item ng-repeat="page in adminCtrl.pages"ng-click="adminCtrl.goTo(page.state)">
+                    <md-icon class="icon-menu">{{page.icon}}</md-icon>
+                    <p>{{page.title}}</p>
                 </md-list-item>
 
             </md-list>

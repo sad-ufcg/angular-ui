@@ -1,26 +1,18 @@
-<md-content>
+<section class="home" ng-if="formCtrl.inHome">
+    <div ng-include="'view/home.html'">
+    </div>
+</section>
 
-    <section class="home" ng-if="formCtrl.inHome">
-        <div ng-include="'view/home.html'">
-        </div>
-    </section>
+<section ng-if="!formCtrl.inHome" layout="column" layout-align="center stretch">
 
-    <section ng-if="!formCtrl.inHome" layout="column" layout-align="center stretch">
-
-        <!-- Question card -->
-        <sad-question-card question="formCtrl.actual_question" radio-question="formCtrl.radio_question" text-question="formCtrl.text_question"
-            number-question="formCtrl.numberQuestion"></sad-question-card>
+    <!-- Question card -->
+    <sad-question-card question="formCtrl.actual_question" radio-question="formCtrl.radio_question" text-question="formCtrl.text_question"
+        number-question="formCtrl.numberQuestion"></sad-question-card>
 
 
-        <sad-question-card-footer number-question="formCtrl.numberQuestion"
-                                  number-of-questions="formCtrl.numberOfQuestions"
-                                  percentage-value="formCtrl.determinateValue"
-                                  radio-question="formCtrl.radio_question"
-                                  question="formCtrl.actual_question"
-                                  previous-question="formCtrl.previous()"
-                                  next-question="formCtrl.next()"></sad-question-card-footer>
+    <sad-question-card-footer number-question="formCtrl.numberQuestion" number-of-questions="formCtrl.numberOfQuestions" percentage-value="formCtrl.determinateValue"
+        radio-question="formCtrl.radio_question" question="formCtrl.actual_question" previous-question="formCtrl.previous()"
+        next-question="formCtrl.next()"></sad-question-card-footer>
 
-    
-    </section>
 
-</md-content>
+</section>

@@ -6,9 +6,6 @@
 
         var cadastraTurmasCtrl = this;
 
-        //  cadastraTurmasCtrl.$watch('files.length',function(newVal,oldVal){
-        //     console.log(cadastraTurmasCtrl.files);
-        // });
 
         cadastraTurmasCtrl.onSubmitClick = function () {
             console.log(cadastraTurmasCtrl.files);

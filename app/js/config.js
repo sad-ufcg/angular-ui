@@ -22,6 +22,7 @@ app.config(function ($stateProvider, $locationProvider, $urlRouterProvider, $mdT
 
         .state("sad-admin", {
             abstract: true,
+            url: '/admin',
             views: {
                 main: {
                     templateUrl: "view/admin-content.html",
@@ -31,7 +32,7 @@ app.config(function ($stateProvider, $locationProvider, $urlRouterProvider, $mdT
         })
 
         .state("sad-admin.cadastra-turmas", {
-            url: "/cadastra-turmas",
+            url: "/cadastrar-turmas",
             views: {
                 content: {
                     templateUrl: 'view/cadastra-turmas.html',
@@ -40,12 +41,11 @@ app.config(function ($stateProvider, $locationProvider, $urlRouterProvider, $mdT
             }
         })
 
-        //apenas para teste de rota, pode ser excluído
-        .state("sad-admin.home-test", {
-            url: "/hometest",
+        .state("sad-admin.home", {
+            url: "/home",
             views: {
                 content: {
-                    templateUrl: 'view/test.html'
+                    templateUrl: 'view/dashboard-admin.html'
                 }
             }
         })
