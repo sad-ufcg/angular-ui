@@ -1,5 +1,5 @@
 'use strict';
-const app = angular.module('sadApp', ['ngAnimate', 'ngAria', 'ngSanitize', 'ngMaterial', 'ui.router']);
+const app = angular.module('sadApp', ['ngAnimate', 'ngAria', 'ngSanitize', 'ngMaterial', 'ui.router', 'lfNgMdFileInput']);
 
 app.constant('baseUrl', 'http://localhost:8080');
 
@@ -26,6 +26,16 @@ app.config(function ($stateProvider, $locationProvider, $urlRouterProvider, $mdT
                 main: {
                     templateUrl: "view/admin-content.html",
                     controller: "AdminController as adminCtrl"
+                }
+            }
+        })
+
+        .state("sad-admin.cadastra-turmas", {
+            url: "/cadastra-turmas",
+            views: {
+                content: {
+                    templateUrl: 'view/cadastra-turmas.html',
+                    controller: 'CadastraTurmasController as cadastraTurmasCtrl'
                 }
             }
         })

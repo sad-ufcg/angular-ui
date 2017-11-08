@@ -1,4 +1,4 @@
-'user strict';
+'use strict';
 (function() {
 	var app = angular.module('sadApp');
 

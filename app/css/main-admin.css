@@ -1,5 +1,7 @@
-.main-admin{
+@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro);
 
+.main-admin{
+    font-family: 'Source Sans Pro', sans-serif;
 
 }
 
@@ -40,4 +42,16 @@
 .main-admin .content {
     position: fixed; 
     margin: 3%;
+}
+
+md-content {
+    background-color: transparent;
+}
+
+.input-csv-files{
+    width: 70%;
+}
+
+.cadastra-turmas {
+    margin: 5%;
 }
