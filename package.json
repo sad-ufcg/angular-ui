@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/sad-ufcg/frontend-typeform-style.git"
+    "url": "git+https://github.com/sad-ufcg/angular-ui.git"
   },
   "keywords": [
     "SAD"
@@ -19,9 +19,9 @@
   "author": "SAD",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/sad-ufcg/frontend-typeform-style/issues"
+    "url": "https://github.com/sad-ufcg/angular-ui/issues"
   },
-  "homepage": "https://github.com/sad-ufcg/frontend-typeform-style#readme",
+  "homepage": "https://github.com/sad-ufcg/angular-ui#readme",
   "dependencies": {
     "angular": "^1.6.6",
     "angular-animate": "^1.6.6",

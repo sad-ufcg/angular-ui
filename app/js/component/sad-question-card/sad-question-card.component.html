@@ -1,0 +1,29 @@
+<div class="card" layout="row" layout-align="start center">
+    <div class="content">
+        <div class="question-card">
+            <div class="card">
+                <div class="card-header-question">
+                    <span class="md-title">{{questionCardCtrl.numberQuestion}}. {{questionCardCtrl.question.enunciado}}</span>
+                </div>
+                <br/>
+                <div class="card-content">
+                    <form ng-if="questionCardCtrl.question.tipoResposta !== 'TEXTO'" ng-submit="submit()">
+                        <md-radio-group ng-model="questionCardCtrl.radioQuestion[questionCardCtrl.question.id]">
+                            <div class="card-answer-opts" layout="column" layout-align="center start">
+                                <div class="checkbox" ng-repeat="value in [1,2,3,4,5]">
+                                    <md-radio-button value="{{value}}"> {{value}}&nbsp;&nbsp;&nbsp;&nbsp; </md-radio-button>
+                                </div>
+                               
+                            </div>
+                        </md-radio-group>
+                    </form>
+                </div>
+                <br/>
+                <md-input-container class="md-block" flex-gt-sm>
+                    <label>Comentário</label>
+                    <textarea name="bio" ng-model="questionCardCtrl.textQuestion[questionCardCtrl.question.id + 1]" md-maxlength="255" max-rows="2"></textarea>
+                </md-input-container>
+            </div>
+        </div>
+    </div>
+</div>

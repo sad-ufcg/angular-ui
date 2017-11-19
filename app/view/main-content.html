@@ -1,5 +1,16 @@
 <!-- View -->
-<div class="form-container">
-    <div flex ui-view="content" class="main"></div>
+<md-content>
+        <!-- Header Home -->
+    <md-toolbar md-scroll-shrink>
+        <div class="md-toolbar-tools">
+            <div class="row card-toolbar" layout="row" layout-align="center center">
+                <div class="col-xs-4 col-sm-4">UFCG</div>
+                <div class="col-xs-4 col-sm-4">Disciplina: {{formCtrl.curso}}</div>
+                <div class="col-xs-4 col-sm-4">2017.1</div>
+            </div>
+        </div>
+    </md-toolbar>
 
-</div>
+    <div flex ui-view="content"></div>
+    
+</md-content>

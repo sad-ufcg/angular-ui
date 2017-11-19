@@ -1,0 +1,59 @@
+@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro);
+
+.main-admin{
+    font-family: 'Source Sans Pro', sans-serif;
+
+}
+
+.main-admin .md-toolbar-tools {
+    padding: 1%;
+    background-color:white;
+    text-align: center;
+    color: indigo;
+}
+
+.material-icons.icon-menu {
+    font-size: 28px;
+    vertical-align: middle;
+}
+
+.main-admin md-list {
+    margin-right: 1%;
+    margin-left: 1%;
+}
+
+.main-admin md-list md-list-item:hover {
+    background-color: #82b1ff;
+    color: white;
+
+
+}
+
+.main-admin .md-avatar {
+    height: 50px;
+    width: 50px;
+}
+
+.main-admin md-divider {
+    margin: 4%;
+    
+}
+
+.main-admin .content {
+    position: fixed; 
+    margin: 3%;
+}
+
+md-content {
+    background-color: transparent;
+}
+
+.input-csv-files{
+    width: 70%;
+}
+
+.cadastra-turmas {
+    margin: 2%;
+    background-color: transparent;
+
+}
