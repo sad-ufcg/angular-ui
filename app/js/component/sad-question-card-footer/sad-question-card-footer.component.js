@@ -6,11 +6,6 @@
     function QuestionFooterController() {
         var questionFooterCtrl = this;
 
-        questionFooterCtrl.$onInit = () => {
-            console.log(questionFooterCtrl.radioQuestion);
-
-        };
-
         questionFooterCtrl.previous = () => {
             questionFooterCtrl.previousQuestion({});
         };

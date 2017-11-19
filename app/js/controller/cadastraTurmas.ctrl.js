@@ -8,6 +8,7 @@
 
 
         cadastraTurmasCtrl.onSubmitClick = function () {
+            //TODO: enviar arquivos
             console.log(cadastraTurmasCtrl.files);
         }
 

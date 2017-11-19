@@ -50,7 +50,6 @@
 
             var deffered = $q.defer();
             
-            console.log(questionnaire);
 
             $http.post(baseUrl + URI_QUESTIONNARIE, JSON.stringify(questionnaire),
                 HEADERS).then(function success(response) {

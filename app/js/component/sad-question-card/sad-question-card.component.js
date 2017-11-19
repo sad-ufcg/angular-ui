@@ -6,11 +6,6 @@
     function QuestionCardController() {
         var questionCardCtrl = this;
 
-        questionCardCtrl.$onInit = () => {
-            console.log(questionCardCtrl.radioQuestion);
-
-        }
-       
     }
 
 
