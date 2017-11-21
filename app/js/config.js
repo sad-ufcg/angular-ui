@@ -41,6 +41,16 @@ app.config(function ($stateProvider, $locationProvider, $urlRouterProvider, $mdT
             }
         })
 
+        .state("sad-admin.criar-questionario", {
+            url: "/criar-questionario",
+            views: {
+                content: {
+                    templateUrl: 'view/criar-questionario.html',
+                    controller: 'CriarQuestionarioController as criarQuestionarioCtrl'
+                }
+            }
+        })
+
         .state("sad-admin.home", {
             url: "/home",
             views: {
