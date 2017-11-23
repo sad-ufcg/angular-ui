@@ -2,7 +2,6 @@
 
 .main-admin{
     font-family: 'Source Sans Pro', sans-serif;
-
 }
 
 .main-admin .md-toolbar-tools {
@@ -25,22 +24,20 @@
 .main-admin md-list md-list-item:hover {
     background-color: #82b1ff;
     color: white;
-
-
 }
 
 .main-admin .md-avatar {
     height: 50px;
     width: 50px;
+    border-radius: 0px;
 }
 
 .main-admin md-divider {
     margin: 4%;
-    
 }
 
 .main-admin .content {
-    position: fixed; 
+    position: fixed;
     margin: 3%;
 }
 
@@ -55,5 +52,4 @@ md-content {
 .cadastra-turmas {
     margin: 2%;
     background-color: transparent;
-
 }

@@ -18,6 +18,16 @@
 				icon: 'library_add',
 				title: 'Cadastrar Turmas',
 				state: 'sad-admin.cadastra-turmas'
+			},
+			{
+				icon: 'description',
+				title: 'Criar Questionário',
+				state: 'sad-admin.criar-questionario'
+			},
+			{
+				icon: 'description',
+				title: 'Aplicar Questionário',
+				state: 'sad-admin.aplicar-questionario'
 			}
 		];
 
