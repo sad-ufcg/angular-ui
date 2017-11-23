@@ -25,7 +25,6 @@
 
         service._organizeQuiz = function _organizeQuiz(text, radio) {
 
-  
             let answers = [];
             for (var v in text) {
                 answers.push({ 'question': { 'id': v }, 'answerText': text[v] });
