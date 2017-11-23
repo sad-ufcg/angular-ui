@@ -1,0 +1,14 @@
+<md-content class="questionario">
+
+  <md-subheader class="md-accent"> Aplicar Questionário </md-subheader>
+
+    <md-button class="md-raised md-primary" ng-click='aplicarQuestionarioCtrl.getQuestionarios()'>
+      Buscar questionários
+      <md-icon class="icon-menu">add</md-icon>
+    </md-button>
+
+    <div ng-if='aplicarQuestionarioCtrl.achou_questionarios'>
+      <div>{{aplicarQuestionarioCtrl.questionarios}}</div>
+    </div>
+
+</md-content>

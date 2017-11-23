@@ -21,8 +21,13 @@
 			},
 			{
 				icon: 'description',
-				title: 'Criar questionário',
+				title: 'Criar Questionário',
 				state: 'sad-admin.criar-questionario'
+			},
+			{
+				icon: 'description',
+				title: 'Aplicar Questionário',
+				state: 'sad-admin.aplicar-questionario'
 			}
 		];
 

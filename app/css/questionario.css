@@ -1,6 +1,11 @@
 @import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro);
 
-.criar-questionario {
+.questionario {
     margin: 2%;
     background-color: transparent;
+}
+
+md-list.make-scrollable {
+    height: 1000px;
+    overflow-y: scroll;
 }
