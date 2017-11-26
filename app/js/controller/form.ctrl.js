@@ -2,7 +2,7 @@
 (function () {
     var app = angular.module('sadApp');
 
-    app.controller("FormController", function FormController($mdToast, $scope, $state, $mdDialog, AnswerService, quiz, $mdIcon) {
+    app.controller("FormController", function FormController($toast, $scope, $state, $mdDialog, AnswerService, quiz, $mdIcon) {
 
         //TODO: treat unexpected situations with toastr
         //      the functions (send, select and sendNegar) haven't been tested yet
@@ -87,18 +87,18 @@
         formCtrl.sendAnswer = function (token) {
             AnswerService.submitAnswers(token, formCtrl.text_question, formCtrl.radio_question)
                 .then(function successCallback(response) {
-                    formCtrl._createToast('Enviado com sucesso.' + response.data);
+                    ToastService.criaToastSimples('Enviado com sucesso.' + response.data);
                 }, function errorCallback(response) {
-                    formCtrl._createToast("Erro ao enviar formulário" + response.status + " (" + response.statusText + "): " + response.data);
+                     ToastService.criaToastSimples("Erro ao enviar formulário" + response.status + " (" + response.statusText + "): " + response.data);
 
           });
         };
 
         formCtrl.sendNegar = function (token) {
             AnswerService.submitNoAnswers(token).then(function successCallback(response) {
-                formCtrl._createToast(response.data);
+                ToastService.criaToastSimples(response.data);
             }, function errorCallback(response) {
-                formCtrl._createToast(response.data);
+                 ToastService.criaToastSimples(response.data);
             });
         };
 
@@ -108,14 +108,7 @@
             }
         };
 
-        formCtrl._createToast = function (response) {
-            $mdToast.show(
-                $mdToast.simple()
-                    .textContent(response)
-                    .position("top right")
-                    .hideDelay(3000)
-            );
-        };
+
 
         /***
          * Geralmente não é indicado utilizar angular.js com jquery.

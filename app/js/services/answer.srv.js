@@ -25,7 +25,6 @@
 
         service._organizeQuiz = function _organizeQuiz(text, radio) {
 
-  
             let answers = [];
             for (var v in text) {
                 answers.push({ 'question': { 'id': v }, 'answerText': text[v] });
@@ -49,7 +48,7 @@
             }
 
             var deffered = $q.defer();
-            
+
 
             $http.post(baseUrl + URI_QUESTIONNARIE, JSON.stringify(questionnaire),
                 HEADERS).then(function success(response) {
