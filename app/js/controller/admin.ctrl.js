@@ -8,7 +8,6 @@
 		adminCtrl.ufcgBrasao = "./view/img/brasaoUfcg.png";
 		adminCtrl.ccBrasao = "./view/img/dsc.png";
 		const STATE_HOME = "sad-admin.home";
-		var botaoOriginario;
 
 		adminCtrl.goTo = function goTo(state) {
 			$state.go(state);
