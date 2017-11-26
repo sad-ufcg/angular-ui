@@ -2,7 +2,7 @@
 (function() {
     let app = angular.module('sadApp');
 
-    app.service('Disciplinas', function($http, baseUrl, $q) {
+    app.service('DisciplinasService', function($http, baseUrl, $q) {
         var self = this;
 
         const disciplinaUrl = baseUrl + "/disciplinas";
