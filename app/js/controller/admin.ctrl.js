@@ -13,11 +13,21 @@
 			$state.go(state);
 		};
 
-		adminCtrl.pages = [
-			{
+		adminCtrl.pages =
+			[{
 				icon: 'library_add',
-				title: 'Cadastrar Turmas',
+				title: 'Upload de Disciplinas',
 				state: 'sad-admin.cadastra-turmas'
+			},
+			{
+				icon: 'fiber_new',
+				title: 'Criar Disciplina',
+				state: 'sad-admin.criar-disciplina'
+			},
+			{
+				icon: 'list',
+				title: 'Visualizar Disciplinas',
+				state: 'sad-admin.visualizar-disciplinas'
 			},
 			{
 				icon: 'description',
