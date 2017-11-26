@@ -5,9 +5,15 @@ app.constant('baseUrl', 'http://localhost:8080');
 
 app.config(function ($stateProvider, $locationProvider, $urlRouterProvider, $mdThemingProvider) {
 
+    // Setando Temas
     $mdThemingProvider.theme('default')
         .primaryPalette('indigo')
         .accentPalette('orange');
+
+    // Temas para toast
+    $mdThemingProvider.theme("orange-toast");
+    $mdThemingProvider.theme("blue-toast");
+    $mdThemingProvider.theme("grey-toast");
 
     $stateProvider
         .state("sad-aluno", {
