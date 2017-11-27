@@ -15,6 +15,10 @@ app.config(function ($stateProvider, $locationProvider, $urlRouterProvider, $mdT
     $mdThemingProvider.theme("blue-toast");
     $mdThemingProvider.theme("grey-toast");
 
+    const carregaDisciplina = function(Disciplina, id) {
+        return new Disciplina(id);
+    };
+
     $stateProvider
         .state("sad-aluno", {
             abstract: true,
@@ -63,6 +67,42 @@ app.config(function ($stateProvider, $locationProvider, $urlRouterProvider, $mdT
                 content: {
                     templateUrl: 'view/aplicar-questionario.html',
                     controller: 'AplicarQuestionarioController as aplicarQuestionarioCtrl'
+                }
+            }
+        })
+
+        .state("sad-admin.criar-disciplina", {
+            url: "/criar-disciplina",
+            views: {
+                content: {
+                    templateUrl: 'view/criar-disciplina.html',
+                    controller: 'CriarDisciplinaController as criarDisciplinaCtrl'
+                }
+            }
+        })
+
+        .state("sad-admin.visualizar-disciplinas", {
+            url: "/visualizar-disciplinas",
+            views: {
+                content: {
+                    templateUrl: 'view/listagem-disciplina.html',
+                    controller: 'DisciplinasController as disciplinasCtrl'
+                }
+            }
+        })
+
+        .state("sad-admin.disciplina", {
+            url: "/disciplina/:idDisciplina",
+            views:{
+                content: {
+                    templateUrl: 'view/disciplina.html',
+                    controller: 'DisciplinaController as disciplinaCtrl',
+                }
+            },
+            resolve: {
+                disciplina: function (Disciplina, $stateParams) {
+                    let idDisciplina = parseInt($stateParams.idDisciplina);
+                    return carregaDisciplina(Disciplina, idDisciplina);
                 }
             }
         })
