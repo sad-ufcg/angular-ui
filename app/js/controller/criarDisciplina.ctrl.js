@@ -13,6 +13,6 @@
             DisciplinaService.cadastrarDisciplina(criarDisciplinaCtrl.disciplina).then(function(success) {
                 $state.go("sad-admin.disciplina", {idDisciplina : success.data.id});
             });
-        }
+        };
     });
 })();
