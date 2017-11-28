@@ -2,58 +2,63 @@
 (function () {
     var app = angular.module('sadApp');
 
-    app.controller("CriarQuestionarioController", function CriarQuestionarioController($http) {
+    app.controller("CriarQuestionarioController",
+                   function CriarQuestionarioController($http,
+                                                        $scope,
+                                                        ToastService,
+                                                        QuestionarioService) {
 
-        var criarQuestionarioCtrl = this;
+    var self = this;
 
-        criarQuestionarioCtrl.criarQuestionario = function() {
-
-          var questionario = { nome: criarQuestionarioCtrl.nome,
-                               descricao: criarQuestionarioCtrl.descricao,
-                               questoes: []
-                             }
-
-          for(var i = 0; i < criarQuestionarioCtrl.tabs.length; i++) {
-             questionario.questoes.push({ enunciado: criarQuestionarioCtrl.tabs[i].questao.enunciado,
-                                          tipoQuestao: criarQuestionarioCtrl.tabs[i].questao.tipoQuestao });
-          }
-
-          console.log(questionario);
-          $http.post('http://localhost:8080/questionarios', questionario).then(
-              function success(response) {
-                  criarQuestionarioCtrl.questionarios = response.data;
-                  criarQuestionarioCtrl.achou_questionarios = true;
-              }, function error(response) {
-                  console.log("erro");
-              }
-          );
-        };
-
-    criarQuestionarioCtrl.tabs = [
-      { titulo: 'Questão 1', questao: { enunciado: '', tipoQuestao: 'TEXTO'}}
-    ];
-
-    criarQuestionarioCtrl.selectedIndex = 0;
-    criarQuestionarioCtrl.ultimaQuestao = 1;
-
-    criarQuestionarioCtrl.addTab = function () {
-      criarQuestionarioCtrl.ultimaQuestao += 1;
-      var titulo = 'Questão ' + criarQuestionarioCtrl.ultimaQuestao;
-      criarQuestionarioCtrl.tabs.push({ titulo: titulo, questao: { enunciado: '', tipoQuestao: 'TEXTO'} });
+    self.getQuestionarioVazio = function() {
+      return { nome: '',
+               descricao: '',
+               questoes: [
+                 { enunciado: '',
+                   tipoQuestao: 'TEXTO'
+                 }
+               ]
+             };
     };
 
-    criarQuestionarioCtrl.removeTab = function (tab) {
-      var index = criarQuestionarioCtrl.tabs.indexOf(tab);
-      criarQuestionarioCtrl.tabs.splice(index, 1);
+    self.questionario = self.getQuestionarioVazio();
 
-      for(var i = 0; i < criarQuestionarioCtrl.tabs.length; i++) {
-        criarQuestionarioCtrl.tabs[i].titulo = "Questão " + (i + 1);
+    self.limparFormulario = function() {
+      self.questionario = self.getQuestionarioVazio();
+      $scope.criarQuestionarioForm.$setPristine();
+      $scope.criarQuestionarioForm.$setUntouched();
+      $scope.$apply();
+    }
+
+    self.criarQuestionario = function() {
+
+      if(!$scope.criarQuestionarioForm.$valid) {
+        ToastService.criaToastComTema("Preencha todos os campos obrigatórios!", "orange-toast");
       }
 
-      if (criarQuestionarioCtrl.ultimaQuestao > 0) {
-        criarQuestionarioCtrl.ultimaQuestao -= 1;
+      else {
+        QuestionarioService.criarQuestionario(self.questionario).then(function(data) {
+           ToastService.criaToastComTema("Questionário criado com sucesso!", "blue-toast");
+           self.limparFormulario();
+         }).catch(function (err) {
+           if(err.status == -1) {
+             ToastService.criaToastComTema("Erro, Resposta tem estado -1.", "orange-toast");
+           }
+        });
       }
     };
 
-    });
+    self.selectedIndex = 0;
+    self.ultimaQuestao = 1;
+
+    self.adicionarQuestao = function () {
+      self.questionario.questoes.push({ enunciado: '', tipoQuestao: 'TEXTO'});
+    };
+
+    self.removerQuestao = function (tab) {
+      var index = self.questionario.questoes.indexOf(tab);
+      self.questionario.questoes.splice(index, 1);
+    };
+
+  });
 })();

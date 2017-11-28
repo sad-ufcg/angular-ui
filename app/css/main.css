@@ -59,3 +59,23 @@ section {
 .card-header {
     text-align: justify;
 }
+
+/* Temas para toast */
+
+/* Laranja: orange-toast */
+md-toast.md-orange-toast-theme div.md-toast-content{
+    color: white !important;
+    background-color: #ff5722 !important;
+}
+
+/* Azul: blue-toast */
+md-toast.md-blue-toast-theme div.md-toast-content{
+    color: white !important;
+    background-color: #3f51b5 !important;
+}
+
+/* Cinza: grey-toast */
+md-toast.md-grey-toast-theme div.md-toast-content{
+    color: white !important;
+    background-color: #bdbdbd !important;
+}
