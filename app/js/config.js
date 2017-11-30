@@ -107,6 +107,16 @@ app.config(function ($stateProvider, $locationProvider, $urlRouterProvider, $mdT
             }
         })
 
+        .state("sad-admin.questionario-detalhe", {
+            url: "/questionario/:id",
+            views:{
+                content: {
+                    templateUrl: 'view/questionario-detalhe.html',
+                    controller: 'QuestionarioDetalheController as questDetalheCtrl'
+                }
+            }
+        })
+
         .state("sad-admin.home", {
             url: "/home",
             views: {

@@ -6,7 +6,7 @@
 
         var questionarioService = this;
 
-        const uri = baseUrl + "/questionarios"
+        const uri = baseUrl + "/questionarios";
 
         /**
          * Criar uma novo Questionário no servidor.
@@ -23,5 +23,30 @@
 
             return deffered.promise;
         };
+
+        questionarioService.getQuestionarios = function () {
+            let deffered = $q.defer();
+            $http.get(uri).then(
+                function success(response) {
+                    deffered.resolve(response);
+                }, function error(response) {
+                   deffered.reject(response);
+                }
+            );
+            return deffered.promise;
+        };
+
+        questionarioService.getQuestionarioByID = (id) => {
+            let deffered = $q.defer(); 
+            $http.get(`${uri}/${id}`).then(
+                function success(response){
+                    deffered.resolve(response);
+                }, function error(response){
+                    deffered.reject(response);
+                }
+            );
+            return deffered.promise;
+        };
+
     });
 })();
