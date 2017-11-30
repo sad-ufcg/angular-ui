@@ -11,10 +11,6 @@
     color: indigo;
 }
 
-.main-admin md-sidenav {
-    width: 25%;
-}
-
 .material-icons.icon-menu {
     font-size: 28px;
     vertical-align: middle;
@@ -41,12 +37,8 @@
 }
 
 .main-admin .content {
-    position: absolute;
+    position: fixed;
     margin: 3%;
-}
-
-.main-admin md-sidenav {
-    height: 100%;
 }
 
 md-content {
@@ -67,3 +59,8 @@ md-content {
     width: 70%;
 }
 
+.listagem-questionarios md-whiteframe {
+    background: #fff;
+    margin: 30px;
+    height: 100px; 
+}

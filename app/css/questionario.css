@@ -1,9 +1,11 @@
 
 .questionario {
-    margin: 2%;
     background-color: transparent;
 }
 
+.questionario md-card {
+    padding: 1%;
+}
 
 
 md-whiteframe {
@@ -20,7 +22,8 @@ md-whiteframe:hover {
 
 }
 
-.questionario .material-icons.icon-menu {
+.questionario .material-icons{
     font-size: 28px;
-    vertical-align: center;
+    align-content: center;
+    margin: 20px;
 }
