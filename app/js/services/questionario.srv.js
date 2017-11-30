@@ -6,7 +6,7 @@
 
         var questionarioService = this;
 
-        const uri = baseUrl + "/questionarios"
+        const uri = baseUrl + "/questionarios";
 
         /**
          * Criar uma novo Questionário no servidor.

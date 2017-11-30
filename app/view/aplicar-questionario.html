@@ -1,14 +1,20 @@
-<md-content class="questionario">
+<md-content class="questionario" ng-cloak>
 
-  <md-subheader class="md-accent"> Aplicar Questionário </md-subheader>
+  <section ng-init='aplicarQuestionarioCtrl.getQuestionarios()' layout="row" layout-padding layout-wrap layout-fill>
 
-    <md-button class="md-raised md-primary" ng-click='aplicarQuestionarioCtrl.getQuestionarios()'>
-      Buscar questionários
-      <md-icon class="icon-menu">add</md-icon>
-    </md-button>
 
-    <div ng-if='aplicarQuestionarioCtrl.achou_questionarios'>
-      <div>{{aplicarQuestionarioCtrl.questionarios}}</div>
-    </div>
+    <md-whiteframe ng-repeat="questionario in aplicarQuestionarioCtrl.questionarios " class="md-whiteframe-1dp" flex="30" layout
+      layout-align="center center">
+      <md-list-item class="md-3-line">
+        <div class="md-list-item-text" layout="column">
+          <h3>{{ questionario.nome }}</h3>
+          <h4><strong>Quantidade</strong>: {{questionario.questoes.length}} </h4>
+          <p> {{ questionario.descricao }} </p>
+        </div>
+        <i class="material-icons">insert_drive_file</i>
+      </md-list-item>
+    </md-whiteframe>
+
+  </section>
 
 </md-content>

@@ -11,6 +11,10 @@
     color: indigo;
 }
 
+.main-admin md-sidenav {
+    width: 25%;
+}
+
 .material-icons.icon-menu {
     font-size: 28px;
     vertical-align: middle;
@@ -37,8 +41,12 @@
 }
 
 .main-admin .content {
-    position: fixed;
+    position: absolute;
     margin: 3%;
+}
+
+.main-admin md-sidenav {
+    height: 100%;
 }
 
 md-content {
@@ -58,3 +66,4 @@ md-content {
     margin-left: 4%;
     width: 70%;
 }
+
