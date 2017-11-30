@@ -17,10 +17,10 @@
     </div>
 
   <div class="sample" layout="column" flex-xs flex-gt-xs="60" ng-cloak>
-    <md-content class="md-padding">
+    <section class="md-padding">
       <md-tabs md-selected="selectedIndex" md-border-bottom md-autoselect md-swipe-content>
         <md-tab ng-repeat="questao in criarQuestionarioCtrl.questionario.questoes"
-                label="Questão {{$index}}">
+                label="Questão {{$index + 1}}">
           <div class="demo-tab tab{{$index%4}}">
             <br/>
 
@@ -43,7 +43,7 @@
           </div>
         </md-tab>
       </md-tabs>
-    </md-content>
+    </section>
 
     <div layout="column" class="md-padding" style="padding-top: 0;">
       <div layout="row" layout-sm="column">
