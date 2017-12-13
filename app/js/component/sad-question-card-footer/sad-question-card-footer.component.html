@@ -4,21 +4,18 @@
             <div class="col-xs-6 col-md-8">
                 <div layout="column" layout-align="center stretch">
                     <div layout="row" layout-align="start start">
-                        <span>{{questionFooterCtrl.numberQuestion}} de {{questionFooterCtrl.numberOfQuestions}} perguntas</span>
+                        <span>{{questionFooterCtrl.numeroDeQuestoesRespondidas}} de {{questionFooterCtrl.numeroDeQuestoes}} perguntas respondidas</span>
                     </div>
                     <div layout="row" layout-align="start start">
-                        <md-progress-linear md-mode="determinate" value="{{questionFooterCtrl.percentageValue}}"></md-progress-linear>
+                        <md-progress-linear md-mode="determinate" value="{{questionFooterCtrl.porcentagem}}"></md-progress-linear>
                     </div>
                 </div>
             </div>
 
             <div class="col-xs-6 col-md-4">
                 <div layout="row" layout-align="end center">
-                    <md-button class="md-smaller card-button-box" ng-click="questionFooterCtrl.previous()">
-                        <md-icon class="card-button">keyboard_arrow_up</md-icon>
-                    </md-button>
-                    <md-button class="md-smaller card-button-box" ng-disabled="!questionFooterCtrl.radioQuestion[questionFooterCtrl.question.id]" ng-click="questionFooterCtrl.next()">
-                        <md-icon class="card-button">keyboard_arrow_down</md-icon>
+                    <md-button class="md-smaller card-button-box" ng-disabled="questionFooterCtrl.numeroDeQuestoes != questionFooterCtrl.numeroDeQuestoesRespondidas" ng-click="questionFooterCtrl.enviarResposta()">
+                        Enviar Respostas
                     </md-button>
                 </div>
             </div>

@@ -147,6 +147,20 @@ app.config(function ($stateProvider, $locationProvider, $urlRouterProvider, $mdT
                     return AnswerService.getQuiz();
                 }
             }
+        })
+        .state("sad-aluno.formulario", {
+            url: "/form/:token",
+            views: {
+                content: {
+                    templateUrl: 'view/new_form.html',
+                    controller: 'NewFormController as newformCtrl'
+                }
+            },
+            resolve: {
+                questionario: function (FormularioService, $stateParams) {
+                    return FormularioService.buscaQuestionario($stateParams.token);
+                }
+            }
         });
 
     $urlRouterProvider.otherwise('/home');
