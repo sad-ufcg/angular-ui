@@ -45,7 +45,7 @@
     padding: 1% 0;
     color: #4d82cb;
     background-color: #dbe3ff;
-    margin-right: 2%
+    margin-right: 2%;
 }
 
 .card-footer span {
@@ -56,6 +56,10 @@
 .card-footer .question-card button {
     color: #ffffff;
     background-color: #82b1ff;
+}
+
+.card-footer .question-card {
+    margin-left: 2%;
 }
 
 .md-button.md-smaller {

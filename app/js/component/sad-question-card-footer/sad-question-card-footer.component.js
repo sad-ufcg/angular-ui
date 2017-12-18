@@ -4,6 +4,7 @@
 
     function QuestionFooterController() {
       var questionFooterCtrl = this;
+      var PRIMEIRA_OPCAO = 0;
 
       questionFooterCtrl.checarResposta = function () {
         var respostaValida = true;
@@ -15,6 +16,15 @@
         }
         return respostaValida;
       };
+
+      questionFooterCtrl.respostaRapida = function() {
+        for (var i = 0; i < questionFooterCtrl.questionario.length; i++) {
+            if (questionFooterCtrl.questionario[i].tipoQuestao === "ESCOLHA_SIMPLES"){
+                questionFooterCtrl.questaoRadio[i] = true;
+            }
+
+        }
+      }
     };
 
     app.component('sadQuestionCardFooter', {
