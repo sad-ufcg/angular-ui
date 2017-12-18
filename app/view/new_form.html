@@ -7,7 +7,7 @@
 
     <!-- Question card -->
     <div class='wrapper'>
-        <div ng-repeat="questao in newformCtrl.questionario" style="position:relative">
+      <div ng-repeat="questao in newformCtrl.questionario" style="position:relative">
         <sad-question-card enunciado="questao.enunciado" tipo="questao.tipoQuestao"
           numero="$index + 1" radio="newformCtrl.questaoRadio" comentario="newformCtrl.comentarios">
         </sad-question-card>
@@ -18,7 +18,5 @@
         numero-de-questoes-respondidas="newformCtrl.numeroDeQuestoesRespondidas()"
         porcentagem="newformCtrl.calcPorcentagem()"
         questao-radio="newformCtrl.questaoRadio" questionario="newformCtrl.questionario"
-        enviar-resposta="newformCtrl.enviarResposta()">
-
-    </sad-question-card-footer>
+        enviar-resposta="newformCtrl.enviarResposta()"></sad-question-card-footer>
 </section>

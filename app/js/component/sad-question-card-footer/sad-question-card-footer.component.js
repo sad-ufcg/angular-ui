@@ -4,7 +4,7 @@
 
     function QuestionFooterController() {
       var questionFooterCtrl = this;
-      var PRIMEIRA_OPCAO = 0;
+      var OPCAO_AUTOMATICA = "3";
 
       questionFooterCtrl.checarResposta = function () {
         var respostaValida = true;
@@ -20,7 +20,7 @@
       questionFooterCtrl.respostaRapida = function() {
         for (var i = 0; i < questionFooterCtrl.questionario.length; i++) {
             if (questionFooterCtrl.questionario[i].tipoQuestao === "ESCOLHA_SIMPLES"){
-                questionFooterCtrl.questaoRadio[i] = true;
+                questionFooterCtrl.questaoRadio[i] = OPCAO_AUTOMATICA;
             }
 
         }
