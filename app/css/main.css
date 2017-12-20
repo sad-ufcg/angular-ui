@@ -2,9 +2,8 @@
 @import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro);
 
 
-html,
-body {
-    background-color:transparent;
+html, body {
+    background-color: transparent;
     height: 100%;
     font-family: 'Source Sans Pro', sans-serif;
 }
@@ -28,6 +27,12 @@ section {
     height: 100%;
     display: flex;
     flex-direction: column;
+    padding: 2%;
+}
+
+.wrapper {
+  padding: 8%;
+  overflow: auto;
 }
 
 .content {
