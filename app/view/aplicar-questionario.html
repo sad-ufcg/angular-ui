@@ -1,30 +1,35 @@
 <md-content class="md-no-momentum" ng-init='aplicarQuestionarioCtrl.getQuestionarios()'>
 
-  <md-toolbar layout="row" class="md-hue-3">
-    <div class="md-toolbar-tools">
-      <span>Questionários Cadastrados</span>
-    </div>
-  </md-toolbar>
-  <br>
+        <md-toolbar md-scroll-shrink>
+            <div style="font-size: 30px" class="md-toolbar-tools">Aplicar Questionário</div>
+        </md-toolbar>
 
+    <h3 class="md-title">Selecione um Questionário</h3>
 
-  <section ng-class="questionario" layout="row" flex="80" layout-wrap>
+    <md-input-container>
+        <md-select ng-model="aplicarQuestionarioCtrl.questionarioSelecionado" placeholder="Selecione um Questionário">
+            <md-option ng-value="questionario" ng-repeat="questionario in aplicarQuestionarioCtrl.questionarios">{{ questionario.nome }}</md-option>
+        </md-select>
+    </md-input-container>
 
+    <h1 class="md-title">Selecione a(s) Disciplina(s)</h1>
 
-    <md-whiteframe ng-repeat="questionario in aplicarQuestionarioCtrl.questionarios " class="md-whiteframe-1dp" flex="25" layout
-      layout-align="center center" ng-click="aplicarQuestionarioCtrl.goToDetail(questionario.id)">
-      <md-list-item class="md-3-line">
-        <div class="md-list-item-text" layout="column">
-          <h3> <strong>{{ questionario.nome }}</strong></h3>
-          <h4><strong>Quantidade de Questões</strong>: {{questionario.questoes.length}} </h4>
-          <p> {{ questionario.descricao }} </p>
-        </div>
-        <i class="material-icons">insert_drive_file</i>
-      </md-list-item>
-    </md-whiteframe>
+    <md-list-item>
+        <p>Selecionar</p>
+        <p>Nome</p>
+        <p>Turma</p>
+        <p>Período</p>
+    </md-list-item>
+    <md-list-item ng-repeat="disciplina in aplicarQuestionarioCtrl.disciplinas">
+        <md-checkbox data-ng-model="disciplina.aplicar"></md-checkbox>
+        <p> {{ disciplina.nome }}</p>
+        <p> {{ disciplina.turma }}</p>
+        <p> {{ disciplina.semestre }} </p>
+    </md-list-item>
 
+</md-content>
 
-
-  </section>
-
+<md-content>
+    <md-button class="md-raised md-primary" 
+    data-ng-click="aplicarQuestionarioCtrl.aplicarQuestionario()"> Aplicar Questionário</md-button>
 </md-content>

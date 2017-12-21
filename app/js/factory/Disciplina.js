@@ -1,6 +1,6 @@
 'use strict';
 (function () {
-    var app = angular.module('sadApp');
+    const app = angular.module('sadApp');
 
     app.factory("Disciplina", function($http, baseUrl, $q) {
         

@@ -1,29 +1,18 @@
 'use strict';
 (function () {
-    var app = angular.module('sadApp');
+    const app = angular.module('sadApp');
 
-    app.controller("AplicarQuestionarioController", function AplicarQuestionarioController( $state, QuestionarioService) {
-        var aplicarQuestionarioCtrl = this;
+    app.controller("AplicarQuestionarioController", function AplicarQuestionarioController($http, disciplinas, questionarios, AplicarQuestionarioService) {
 
-        aplicarQuestionarioCtrl.achou_questionarios = false;
+        let self = this;
 
-        aplicarQuestionarioCtrl.getQuestionarios = function() {
-            QuestionarioService.getQuestionarios().then(
-                function success(response){
-                    aplicarQuestionarioCtrl.questionarios = response.data;
-                    aplicarQuestionarioCtrl.achou_questionarios = true;
-                    console.log(response.data);
-                }, function error(response) {
-                    console.log(response);
-                }
-            );
-          
+        self.disciplinas = disciplinas || [];
+        self.questionarios = questionarios || [];
+        self.questionarioSelecionado;
+
+        self.aplicarQuestionario = function() {
+            const turmasSelecionadas = self.disciplinas.filter(questionario => questionario.aplicar == true);
+            AplicarQuestionarioService.aplicarQuestionario(turmasSelecionadas, self.questionarioSelecionado);
         };
-
-        aplicarQuestionarioCtrl.goToDetail = (questionarioID) => {
-            console.log(questionarioID);
-            $state.go("sad-admin.questionario-detalhe", {id : questionarioID});
-        };
-
     });
 })();
