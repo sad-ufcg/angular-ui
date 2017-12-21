@@ -13,6 +13,16 @@ app.config(function ($stateProvider, $locationProvider, $urlRouterProvider, $mdT
         return new Disciplina(id);
     };
 
+    const carregarDisciplinas = function(DisciplinasService) {
+        const promise = DisciplinasService.carregarDisciplinas();
+        return promise.then(data => data.data);
+    };
+
+    const carregarQuestionarios = function(QuestionariosService) {
+        const promise = QuestionariosService.carregarQuestionarios();
+        return promise.then(data => data.data);
+    };
+
     $stateProvider
         .state("sad-aluno", {
             abstract: true,
@@ -61,6 +71,14 @@ app.config(function ($stateProvider, $locationProvider, $urlRouterProvider, $mdT
                 content: {
                     templateUrl: 'view/aplicar-questionario.html',
                     controller: 'AplicarQuestionarioController as aplicarQuestionarioCtrl'
+                }
+            },
+            resolve : {
+                disciplinas: function(DisciplinasService) {
+                    return carregarDisciplinas(DisciplinasService);
+                },
+                questionarios: function(QuestionariosService) {
+                    return carregarQuestionarios(QuestionariosService);
                 }
             }
         })

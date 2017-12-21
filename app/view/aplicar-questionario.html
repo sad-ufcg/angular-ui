@@ -1,14 +1,35 @@
 <md-content class="questionario">
 
-  <md-subheader class="md-accent"> Aplicar Questionário </md-subheader>
+        <md-toolbar md-scroll-shrink>
+            <div style="font-size: 30px" class="md-toolbar-tools">Aplicar Questionário</div>
+        </md-toolbar>
 
-    <md-button class="md-raised md-primary" ng-click='aplicarQuestionarioCtrl.getQuestionarios()'>
-      Buscar questionários
-      <md-icon class="icon-menu">add</md-icon>
-    </md-button>
+    <h3 class="md-title">Selecione um Questionário</h3>
 
-    <div ng-if='aplicarQuestionarioCtrl.achou_questionarios'>
-      <div>{{aplicarQuestionarioCtrl.questionarios}}</div>
-    </div>
+    <md-input-container>
+        <md-select ng-model="aplicarQuestionarioCtrl.questionarioSelecionado" placeholder="Selecione um Questionário">
+            <md-option ng-value="questionario" ng-repeat="questionario in aplicarQuestionarioCtrl.questionarios">{{ questionario.nome }}</md-option>
+        </md-select>
+    </md-input-container>
 
+    <h1 class="md-title">Selecione a(s) Disciplina(s)</h1>
+
+    <md-list-item>
+        <p>Selecionar</p>
+        <p>Nome</p>
+        <p>Turma</p>
+        <p>Período</p>
+    </md-list-item>
+    <md-list-item ng-repeat="disciplina in aplicarQuestionarioCtrl.disciplinas">
+        <md-checkbox data-ng-model="disciplina.aplicar"></md-checkbox>
+        <p> {{ disciplina.nome }}</p>
+        <p> {{ disciplina.turma }}</p>
+        <p> {{ disciplina.semestre }} </p>
+    </md-list-item>
+
+</md-content>
+
+<md-content>
+    <md-button class="md-raised md-primary" 
+    data-ng-click="aplicarQuestionarioCtrl.aplicarQuestionario()"> Aplicar Questionário</md-button>
 </md-content>
