@@ -1,0 +1,45 @@
+<!-- View -->
+<div layout="column" class="main-admin">
+        
+    <section layout="row" flex>
+
+        <!-- Container #3 -->
+        <md-sidenav md-is-locked-open="true" class="md-whiteframe-4dp">
+
+            <md-toolbar class="md-primary" ng-click="adminCtrl.goToHome()">
+
+                <div class="md-toolbar-tools" >
+                    <md-list-item layout="row" >
+                        <img ng-src="{{adminCtrl.ufcgBrasao}}" class="md-avatar">
+                        <h1 flex md-truncate>SAD UFCG</h1>
+                        <img ng-src="{{adminCtrl.ccBrasao}}" class="md-avatar">
+                    </md-list-item>
+                </div>
+
+            </md-toolbar>
+
+            <md-divider></md-divider>
+
+            <!-- botões/funcionalidades -->
+            <md-list>
+
+                <md-list-item ng-repeat="page in adminCtrl.pages"ng-click="adminCtrl.goTo(page.state)">
+                    <md-icon class="icon-menu">{{page.icon}}</md-icon>
+                    <p>{{page.title}}</p>
+                </md-list-item>
+
+            </md-list>
+
+        </md-sidenav>
+
+
+        <section>
+            <div class="content">
+                <div flex ui-view="content"></div>
+            </div>
+        </section>
+
+    </section>
+
+
+</div>

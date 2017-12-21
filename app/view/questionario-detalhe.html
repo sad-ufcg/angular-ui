@@ -1,0 +1,45 @@
+<md-content ng-init="questDetalheCtrl.loadQuestionario()" class="md-no-momentum questionario">
+
+    <md-card flex="60">
+        <md-card-title>
+            <md-card-title-media>
+                <div class="md-media-gm card-media" layout>
+                    <i class="material-icons">class</i>
+                </div>
+            </md-card-title-media>
+            <md-card-title-text>
+                <h1><strong>{{ questDetalheCtrl.questionario.nome }}</strong></h1>
+                <small ng-if="questDetalheCtrl.naoFoiAplicado()">Este questionário não foi aplicado ainda.</small>
+            </md-card-title-text>
+        </md-card-title>
+        <md-divider></md-divider>
+
+        <md-card-content>
+            <h3>Descrição: {{ questDetalheCtrl.questionario.descricao }}</h3>
+            <md-divider></md-divider>
+            <h4>Questões:</h4>
+            <md-list class="listagem" ng-cloak>
+
+                <md-list-item>
+
+                    <p>Enunciado</p>
+                    <p>Tipo</p>
+
+                </md-list-item>
+                <md-list-item ng-repeat="questao in questDetalheCtrl.questionario.questoes" ng-click="disciplinasCtrl.irParaDisciplina(disciplina.id)">
+                    <p> <strong>{{questao.enunciado}}</strong></p>
+                    <p> {{ questao.tipoQuestao }}</p>
+                </md-list-item>
+            </md-list>
+        </md-card-content>
+        <md-card-actions layout="row">
+            <md-button class="md-raised md-warn" ng-click="questDetalheCtrl.aplicar()">
+                APLICAR QUESTIONÁRIO
+            </md-button>
+            <md-button class="md-raised md-primary" ng-click="questDetalheCtrl.editar()">
+                EDITAR QUESTIONÁRIO
+            </md-button>
+        </md-card-actions>
+    </md-card>
+
+</md-content>

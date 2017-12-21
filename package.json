@@ -1,36 +1,43 @@
 {
-  "name": "angular-seed",
-  "private": true,
-  "version": "0.0.0",
-  "description": "A starter project for AngularJS",
-  "repository": "https://github.com/angular/angular-seed",
-  "license": "MIT",
-  "devDependencies": {
-    "bower": "^1.7.7",
-    "http-server": "^0.9.0",
-    "jasmine-core": "^2.4.1",
-    "karma": "^0.13.22",
-    "karma-chrome-launcher": "^0.2.3",
-    "karma-firefox-launcher": "^0.1.7",
-    "karma-jasmine": "^0.3.8",
-    "karma-junit-reporter": "^0.4.1",
-    "protractor": "^3.2.2"
-  },
+  "name": "sad-aluno",
+  "version": "1.0.0",
+  "description": "OpenSource da UFCG",
+  "main": "index.js",
   "scripts": {
-    "postinstall": "bower install",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "http-server -a localhost -p 8000 -c-1 -o",
     "prestart": "npm install",
-    "start": "http-server -a localhost -p 8000 -c-1 ./app",
-    "start-ssl": "http-server -p 443 -S -C /etc/letsencrypt/live/sad.splab.ufcg.edu.br/cert.pem -K /etc/letsencrypt/live/sad.splab.ufcg.edu.br/privkey.pem ./app",
-    "pretest": "npm install",
-    "test": "karma start karma.conf.js",
-    "test-single-run": "karma start karma.conf.js --single-run",
-    "preupdate-webdriver": "npm install",
-    "update-webdriver": "webdriver-manager update",
-    "preprotractor": "npm run update-webdriver",
-    "protractor": "protractor e2e-tests/protractor.conf.js",
-    "update-index-async": "node -e \"var fs=require('fs'),indexFile='app/index-async.html',loaderFile='app/bower_components/angular-loader/angular-loader.min.js',loaderText=fs.readFileSync(loaderFile,'utf-8').split(/sourceMappingURL=angular-loader.min.js.map/).join('sourceMappingURL=bower_components/angular-loader/angular-loader.min.js.map'),indexText=fs.readFileSync(indexFile,'utf-8').split(/\\/\\/@@NG_LOADER_START@@[\\s\\S]*\\/\\/@@NG_LOADER_END@@/).join('//@@NG_LOADER_START@@\\n'+loaderText+'    //@@NG_LOADER_END@@');fs.writeFileSync(indexFile,indexText);\""
+    "setup-index": "gulp index"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sad-ufcg/angular-ui.git"
+  },
+  "keywords": [
+    "SAD"
+  ],
+  "author": "SAD",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sad-ufcg/angular-ui/issues"
+  },
+  "homepage": "https://github.com/sad-ufcg/angular-ui#readme",
   "dependencies": {
-    "angular-cookies": "^1.6.0"
+    "angular": "^1.6.6",
+    "angular-animate": "^1.6.6",
+    "angular-aria": "^1.6.6",
+    "angular-material": "^1.1.4",
+    "angular-material-icons": "^0.7.1",
+    "angular-messages": "^1.6.6",
+    "angular-sanitize": "^1.6.6",
+    "angular-ui-router": "^1.0.3",
+    "bootstrap": "^3.3.7",
+    "jquery": "^3.2.1",
+    "material-icons": "^0.1.0"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-inject": "^4.3.0",
+    "http-server": "^0.10.0"
   }
 }

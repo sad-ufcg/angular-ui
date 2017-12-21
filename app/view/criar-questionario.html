@@ -1,0 +1,57 @@
+<md-content class="questionario">
+  <form name="criarQuestionarioForm">
+
+    <md-input-container flex="80">
+      <label>Nome do Questionário</label>
+      <input required name="nome" ng-model="criarQuestionarioCtrl.questionario.nome " />
+      <div ng-messages="criarQuestionarioForm.nome.$error">
+        <div ng-message="required">Nome é obrigatório.</div>
+      </div>
+    </md-input-container>
+
+    <div layout="row">
+      <md-input-container flex="50">
+        <label>Descrição</label>
+        <input name="descricao" ng-model="criarQuestionarioCtrl.questionario.descricao">
+      </md-input-container>
+    </div>
+
+    <div class="sample" layout="column" flex-xs flex-gt-xs="60" ng-cloak>
+      <section class="md-padding">
+        <md-tabs md-selected="selectedIndex" md-border-bottom md-autoselect md-swipe-content>
+          <md-tab ng-repeat="questao in criarQuestionarioCtrl.questionario.questoes" label="Questão {{$index + 1}}">
+            <div class="demo-tab tab{{$index%4}}">
+              <br/>
+
+              <div layout="row">
+                <md-input-container flex="60">
+                  <label>Enunciado</label>
+                  <input required name="enunciado" ng-model="questao.enunciado">
+                  <div ng-messages="criarQuestionarioForm.enunciado.$error">
+                    <div ng-message="required">Enunciado é obrigatório.</div>
+                  </div>
+                </md-input-container>
+                <div flex="30">
+                  <md-select ng-model="questao.tipoQuestao" placeholder="Tipo de Questão" class="md-no-underline">
+                    <md-option value="TEXTO">Aberta</md-option>
+                    <md-option value="ESCOLHA_SIMPLES">Escolha Simples (1-5)</md-option>
+                  </md-select>
+                </div>
+              </div>
+              <md-button class="md-primary md-raised" ng-click="criarQuestionarioCtrl.adicionarQuestao()">Adicionar Questão</md-button>
+
+              <md-button class="md-raised" ng-click="criarQuestionarioCtrl.removerQuestao(questao)" ng-disabled="criarQuestionarioCtrl.questionario.questoes.length <= 1">Remover Questão</md-button>
+            </div>
+          </md-tab>
+        </md-tabs>
+      </section>
+
+      <div layout="column" class="md-padding" style="padding-top: 0;">
+        <div layout="row" layout-sm="column">
+          </md-input-container>
+          <md-button class="md-raised md-warn" ng-click="criarQuestionarioCtrl.criarQuestionario()">Criar Questionário</md-button>
+        </div>
+      </div>
+  </form>
+
+</md-content>

@@ -1,0 +1,96 @@
+.question-card {
+    margin-left: 20%;
+    margin-right: 5%;
+}
+
+.question-card .card {
+    min-height: 50%;
+    width: auto !important;
+    max-width: 95% !important;
+    background-color: transparent;
+}
+
+.question-card .card-header {
+    background-color: transparent;
+}
+
+.question-card .card-content {
+    padding-bottom: 0;
+    color: #82b1ff;
+}
+
+.question-card .card-content .checkbox {
+
+    border: 1px solid #82b1ff;
+    border-radius: 5px;
+
+    background-color: #dbe3ff;
+    color: #4d82cb;
+
+    padding: 4px 4px;
+    margin: 2px 2px;
+
+    width: auto !important;
+}
+
+.question-card .card-content md-radio-button {
+    margin: 0 0;
+}
+
+.card-footer {
+    position: fixed;
+    bottom: 0;
+    height: 10%;
+    width: 100%;
+    padding: 1% 0;
+    color: #4d82cb;
+    background-color: #dbe3ff;
+    margin-right: 2%;
+}
+
+.card-footer span {
+    font-size: small;
+    padding: 5px 5px;
+}
+
+.card-footer .question-card button {
+    color: #ffffff;
+    background-color: #82b1ff;
+}
+
+.card-footer .question-card {
+    margin-left: 2%;
+}
+
+.md-button.md-smaller {
+    min-width: 1%;
+}
+
+.md-button.card-button-box {
+    margin: 0 5px;
+    padding: 0 5px;
+    background-color: #82b1ff;
+    border: 1px solid #4d82cb;
+    border-radius: 5px;
+}
+
+.md-button.card-button-box:hover {
+    background-color: #b6e3ff;
+}
+
+.md-button.card-button-box:disabled {
+    background-color: #b2b8d4;
+    border: 1px solid transparent;
+    border-radius: 5px;
+}
+
+.material-icons.card-button {
+    font-size: 24px;
+    color: #4468a9;
+    vertical-align: middle;
+}
+
+.card-answer-opts {
+    padding-left: 2%;
+    font-size: medium;
+}

@@ -1,18 +1,15 @@
-# Interface AngularJS para o Sistema de Avaliação Docente
+# Interface AngularJS+Material-Design para o Sistema de Avaliação Docente
 
 Este projeto é uma aplicação web para compor a view do Sistema. 
 
 
 ## Instalando dependências
 
-Há duas dependências a serem instaladas para este projeto ser executado com sucesso na sua máquina. 
-
 * Nós utilizamos ferramentas via [npm][npm].
-* E utilizamos também o [bower][bower].
 
 O projeto está preconfigurado para ser executado com o simples comando: 
 
-```bash
+``` bash
 npm install
 ```
 
@@ -24,40 +21,37 @@ O projeto também está preconfigurado para uma inicialização rápida e simple
 npm start
 ```
 
-E depois basta digitar no browser : `http://localhost:8000`
+E depois basta digitar no browser : `http://localhost:8000/app/#/home`
 
-Além disto, é necessário rodar localmente o backend mocado, portanto, (num terminal Linux), faça: 
+Mas, para uma visualização completa da aplicação, o melhor é utilizar um *mockup*.
 
-```bash
-cd backend_moc
-node httpQuestions.js
+## Mockup para a execução
+
+Lembrando que para a execução dos passos a seguir, você precisa ter instalado em seu computador as seguintes dependências:
+
+* [Python 3][python3]
+* [Python Pip3][python3pip]
+* [Maven][maven]
+
+Para conseguir o *mockup*, execute os seguintes comandos (terminal linux):
+
+``` bash
+git clone https://github.com/sad-ufcg/back-end
+cd back-end
+mvn spring-boot:run
 ```
 
-Isto irá fazer com que um backend rode localmente na sua máquina e as funcionalidades da aplicação sejam inicializadas corretamente. 
+Em outro terminal, após a execução do passo acima, execute:
 
-```
-http://localhost:3412/questions
-```
-
-p.s. preocupe-se com o CORS.
-
-
-## Executando a aplicação enquanto desenvolve
-
-Utilizamos uma ferramenta do node.js chamada [http-server][http-server]. Você pode executar este webserver instalando as dependências requeridas. 
-
-```bash
-sudo npm install -g http-server
+``` bash
+cd system_tests
+python3 question_post.py
 ```
 
-Agora basta você começar a desenvolver seu código. 
+O link exemplo que poderá ser utilizado para visualização do form é: `localhost:8000/app/#/form/123/Programacao/5249483656845`.
 
-```bash
-http-server -a localhost -p 8000
-```
-
-
-[bower]: http://bower.io
 [npm]: https://www.npmjs.org/
-[node]: http://nodejs.org
-[http-server]: https://github.com/nodeapps/http-server
+[python3]: https://www.python.org/
+[python3pip]: https://pypi.python.org/pypi/pip
+[maven]: https://maven.apache.org/
+

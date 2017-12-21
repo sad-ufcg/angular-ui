@@ -1,0 +1,35 @@
+<md-content class="md-no-momentum">
+    
+    <div layout="row" layout-xs="column">
+        <md-input-container flex="30" class="md-icon-float md-block">
+            <md-icon class="material-icons">description</md-icon>
+            <label>Nome da Disciplina</label>
+            <input data-ng-model="criarDisciplinaCtrl.disciplina.nome" type="text">
+        </md-input-container>
+
+        <md-input-container flex="20" class="md-icon-float md-block">
+            <label>Turma</label>
+            <input data-ng-model="criarDisciplinaCtrl.disciplina.turma" type="text">
+        </md-input-container>
+
+        <md-input-container flex="20" class="md-icon-float md-block">
+                <label>Período</label>
+                <input data-ng-model="criarDisciplinaCtrl.disciplina.semestre" type="text">
+        </md-input-container>
+    </div>
+
+    <div layout="row" layout-xs="column">
+        <md-input-container flex="10" class="md-icon-float md-block">
+            <label>Código da Disciplina</label>
+            <input data-ng-model="criarDisciplinaCtrl.disciplina.codigo" type="text">
+        </md-input-container>
+
+        <md-input-container layout="row" flex="15" class="md-icon-float md-block">
+                <label>Código SIAPE do Professor</label>
+                <input data-ng-model="criarDisciplinaCtrl.professor.siape" type="text">
+        </md-input-container>
+    </div>
+
+    <md-button ng-click="criarDisciplinaCtrl.cadastrarDisciplina()" class="md-raised md-primary">
+        Cadastrar Turma</md-button>    
+</md-content>

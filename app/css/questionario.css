@@ -1,0 +1,25 @@
+
+.questionario {
+    background-color: transparent;
+}
+
+.questionario md-card {
+    padding: 1%;
+}
+
+md-whiteframe {
+    background: #fff;
+    margin: 20px;
+    height: 100px;
+}
+
+md-whiteframe:hover {
+    background:#82b1ff;
+    color: white;
+}
+
+.questionario .material-icons{
+    font-size: 28px;
+    align-content: center;
+    margin: 20px;
+}

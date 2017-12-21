@@ -1,0 +1,62 @@
+<md-content class="md-no-momentum">
+    <md-card flex="60">
+        <md-card-title>
+            <md-card-title-media>
+                <div class="md-media-sm card-media" layout>
+                    <i class="material-icons">class</i>
+                </div>
+            </md-card-title-media>
+            <md-card-title-text>
+                <span class="md-headline">{{disciplinaCtrl.disciplina.getNome()}}</span>
+                <span class="md-subhead description">Turma {{disciplinaCtrl.disciplina.getTurma()}}</span>
+            </md-card-title-text>
+        </md-card-title>
+    </md-card>
+
+    <section>
+        <md-list class="listagem">
+            <md-toolbar layout="row" class="md-hue-3">
+                <div class="md-toolbar-tools">
+                    <span>Alunos Matriculados</span>
+                </div>
+            </md-toolbar>
+            <md-list-item>
+                <p>Nome</p>
+                <p>Sobrenome</p>
+                <p>Email</p>
+            </md-list-item>
+            <md-list-item ng-repeat="aluno in disciplinaCtrl.disciplina._alunos">
+                <p> {{ aluno.nome }}</p>
+                <p> {{ aluno.sobrenome }}</p>
+                <p> {{ aluno.email }} </p>
+            </md-list-item>
+        </md-list>
+    </section>
+
+
+    <md-toolbar layout="row" class="md-hue-3">
+        <div class="md-toolbar-tools">
+            <span>Cadastrar Aluno</span>
+        </div>
+    </md-toolbar>
+
+    <div layout="row" layout-xs="column">
+        <md-input-container flex="20" class="md-icon-float md-block">
+            <md-icon class="material-icons">description</md-icon>
+            <label>Nome do Aluno</label>
+            <input ng-model="disciplinaCtrl.alunoNovo.nome" type="text">
+        </md-input-container>
+
+        <md-input-container flex="20" class="md-icon-float md-block">
+            <label>Sobrenome</label>
+            <input ng-model="disciplinaCtrl.alunoNovo.sobrenome" type="text">
+        </md-input-container>
+         <md-input-container flex="20" class="md-icon-float md-block">
+            <label>Email</label>
+            <input ng-model="disciplinaCtrl.alunoNovo.email" type="text">
+        </md-input-container>
+    </div>
+    <div>
+        <md-button data-ng-click="disciplinaCtrl.adicionarAluno()" class="md-raised md-primary">Cadastar Aluno</md-button>
+    </div>
+</md-content>

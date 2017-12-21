@@ -1,0 +1,31 @@
+<footer class="card-footer" layout="column" layout-align="center stretch">
+    <div class="question-card">
+        <div class="row">
+
+            <div class="col-xs-2 col-md-2">
+                <div layout="row" layout-align="start start">
+                    <md-button class="md-smaller card-button-box" ng-click="questionFooterCtrl.respostaRapida()">Resposta rápida</md-button>
+                </div>
+            </div>
+
+            <div class="col-xs-6 col-md-6">
+                <div layout="column" layout-align="center stretch">
+                    <div layout="row" layout-align="start start">
+                        <span>{{questionFooterCtrl.numeroDeQuestoesRespondidas}} de {{questionFooterCtrl.numeroDeQuestoes}} perguntas respondidas</span>
+                    </div>
+                    <div layout="row" layout-align="start start">
+                        <md-progress-linear md-mode="determinate" value="{{questionFooterCtrl.porcentagem}}"></md-progress-linear>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-4 col-md-4">
+                <div layout="row" layout-align="end center">
+                    <md-button class="md-smaller card-button-box" ng-disabled="questionFooterCtrl.numeroDeQuestoes != questionFooterCtrl.numeroDeQuestoesRespondidas" ng-click="questionFooterCtrl.enviarResposta()">
+                        Enviar Respostas
+                    </md-button>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>

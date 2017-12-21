@@ -1,0 +1,18 @@
+<md-toolbar layout="row" class="md-hue-3">
+    <div class="md-toolbar-tools">
+        <span>Disciplinas Cadastradas</span>
+    </div>
+</md-toolbar>
+<md-list class="listagem" ng-init="disciplinasCtrl.carregarDisciplinas()" ng-cloak>
+
+    <md-list-item>
+        <p>Nome</p>
+        <p>Turma</p>
+        <p>Período</p>
+    </md-list-item>
+    <md-list-item ng-repeat="disciplina in disciplinasCtrl.disciplinas" ng-click="disciplinasCtrl.irParaDisciplina(disciplina.id)">
+        <p> {{ disciplina.nome }}</p>
+        <p> {{ disciplina.turma }}</p>
+        <p> {{ disciplina.semestre }} </p>
+    </md-list-item>
+</md-list>

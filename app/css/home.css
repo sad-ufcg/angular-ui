@@ -1,0 +1,50 @@
+.presentation-card {
+    text-align: center;
+    font-size: 24px;
+}
+
+.image-card {
+    padding: 1% 0;
+    margin-top: 8%;
+}
+
+.instructions-card {
+    margin-top: 3%;
+    padding: 3px 10px;
+}
+
+.introduction-text {
+    text-align: justify;
+    font-size: 18px;
+}
+
+.rules-text {
+    font-size: 12px;
+    text-align: justify;
+}
+
+#iniciar {
+    margin-top: 4%;
+}
+
+#iniciar button {
+    width: auto;
+    padding: 8px 14px;
+
+    background-color: #4d82cb;
+    color: white;
+    border: 1px solid transparent;
+    border-radius: 5px;
+
+    font-size: 24px;
+    font-weight: bold;
+}
+
+#iniciar p {
+    color: #4d82cb;
+    font-size: 14px;
+}
+
+.col-md-5 .col-md-offset-3 .no-margin {
+    margin-right: 0;
+}
