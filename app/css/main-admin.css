@@ -53,3 +53,14 @@ md-content {
     margin: 2%;
     background-color: transparent;
 }
+
+.listagem{
+    margin-left: 4%;
+    width: 70%;
+}
+
+.listagem-questionarios md-whiteframe {
+    background: #fff;
+    margin: 30px;
+    height: 100px; 
+}

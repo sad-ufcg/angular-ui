@@ -7,11 +7,20 @@
         var service = this;
         const POSITION = "bottom right";
 
-        service.criaToastSimples = (message) => {
+        service.criaToastSimples = (mensagem) => {
             $mdToast.show(
                 $mdToast.simple()
-                    .textContent(message)
+                    .textContent(mensagem)
                     .position(POSITION)
+            );
+        };
+
+        service.criaToastComTema = (mensagem, tema) => {
+            $mdToast.show(
+                $mdToast.simple()
+                    .textContent(mensagem)
+                    .position(POSITION)
+                    .theme(tema)
             );
         };
 

@@ -1,0 +1,22 @@
+<section class="home" ng-if="newformCtrl.home">
+    <div ng-include="'view/home.html'">
+    </div>
+</section>
+
+<section ng-if="!newformCtrl.home" layout="column" layout-align="center stretch">
+
+    <!-- Question card -->
+    <div class='wrapper'>
+      <div ng-repeat="questao in newformCtrl.questionario" style="position:relative">
+        <sad-question-card enunciado="questao.enunciado" tipo="questao.tipoQuestao"
+          numero="$index + 1" radio="newformCtrl.questaoRadio" comentario="newformCtrl.comentarios">
+        </sad-question-card>
+      </div>
+    </div>
+
+    <sad-question-card-footer numero-de-questoes="newformCtrl.numeroDeQuestoes"
+        numero-de-questoes-respondidas="newformCtrl.numeroDeQuestoesRespondidas()"
+        porcentagem="newformCtrl.calcPorcentagem()"
+        questao-radio="newformCtrl.questaoRadio" questionario="newformCtrl.questionario"
+        enviar-resposta="newformCtrl.enviarResposta()"></sad-question-card-footer>
+</section>

@@ -5,9 +5,15 @@ app.constant('baseUrl', 'http://localhost:8080');
 
 app.config(function ($stateProvider, $locationProvider, $urlRouterProvider, $mdThemingProvider) {
 
+    // Setando Temas
     $mdThemingProvider.theme('default')
         .primaryPalette('indigo')
         .accentPalette('orange');
+
+    // Temas para toast
+    $mdThemingProvider.theme("orange-toast");
+    $mdThemingProvider.theme("blue-toast");
+    $mdThemingProvider.theme("grey-toast");
 
     const carregaDisciplina = function(Disciplina, id) {
         return new Disciplina(id);
@@ -119,6 +125,16 @@ app.config(function ($stateProvider, $locationProvider, $urlRouterProvider, $mdT
             }
         })
 
+        .state("sad-admin.questionario-detalhe", {
+            url: "/questionario/:id",
+            views:{
+                content: {
+                    templateUrl: 'view/questionario-detalhe.html',
+                    controller: 'QuestionarioDetalheController as questDetalheCtrl'
+                }
+            }
+        })
+
         .state("sad-admin.home", {
             url: "/home",
             views: {
@@ -147,6 +163,20 @@ app.config(function ($stateProvider, $locationProvider, $urlRouterProvider, $mdT
             resolve: {
                 quiz: function (AnswerService) {
                     return AnswerService.getQuiz();
+                }
+            }
+        })
+        .state("sad-aluno.formulario", {
+            url: "/form/:token",
+            views: {
+                content: {
+                    templateUrl: 'view/new_form.html',
+                    controller: 'NewFormController as newformCtrl'
+                }
+            },
+            resolve: {
+                questionario: function (FormularioService, $stateParams) {
+                    return FormularioService.buscaQuestionario($stateParams.token);
                 }
             }
         });

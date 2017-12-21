@@ -2,20 +2,26 @@
 (function () {
     var app = angular.module('sadApp');
 
-    app.service("AnswerService", function ($http, baseUrl, $q) {
+    app.service("FormularioService", function ($http, baseUrl, $q,
+                                               QuestionarioService,
+                                               QuestionarioAplicadoService) {
 
         var service = this;
 
-        const HEADERS = { headers: { 'Accept': "text/plain" } };
-        const URI_QUESTION = "/question";
-        const URI_QUESTIONNARIE = "/questionnaireanswers";
+        const URI_TOKEN = '/token';
 
-
-        service.getQuiz = function getQuiz() {
+        service.buscaQuestionario = function(token) {
             var deffered = $q.defer();
-            $http.get(baseUrl + URI_QUESTION).then(
+            $http.get(baseUrl + URI_TOKEN,
+                      { params: { tokenID: token } }).then(
                 function success(response) {
-                    deffered.resolve(response);
+                    var idQuestionarioAplicado = response.data.idQuestionarioAplicado;
+                    QuestionarioAplicadoService.getQuestionarioAplicadoByID(idQuestionarioAplicado).then(function(dataQuestionarioAplicado) {
+                      var idQuestionario = dataQuestionarioAplicado.data.idQuestionario;
+                      QuestionarioService.getQuestionarioByID(idQuestionario).then(function(dataQuestionario) {
+                        deffered.resolve(dataQuestionario);
+                      });
+                    });
                 }, function error(response) {
                     deffered.reject(response);
                 }
