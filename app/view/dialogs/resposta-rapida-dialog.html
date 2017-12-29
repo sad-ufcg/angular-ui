@@ -1,0 +1,36 @@
+<md-dialog>
+  <form ng-cloak>
+
+    <md-dialog-content>
+      <div class="md-dialog-content">
+        <h2>
+          <md-icon style="color:black;"class="icon-menu">flash_on</md-icon>
+          Resposta Rápida
+        </h2>
+        <p>
+          Todas as perguntas fechadas com opções de 1 a 5 serão respondidas
+          com o valor escolhido, <strong>até as já respondidas</strong>!
+        </p>
+          <div>
+            <md-radio-group ng-model="resposta">
+                <div class="card-answer-opts" layout="column" layout-align="center start">
+                    <div class="checkbox" ng-repeat="valor in [1, 2, 3, 4, 5]">
+                        <md-radio-button value="{{valor}}"> {{valor}} </md-radio-button>
+                    </div>
+                </div>
+            </md-radio-group>
+          </div>
+    </md-dialog-content>
+
+    <md-dialog-actions layout="row">
+      <span flex></span>
+      <md-button class="md-primary" ng-click="cancelar()">
+       Cancelar
+      </md-button>
+      <md-button class="md-primary" ng-click="responder(resposta)">
+        Resposta Rápida
+      </md-button>
+    </md-dialog-actions>
+
+  </form>
+</md-dialog>

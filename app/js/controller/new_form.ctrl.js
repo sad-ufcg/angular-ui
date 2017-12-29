@@ -2,9 +2,14 @@
 (function () {
     var app = angular.module('sadApp');
 
-    app.controller("NewFormController", function FormController(questionario, ToastService, $scope, $state, $mdDialog, $mdIcon) {
+    app.controller("NewFormController", function FormController(questionario,
+                                                                ToastService,
+                                                                $state,
+                                                                $mdDialog,
+                                                                $mdIcon) {
 
         var newformCtrl = this;
+
         newformCtrl.questionario = questionario.data.questoes;
         newformCtrl.token = $state.params.token;
 
@@ -47,6 +52,30 @@
             });
         };
 
+        newformCtrl.dialogRespostaRapida = function(ev) {
+          $mdDialog.show({
+            controller: DialogController,
+            templateUrl: 'view/dialogs/resposta-rapida-dialog.html',
+            parent: angular.element(document.body),
+            targetEvent: ev,
+            clickOutsideToClose:true,
+            fullscreen: newformCtrl.customFullscreen // Apenas para -xs, -sm breakpoints.
+          })
+          .then(function() {
+          }, function() {
+          });
+        };
+
+        newformCtrl.respostaRapida = function(resposta) {
+          for (var i = 0; i < newformCtrl.questionario.length; i++) {
+            if (newformCtrl.questionario[i].tipoQuestao === "ESCOLHA_SIMPLES") {
+                newformCtrl.questaoRadio[i] = resposta;
+            }
+          }
+          ToastService.criaToastComTema("Respostas alteradas pra " + resposta + ".",
+                                        "orange-toast");
+        };
+
         newformCtrl.marcarTodasQuestoes = function (value) {
             for (var i = 0; i < newformCtrl.numeroDeQuestoes; i++) {
                 if(newformCtrl.questionario[i].tipoQuestao === "ESCOLHA_SIMPLES")
@@ -69,13 +98,24 @@
             return newformCtrl.numeroDeQuestoesRespondidas() / (newformCtrl.numeroDeQuestoes) * 100;
         };
 
-        newformCtrl.toggle = function (q, id) {
-            q[id] = !q[id];
-        };
-
         newformCtrl.iniciar = function () {
             newformCtrl.home = false;
         };
 
+        // TODO: mover DialogController para seu próprio arquivo
+        function DialogController($scope, $mdDialog) {
+           $scope.esconder = function() {
+             $mdDialog.hide();
+           };
+
+           $scope.cancelar = function() {
+             $mdDialog.cancel();
+           };
+
+           $scope.responder = function(resposta) {
+             $mdDialog.hide();
+             newformCtrl.respostaRapida(resposta);
+           };
+         }
     });
 })();
