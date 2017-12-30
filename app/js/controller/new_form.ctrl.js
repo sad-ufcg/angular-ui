@@ -4,8 +4,8 @@
 
     app.controller("NewFormController", function FormController(questionario,
                                                                 ToastService,
+                                                                DialogService,
                                                                 $state,
-                                                                $mdDialog,
                                                                 $mdIcon) {
 
         var newformCtrl = this;
@@ -38,32 +38,19 @@
         newformCtrl.home = true;
 
         newformCtrl.enviarResposta = function () {
-            var confirm = $mdDialog.confirm()
-                .title('Obrigado! Questionário Concluído.')
-                .textContent('Você respondeu todas as questões do formulário. Por favor, confirme o envio.')
-                .ariaLabel('Lucky day')
-                .ok('Enviar Formulário')
-                .cancel('Cancelar Formulário');
 
-            $mdDialog.show(confirm).then(function () {
+            var titulo = 'Obrigado! Questionário Concluído.';
+            var texto = 'Você respondeu todas as questões do formulário. Por favor, confirme o envio.';
+            var ariaLabel = 'Lucky day';
+            var confirmacao = 'Enviar Formulário';
+            var cancelar = 'Cancelar Formulário';
+
+            var promise = DialogService.confirmacao(titulo, texto, ariaLabel, confirmacao,
+                                                    cancelar);
+
+            promise.then(function() {
                 // TODO: enviar respostas e deletar o token
-            }, function () {
-                //TODO:
-            });
-        };
-
-        newformCtrl.dialogRespostaRapida = function(ev) {
-          $mdDialog.show({
-            controller: DialogController,
-            templateUrl: 'view/dialogs/resposta-rapida-dialog.html',
-            parent: angular.element(document.body),
-            targetEvent: ev,
-            clickOutsideToClose:true,
-            fullscreen: newformCtrl.customFullscreen // Apenas para -xs, -sm breakpoints.
-          })
-          .then(function() {
-          }, function() {
-          });
+            }, function() {});
         };
 
         newformCtrl.respostaRapida = function(resposta) {
@@ -74,6 +61,14 @@
           }
           ToastService.criaToastComTema("Respostas alteradas pra " + resposta + ".",
                                         "orange-toast");
+        };
+
+        newformCtrl.dialogRespostaRapida = function() {
+            var promise = DialogService.criaDialogRespostaRapida();
+
+            promise.then(function(resposta) {
+                newformCtrl.respostaRapida(resposta);
+            }, function() {});
         };
 
         newformCtrl.marcarTodasQuestoes = function (value) {
@@ -101,21 +96,5 @@
         newformCtrl.iniciar = function () {
             newformCtrl.home = false;
         };
-
-        // TODO: mover DialogController para seu próprio arquivo
-        function DialogController($scope, $mdDialog) {
-           $scope.esconder = function() {
-             $mdDialog.hide();
-           };
-
-           $scope.cancelar = function() {
-             $mdDialog.cancel();
-           };
-
-           $scope.responder = function(resposta) {
-             $mdDialog.hide();
-             newformCtrl.respostaRapida(resposta);
-           };
-         }
-    });
+  })
 })();

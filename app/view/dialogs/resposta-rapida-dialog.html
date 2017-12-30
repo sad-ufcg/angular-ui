@@ -1,6 +1,5 @@
 <md-dialog>
   <form ng-cloak>
-
     <md-dialog-content>
       <div class="md-dialog-content">
         <h2 class="roxo">
@@ -24,10 +23,10 @@
 
     <md-dialog-actions layout="row">
       <span flex></span>
-      <md-button class="md-primary" ng-click="cancelar()">
-       Cancelar
+      <md-button class="md-primary" ng-click="dialogRespostaCtrl.cancelar()">
+        Cancelar
       </md-button>
-      <md-button class="md-primary" ng-click="responder(resposta)">
+      <md-button class="md-primary" ng-click="dialogRespostaCtrl.responder(resposta)">
         Resposta Rápida
       </md-button>
     </md-dialog-actions>
