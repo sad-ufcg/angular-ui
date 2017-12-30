@@ -4,7 +4,7 @@
 
     app.service("DialogService", function ($mdDialog) {
 
-        var service = this;
+        let service = this;
 
         service.confirmacao = (titulo, texto, ariaLabel, confirmacao, cancelar,
                             funcao_confirmacao, funcao_cancelamento) => {

@@ -4,7 +4,7 @@
 
     app.controller('DialogRespostaRapidaController', function FormController($mdDialog, DialogService) {
 
-        var dialogRespostaCtrl = this;
+        let dialogRespostaCtrl = this;
 
         dialogRespostaCtrl.esconder = function() {
             $mdDialog.hide();

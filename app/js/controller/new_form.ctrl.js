@@ -8,22 +8,22 @@
                                                                 $state,
                                                                 $mdIcon) {
 
-        var newformCtrl = this;
+        let newformCtrl = this;
 
         newformCtrl.questionario = questionario.data.questoes;
         newformCtrl.token = $state.params.token;
 
         newformCtrl.inicializarComentarios = function() {
-          var comentarios = []
-          for(var i = 0; i < newformCtrl.questionario.length; i++) {
+          let comentarios = []
+          for(let i = 0; i < newformCtrl.questionario.length; i++) {
             comentarios.push('');
           }
           return comentarios;
         };
 
         newformCtrl.inicializarQuestaoRadio = function() {
-          var questaoRadio = []
-          for(var i = 0; i < newformCtrl.questionario.length; i++) {
+          let questaoRadio = []
+          for(let i = 0; i < newformCtrl.questionario.length; i++) {
            questaoRadio .push(null);
           }
           return questaoRadio ;
@@ -39,13 +39,13 @@
 
         newformCtrl.enviarResposta = function () {
 
-            var titulo = 'Obrigado! Questionário Concluído.';
-            var texto = 'Você respondeu todas as questões do formulário. Por favor, confirme o envio.';
-            var ariaLabel = 'Lucky day';
-            var confirmacao = 'Enviar Formulário';
-            var cancelar = 'Cancelar Formulário';
+            let titulo = 'Obrigado! Questionário Concluído.';
+            let texto = 'Você respondeu todas as questões do formulário. Por favor, confirme o envio.';
+            let ariaLabel = 'Lucky day';
+            let confirmacao = 'Enviar Formulário';
+            let cancelar = 'Cancelar Formulário';
 
-            var promise = DialogService.confirmacao(titulo, texto, ariaLabel, confirmacao,
+            let promise = DialogService.confirmacao(titulo, texto, ariaLabel, confirmacao,
                                                     cancelar);
 
             promise.then(function() {
@@ -54,7 +54,7 @@
         };
 
         newformCtrl.respostaRapida = function(resposta) {
-          for (var i = 0; i < newformCtrl.questionario.length; i++) {
+          for (let i = 0; i < newformCtrl.questionario.length; i++) {
             if (newformCtrl.questionario[i].tipoQuestao === "ESCOLHA_SIMPLES") {
                 newformCtrl.questaoRadio[i] = resposta;
             }
@@ -64,7 +64,7 @@
         };
 
         newformCtrl.dialogRespostaRapida = function() {
-            var promise = DialogService.criaDialogRespostaRapida();
+            let promise = DialogService.criaDialogRespostaRapida();
 
             promise.then(function(resposta) {
                 newformCtrl.respostaRapida(resposta);
@@ -72,15 +72,15 @@
         };
 
         newformCtrl.marcarTodasQuestoes = function (value) {
-            for (var i = 0; i < newformCtrl.numeroDeQuestoes; i++) {
+            for (let i = 0; i < newformCtrl.numeroDeQuestoes; i++) {
                 if(newformCtrl.questionario[i].tipoQuestao === "ESCOLHA_SIMPLES")
                   newformCtrl.questaoRadio[i] = value;
             }
         };
 
         newformCtrl.numeroDeQuestoesRespondidas = function () {
-            var cont = 0;
-            for (var i = 0; i < newformCtrl.numeroDeQuestoes; i++) {
+            let cont = 0;
+            for (let i = 0; i < newformCtrl.numeroDeQuestoes; i++) {
                 if(newformCtrl.questionario[i].tipoQuestao == "ESCOLHA_SIMPLES")
                   if(newformCtrl.questaoRadio[i]) cont += 1;
                 if(newformCtrl.questionario[i].tipoQuestao == "TEXTO")

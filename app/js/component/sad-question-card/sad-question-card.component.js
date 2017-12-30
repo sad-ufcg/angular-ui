@@ -3,7 +3,7 @@
     var app = angular.module('sadApp');
 
     function CardQuestaoController() {
-        var cardQuestaoCtrl = this;
+        let cardQuestaoCtrl = this;
     };
 
     app.component('sadQuestionCard', {
