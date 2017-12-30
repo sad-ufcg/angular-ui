@@ -8,7 +8,7 @@
                                                                 $state,
                                                                 $mdIcon) {
 
-        var newformCtrl = this;
+        let newformCtrl = this;
 
         newformCtrl.questionario = questionario.data.questoes;
         newformCtrl.token = $state.params.token;
