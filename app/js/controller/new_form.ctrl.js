@@ -1,6 +1,6 @@
 'use strict';
 (function () {
-    var app = angular.module('sadApp');
+    const app = angular.module('sadApp');
 
     app.controller("NewFormController", function FormController(questionario,
                                                                 questionarioAplicado,
@@ -17,19 +17,11 @@
         newformCtrl.token = $state.params.token;
 
         newformCtrl.inicializarComentarios = function() {
-            let comentarios = []
-            for(let i = 0; i < newformCtrl.questionario.length; i++) {
-                comentarios.push('');
-            }
-            return comentarios;
+            return Array(newformCtrl.questionario.length).fill('');
         };
 
         newformCtrl.inicializarQuestaoRadio = function() {
-            let questaoRadio = []
-            for(let i = 0; i < newformCtrl.questionario.length; i++) {
-              questaoRadio.push(null);
-            }
-            return questaoRadio ;
+            return Array(newformCtrl.questionario.length).fill(null);
         };
 
         newformCtrl.questaoRadio = newformCtrl.inicializarQuestaoRadio();
@@ -61,11 +53,11 @@
 
         newformCtrl.dialogResposta = function () {
 
-            let titulo = 'Obrigado! Questionário Concluído.';
-            let texto = 'Você respondeu todas as questões do formulário. Por favor, confirme o envio.';
-            let ariaLabel = 'Lucky day';
-            let confirmacao = 'Enviar Formulário';
-            let cancelar = 'Cancelar Formulário';
+            const titulo = 'Obrigado! Questionário Concluído.';
+            const texto = 'Você respondeu todas as questões do formulário. Por favor, confirme o envio.';
+            const ariaLabel = 'Lucky day';
+            const confirmacao = 'Enviar Formulário';
+            const cancelar = 'Cancelar Formulário';
 
             let promise = DialogService.confirmacao(titulo, texto, ariaLabel, confirmacao,
                                                     cancelar);

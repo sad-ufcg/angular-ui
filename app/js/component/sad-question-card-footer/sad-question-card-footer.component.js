@@ -1,6 +1,6 @@
 'use strict';
 (() => {
-    var app = angular.module('sadApp');
+    const app = angular.module('sadApp');
 
     function QuestionFooterController() {
       let questionFooterCtrl = this;
