@@ -1,30 +1,9 @@
 'use strict';
 (() => {
-    var app = angular.module('sadApp');
+    const app = angular.module('sadApp');
 
     function QuestionFooterController() {
-      var questionFooterCtrl = this;
-      var OPCAO_AUTOMATICA = "3";
-
-      questionFooterCtrl.checarResposta = function () {
-        var respostaValida = true;
-        for (var i = 0; i < questionFooterCtrl.questionario.length; i++) {
-            if(questionFooterCtrl.questionario[i].tipoQuestao === "ESCOLHA_SIMPLES")
-              if(!questionFooterCtrl.questaoRadio[i]) {
-                respostaValida = false;
-              }
-        }
-        return respostaValida;
-      };
-
-      questionFooterCtrl.respostaRapida = function() {
-        for (var i = 0; i < questionFooterCtrl.questionario.length; i++) {
-            if (questionFooterCtrl.questionario[i].tipoQuestao === "ESCOLHA_SIMPLES"){
-                questionFooterCtrl.questaoRadio[i] = OPCAO_AUTOMATICA;
-            }
-
-        }
-      }
+      let questionFooterCtrl = this;
     };
 
     app.component('sadQuestionCardFooter', {
@@ -37,6 +16,7 @@
             numeroDeQuestoes: '<',
             numeroDeQuestoesRespondidas: '<',
             enviarResposta: '&',
+            respostaRapida: '&',
             porcentagem: '<'
         }
     });

@@ -1,9 +1,9 @@
 'use strict';
 (() => {
-    var app = angular.module('sadApp');
+    const app = angular.module('sadApp');
 
     function CardQuestaoController() {
-        var cardQuestaoCtrl = this;
+        let cardQuestaoCtrl = this;
     };
 
     app.component('sadQuestionCard', {

@@ -177,6 +177,12 @@ app.config(function ($stateProvider, $locationProvider, $urlRouterProvider, $mdT
             resolve: {
                 questionario: function (FormularioService, $stateParams) {
                     return FormularioService.buscaQuestionario($stateParams.token);
+                },
+                questionarioAplicado: function (FormularioService, $stateParams) {
+                    return FormularioService.buscaQuestionarioAplicado($stateParams.token);
+                },
+                disciplina: function (FormularioService, $stateParams) {
+                    return FormularioService.buscaDisciplina($stateParams.token);
                 }
             }
         });

@@ -1,9 +1,15 @@
-<section class="home" ng-if="newformCtrl.home">
+<section class="home" ng-if="newformCtrl.view == 'Home'">
     <div ng-include="'view/home.html'">
     </div>
 </section>
 
-<section ng-if="!newformCtrl.home" layout="column" layout-align="center stretch">
+<section class="home" ng-if="newformCtrl.view == 'Done'">
+    <div ng-include="'view/apos-form.html'">
+    </div>
+</section>
+
+
+<section ng-if="newformCtrl.view == 'Form'" layout="column" layout-align="center stretch">
 
     <!-- Question card -->
     <div class='wrapper'>
@@ -17,6 +23,8 @@
     <sad-question-card-footer numero-de-questoes="newformCtrl.numeroDeQuestoes"
         numero-de-questoes-respondidas="newformCtrl.numeroDeQuestoesRespondidas()"
         porcentagem="newformCtrl.calcPorcentagem()"
-        questao-radio="newformCtrl.questaoRadio" questionario="newformCtrl.questionario"
-        enviar-resposta="newformCtrl.enviarResposta()"></sad-question-card-footer>
+        questao-radio="newformCtrl.questaoRadio"
+        questionario="newformCtrl.questionario"
+        enviar-resposta="newformCtrl.dialogResposta()"
+        resposta-rapida="newformCtrl.dialogRespostaRapida()"></sad-question-card-footer>
 </section>

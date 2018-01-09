@@ -8,20 +8,17 @@
 
         var service = this;
 
-        const URI_TOKEN = '/token';
+        const URI_TOKEN = baseUrl + '/token';
+        const URI_RESPOSTAS = baseUrl + '/respostas';
 
         service.buscaQuestionario = function(token) {
             var deffered = $q.defer();
-            $http.get(baseUrl + URI_TOKEN,
-                      { params: { tokenID: token } }).then(
+            $http.get(URI_TOKEN + '/questionario',
+                      { params:
+                        { tokenID: token }
+                      }).then(
                 function success(response) {
-                    var idQuestionarioAplicado = response.data.idQuestionarioAplicado;
-                    QuestionarioAplicadoService.getQuestionarioAplicadoByID(idQuestionarioAplicado).then(function(dataQuestionarioAplicado) {
-                      var idQuestionario = dataQuestionarioAplicado.data.idQuestionario;
-                      QuestionarioService.getQuestionarioByID(idQuestionario).then(function(dataQuestionario) {
-                        deffered.resolve(dataQuestionario);
-                      });
-                    });
+                    deffered.resolve(response);
                 }, function error(response) {
                     deffered.reject(response);
                 }
@@ -29,45 +26,12 @@
             return deffered.promise;
         };
 
-        service._organizeQuiz = function _organizeQuiz(text, radio) {
-
-            let answers = [];
-            for (var v in text) {
-                answers.push({ 'question': { 'id': v }, 'answerText': text[v] });
-            }
-            for (var v in radio) {
-                answers.push({ 'question': { 'id': v }, 'choiceNumber': radio[v] });
-            }
-
-            return answers
-
-        }
-
-        service.submitAnswers = function submitAnswers(token, text, radio) {
-
-            var answers = service._organizeQuiz(text, radio);
-
-            var questionnaire = {
-                'token': { 'id': token },
-                'answers': answers,
-                'invalid': false
-            }
-
+        service.buscaQuestionarioAplicado = function(token) {
             var deffered = $q.defer();
-            $http.post(baseUrl + URI_QUESTIONNARIE, JSON.stringify(questionnaire),
-                HEADERS).then(function success(response) {
-                    deffered.resolve(response);
-                }, function error(response) {
-                    deffered.reject(response);
-                });
-            return deffered.promise;
-
-        }
-
-        service.submitNoAnswers = function submitNoAnswers(token) {
-            var answer = { 'token': { 'id': token }, 'answers': [], 'invalid': true };
-            var deffered = $q.defer();
-            $http.post(baseUrl + URI_QUESTIONNARIE, JSON.stringify(answer), HEADERS).then(
+            $http.get(URI_TOKEN + '/questionarioAplicado',
+                      { params:
+                        { tokenID: token }
+                      }).then(
                 function success(response) {
                     deffered.resolve(response);
                 }, function error(response) {
@@ -75,8 +39,37 @@
                 }
             );
             return deffered.promise;
-        }
+        };
 
+        service.buscaDisciplina = function(token) {
+            var deffered = $q.defer();
+            $http.get(URI_TOKEN + '/disciplina',
+                      { params:
+                        { tokenID: token }
+                      }).then(
+                function success(response) {
+                    deffered.resolve(response);
+                }, function error(response) {
+                    deffered.reject(response);
+                }
+            );
+            return deffered.promise;
+        };
+
+        /**
+         * Responder Questionário.
+         *
+         * @param {*} respostas lista de respostas
+         */
+        service.responderQuestionario = function (respostas, token) {
+            let deffered = $q.defer();
+            $http.post(`${URI_RESPOSTAS}/?token=${token}`, respostas).then(function success(response) {
+                deffered.resolve(response);
+            }, function error(response) {
+                deffered.reject(response);
+            });
+            return deffered.promise;
+        };
     })
 
 })();

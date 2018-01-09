@@ -1,66 +1,132 @@
 'use strict';
 (function () {
-    var app = angular.module('sadApp');
+    const app = angular.module('sadApp');
 
-    app.controller("NewFormController", function FormController(questionario, ToastService, $scope, $state, $mdDialog, $mdIcon) {
+    app.controller("NewFormController", function FormController(questionario,
+                                                                questionarioAplicado,
+                                                                disciplina,
+                                                                ToastService,
+                                                                DialogService,
+                                                                FormularioService,
+                                                                $state,
+                                                                $mdIcon) {
 
-        var newformCtrl = this;
+        let newformCtrl = this;
+
+        newformCtrl.idQuestionarioAplicado = questionarioAplicado.data.id;
         newformCtrl.questionario = questionario.data.questoes;
+        newformCtrl.nomeQuestionario = questionario.data.nome;
+        newformCtrl.disciplina = disciplina.data;
+
         newformCtrl.token = $state.params.token;
 
         newformCtrl.inicializarComentarios = function() {
-          var comentarios = []
-          for(var i = 0; i < newformCtrl.questionario.length; i++) {
-            comentarios.push('');
-          }
-          return comentarios;
+            return Array(newformCtrl.questionario.length).fill('');
         };
 
         newformCtrl.inicializarQuestaoRadio = function() {
-          var questaoRadio = []
-          for(var i = 0; i < newformCtrl.questionario.length; i++) {
-           questaoRadio .push(null);
-          }
-          return questaoRadio ;
+            return Array(newformCtrl.questionario.length).fill(null);
         };
 
         newformCtrl.questaoRadio = newformCtrl.inicializarQuestaoRadio();
         newformCtrl.comentarios = newformCtrl.inicializarComentarios();
-
-        //newformCtrl.numeroDeQuestoesRespondidas = 0;
         newformCtrl.numeroDeQuestoes = newformCtrl.questionario.length;
 
-        newformCtrl.home = true;
+        newformCtrl.view = 'Home';
 
-        newformCtrl.enviarResposta = function () {
-            var confirm = $mdDialog.confirm()
-                .title('Obrigado! Questionário Concluído.')
-                .textContent('Você respondeu todas as questões do formulário. Por favor, confirme o envio.')
-                .ariaLabel('Lucky day')
-                .ok('Enviar Formulário')
-                .cancel('Cancelar Formulário');
+        newformCtrl.dialogErro = function () {
 
-            $mdDialog.show(confirm).then(function () {
-                // TODO: enviar respostas e deletar o token
-            }, function () {
-                //TODO:
+            const titulo = 'Erro ao enviar questionário!';
+            const texto = 'Cheque se respondeu todas as questões devidamente.';
+            const ariaLabel = 'Lucky day';
+            const confirmacao = 'Ok';
+
+            let promise = DialogService.alerta(titulo, texto, ariaLabel, confirmacao);
+
+            promise.then(function() {
+                newformCtrl.responderQuestionario();
+            }, function() {});
+        };
+
+        newformCtrl.responderQuestionario = function() {
+            let respostas = [];
+            for(let i = 0; i < newformCtrl.numeroDeQuestoes; i++) {
+                let resp = {
+                  'type': newformCtrl.questionario[i].tipoQuestao,
+                  'idQuestao': newformCtrl.questionario[i].id,
+                  'idQuestionarioAplicado': newformCtrl.idQuestionarioAplicado,
+                  'comentario': newformCtrl.comentarios[i],
+                };
+
+                if(resp.type == 'ESCOLHA_SIMPLES') {
+                  resp.escolhaSimples = newformCtrl.questaoRadio[i];
+                }
+
+                respostas.push(resp);
+            }
+
+            var promise = FormularioService.responderQuestionario(respostas, newformCtrl.token);
+
+            promise.then(function() {
+              newformCtrl.view = 'Done';
+            }, function() {
+              newformCtrl.dialogErro();
             });
+
+        };
+
+        newformCtrl.dialogResposta = function () {
+
+            const titulo = 'Obrigado! Questionário Concluído.';
+            const texto = 'Você respondeu todas as questões do formulário ' +
+                          newformCtrl.nomeQuestionario +  ' da disciplina ' +
+                          newformCtrl.disciplina.nome + ', turma ' +
+                          newformCtrl.disciplina.turma + ' do semestre ' +
+                          newformCtrl.disciplina.semestre + '. Confirme o envio!';
+            const ariaLabel = 'Lucky day';
+            const confirmacao = 'Enviar Formulário';
+            const cancelar = 'Cancelar Formulário';
+
+            let promise = DialogService.confirmacao(titulo, texto, ariaLabel, confirmacao,
+                                                    cancelar);
+
+            promise.then(function() {
+                newformCtrl.responderQuestionario();
+            }, function() {});
+        };
+
+        newformCtrl.respostaRapida = function(resposta) {
+          for (let i = 0; i < newformCtrl.questionario.length; i++) {
+              if (newformCtrl.questionario[i].tipoQuestao === "ESCOLHA_SIMPLES") {
+                  newformCtrl.questaoRadio[i] = resposta;
+              }
+          }
+          ToastService.criaToastComTema("Respostas alteradas pra " + resposta + ".",
+                                        "orange-toast");
+        };
+
+        newformCtrl.dialogRespostaRapida = function() {
+            let promise = DialogService.criaDialogRespostaRapida();
+
+            promise.then(function(resposta) {
+                newformCtrl.respostaRapida(resposta);
+            }, function() {});
         };
 
         newformCtrl.marcarTodasQuestoes = function (value) {
-            for (var i = 0; i < newformCtrl.numeroDeQuestoes; i++) {
+            for (let i = 0; i < newformCtrl.numeroDeQuestoes; i++) {
                 if(newformCtrl.questionario[i].tipoQuestao === "ESCOLHA_SIMPLES")
                   newformCtrl.questaoRadio[i] = value;
             }
         };
 
         newformCtrl.numeroDeQuestoesRespondidas = function () {
-            var cont = 0;
-            for (var i = 0; i < newformCtrl.numeroDeQuestoes; i++) {
+            let cont = 0;
+            for (let i = 0; i < newformCtrl.numeroDeQuestoes; i++) {
                 if(newformCtrl.questionario[i].tipoQuestao == "ESCOLHA_SIMPLES")
-                  if(newformCtrl.questaoRadio[i]) cont += 1;
-                if(newformCtrl.questionario[i].tipoQuestao == "TEXTO")
-                  if(newformCtrl.comentarios[i].length > 0) cont += 1;
+                    if(newformCtrl.questaoRadio[i]) cont += 1;
+                if(newformCtrl.questionario[i].tipoQuestao == "ABERTA")
+                    if(newformCtrl.comentarios[i].length > 0) cont += 1;
             }
             return cont;
         };
@@ -69,13 +135,9 @@
             return newformCtrl.numeroDeQuestoesRespondidas() / (newformCtrl.numeroDeQuestoes) * 100;
         };
 
-        newformCtrl.toggle = function (q, id) {
-            q[id] = !q[id];
-        };
-
         newformCtrl.iniciar = function () {
-            newformCtrl.home = false;
+            newformCtrl.view = 'Form';
         };
 
-    });
+  })
 })();

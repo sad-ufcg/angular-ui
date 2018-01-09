@@ -15,7 +15,7 @@
                descricao: '',
                questoes: [
                  { enunciado: '',
-                   tipoQuestao: 'TEXTO'
+                   tipoQuestao: 'ABERTA'
                  }
                ]
              };
@@ -52,7 +52,7 @@
     self.ultimaQuestao = 1;
 
     self.adicionarQuestao = function () {
-      self.questionario.questoes.push({ enunciado: '', tipoQuestao: 'TEXTO'});
+      self.questionario.questoes.push({ enunciado: '', tipoQuestao: 'ABERTA'});
     };
 
     self.removerQuestao = function (tab) {
