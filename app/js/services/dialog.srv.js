@@ -6,10 +6,22 @@
 
         let service = this;
 
-        service.confirmacao = (titulo, texto, ariaLabel, confirmacao, cancelar,
-                            funcao_confirmacao, funcao_cancelamento) => {
+        service.confirmacao = (titulo, texto, ariaLabel, confirmacao, cancelar) => {
 
             var confirm = $mdDialog.confirm()
+                .title(titulo)
+                .textContent(texto)
+                .ariaLabel(ariaLabel)
+                .ok(confirmacao)
+                .cancel(cancelar);
+
+            return $mdDialog.show(confirm);
+        };
+
+        service.alerta = (titulo, texto, ariaLabel, confirmacao) => {
+
+            var confirm = $mdDialog.alert()
+                .clickOutsideToClose(true)
                 .title(titulo)
                 .textContent(texto)
                 .ariaLabel(ariaLabel)

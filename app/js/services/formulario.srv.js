@@ -41,6 +41,21 @@
             return deffered.promise;
         };
 
+        service.buscaDisciplina = function(token) {
+            var deffered = $q.defer();
+            $http.get(URI_TOKEN + '/disciplina',
+                      { params:
+                        { tokenID: token }
+                      }).then(
+                function success(response) {
+                    deffered.resolve(response);
+                }, function error(response) {
+                    deffered.reject(response);
+                }
+            );
+            return deffered.promise;
+        };
+
         /**
          * Responder Questionário.
          *
@@ -49,17 +64,6 @@
         service.responderQuestionario = function (respostas, token) {
             let deffered = $q.defer();
             $http.post(`${URI_RESPOSTAS}/?token=${token}`, respostas).then(function success(response) {
-                deffered.resolve(response);
-                service.apagarToken(token);
-            }, function error(response) {
-                deffered.reject(response);
-            });
-            return deffered.promise;
-        };
-
-        service.apagarToken = function(token) {
-            let deffered = $q.defer();
-            $http.delete(`${URI_TOKEN}/?tokenID=${token}`).then(function success(response) {
                 deffered.resolve(response);
             }, function error(response) {
                 deffered.reject(response);

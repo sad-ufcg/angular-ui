@@ -180,6 +180,9 @@ app.config(function ($stateProvider, $locationProvider, $urlRouterProvider, $mdT
                 },
                 questionarioAplicado: function (FormularioService, $stateParams) {
                     return FormularioService.buscaQuestionarioAplicado($stateParams.token);
+                },
+                disciplina: function (FormularioService, $stateParams) {
+                    return FormularioService.buscaDisciplina($stateParams.token);
                 }
             }
         });

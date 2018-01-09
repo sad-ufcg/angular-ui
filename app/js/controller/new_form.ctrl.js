@@ -4,6 +4,7 @@
 
     app.controller("NewFormController", function FormController(questionario,
                                                                 questionarioAplicado,
+                                                                disciplina,
                                                                 ToastService,
                                                                 DialogService,
                                                                 FormularioService,
@@ -14,6 +15,9 @@
 
         newformCtrl.idQuestionarioAplicado = questionarioAplicado.data.id;
         newformCtrl.questionario = questionario.data.questoes;
+        newformCtrl.nomeQuestionario = questionario.data.nome;
+        newformCtrl.disciplina = disciplina.data;
+
         newformCtrl.token = $state.params.token;
 
         newformCtrl.inicializarComentarios = function() {
@@ -29,6 +33,20 @@
         newformCtrl.numeroDeQuestoes = newformCtrl.questionario.length;
 
         newformCtrl.view = 'Home';
+
+        newformCtrl.dialogErro = function () {
+
+            const titulo = 'Erro ao enviar questionário!';
+            const texto = 'Cheque se respondeu todas as questões devidamente.';
+            const ariaLabel = 'Lucky day';
+            const confirmacao = 'Ok';
+
+            let promise = DialogService.alerta(titulo, texto, ariaLabel, confirmacao);
+
+            promise.then(function() {
+                newformCtrl.responderQuestionario();
+            }, function() {});
+        };
 
         newformCtrl.responderQuestionario = function() {
             let respostas = [];
@@ -47,14 +65,24 @@
                 respostas.push(resp);
             }
 
-            FormularioService.responderQuestionario(respostas, newformCtrl.token);
-            newformCtrl.view = 'Done';
+            var promise = FormularioService.responderQuestionario(respostas, newformCtrl.token);
+
+            promise.then(function() {
+              newformCtrl.view = 'Done';
+            }, function() {
+              newformCtrl.dialogErro();
+            });
+
         };
 
         newformCtrl.dialogResposta = function () {
 
             const titulo = 'Obrigado! Questionário Concluído.';
-            const texto = 'Você respondeu todas as questões do formulário. Por favor, confirme o envio.';
+            const texto = 'Você respondeu todas as questões do formulário ' +
+                          newformCtrl.nomeQuestionario +  ' da disciplina ' +
+                          newformCtrl.disciplina.nome + ', turma ' +
+                          newformCtrl.disciplina.turma + ' do semestre ' +
+                          newformCtrl.disciplina.semestre + '. Confirme o envio!';
             const ariaLabel = 'Lucky day';
             const confirmacao = 'Enviar Formulário';
             const cancelar = 'Cancelar Formulário';
