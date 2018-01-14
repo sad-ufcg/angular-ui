@@ -19,7 +19,7 @@
 
         QuestionarioAplicado.prototype.salvar = function() {
             const self = this;
-            if(this._data) {
+            if (this._data) {
                 return $http.post(questionarioAplicadoUri, this._data);
             }
         };

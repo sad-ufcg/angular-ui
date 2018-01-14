@@ -37,7 +37,7 @@
 }
 
 .main-admin .content {
-    position: fixed;
+    position: relative;
     margin: 3%;
 }
 
@@ -54,7 +54,7 @@ md-content {
     background-color: transparent;
 }
 
-.listagem{
+.listagem {
     margin-left: 4%;
     width: 70%;
 }
@@ -63,4 +63,19 @@ md-content {
     background: #fff;
     margin: 30px;
     height: 100px; 
+}
+
+.formulario {
+    padding: 10px;
+    padding-bottom: 15px;
+    border-radius: 5px;
+    background-color: #ffffff;
+    box-shadow: 0 1px 6px rgba(0,0,0,.3);
+    color: rgb(0, 0, 0);
+    margin-top: 10px;
+}
+
+.center {
+    margin: auto;
+    width: 80%;
 }

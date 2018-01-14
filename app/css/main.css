@@ -8,10 +8,6 @@ html, body {
     font-family: 'Source Sans Pro', sans-serif;
 }
 
-section {
-    height: 100%;
-}
-
 .ng-scope {
     height: 100%;
 }
@@ -86,4 +82,9 @@ md-toast.md-blue-toast-theme div.md-toast-content{
 md-toast.md-grey-toast-theme div.md-toast-content{
     color: white !important;
     background-color: #bdbdbd !important;
+}
+
+.botao-criar {
+    width: 30%;
+    align-self: center;
 }
