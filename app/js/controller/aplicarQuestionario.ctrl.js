@@ -2,9 +2,9 @@
 (function () {
     const app = angular.module('sadApp');
 
-    app.controller("AplicarQuestionarioController", function AplicarQuestionarioController($http, disciplinas, questionarios, AplicarQuestionarioService) {
+    app.controller("AplicarQuestionarioController", function AplicarQuestionarioController($http, disciplinas, questionarios, AplicarQuestionarioService, ToastService) {
 
-        let self = this;
+        const self = this;
 
         self.disciplinas = disciplinas || [];
         self.questionarios = questionarios || [];
@@ -12,7 +12,8 @@
 
         self.aplicarQuestionario = function() {
             const turmasSelecionadas = self.disciplinas.filter(questionario => questionario.aplicar == true);
-            AplicarQuestionarioService.aplicarQuestionario(turmasSelecionadas, self.questionarioSelecionado);
+            const promise = AplicarQuestionarioService.aplicarQuestionario(turmasSelecionadas, self.questionarioSelecionado);
+            promise.then(data => ToastService.criaToastSimples("Questionário Aplicado com Sucesso!"));
         };
     });
 })();
