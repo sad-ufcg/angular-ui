@@ -14,22 +14,23 @@
 
     <h1 class="md-title">Selecione a(s) Disciplina(s)</h1>
 
-    <md-list-item>
-        <p>Selecionar</p>
-        <p>Nome</p>
-        <p>Turma</p>
-        <p>Período</p>
-    </md-list-item>
-    <md-list-item ng-repeat="disciplina in aplicarQuestionarioCtrl.disciplinas">
-        <md-checkbox data-ng-model="disciplina.aplicar"></md-checkbox>
-        <p> {{ disciplina.nome }}</p>
-        <p> {{ disciplina.turma }}</p>
-        <p> {{ disciplina.semestre }} </p>
-    </md-list-item>
-
+    <md-list class="listagem">
+        <md-list-item>
+            <p flex="5"></p>
+            <p flex="30">Nome</p>
+            <p flex="30">Turma</p>
+            <p flex="30">Período</p>
+        </md-list-item>
+        <md-list-item ng-repeat="disciplina in aplicarQuestionarioCtrl.disciplinas">
+            <md-checkbox data-ng-model="disciplina.aplicar"></md-checkbox>
+            <p flex="30"> {{ disciplina.nome }}</p>
+            <p flex="30"> {{ disciplina.turma }}</p>
+            <p flex="30"> {{ disciplina.semestre }} </p>
+        </md-list-item>
+    </md-list>
 </md-content>
 
 <md-content>
-    <md-button class="md-raised md-primary" 
+    <md-button class="md-raised md-primary"
     data-ng-click="aplicarQuestionarioCtrl.aplicarQuestionario()"> Aplicar Questionário</md-button>
 </md-content>
