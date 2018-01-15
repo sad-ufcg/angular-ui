@@ -13,12 +13,32 @@
         </md-card-title>
     </md-card>
 
+    <section>
+        <md-list flex class="listagem">
+            <md-toolbar layout="row" class="md-hue-3">
+                <div class="md-toolbar-tools">
+                    <span>Alunos Matriculados</span>
+                </div>
+            </md-toolbar>
+            <md-list-item>
+                <p flex="30">Nome</p>
+                <p flex="30">Sobrenome</p>
+                <p flex="30">Email</p>
+            </md-list-item>
+            <md-list-item ng-repeat="aluno in disciplinaCtrl.disciplina._alunos">
+                <p flex="30"> {{ aluno.nome }} </p>
+                <p flex="30"> {{ aluno.sobrenome }} </p>
+                <p flex="30"> {{ aluno.email }} </p>
+            </md-list-item>
+        </md-list>
+    </section>
+
     <md-toolbar layout="row" class="md-hue-3">
         <div class="md-toolbar-tools">
             <span>Cadastrar Aluno</span>
         </div>
     </md-toolbar>
-    
+        
     <div layout="row" layout-xs="column">
         <md-input-container flex="20" class="md-icon-float md-block">
             <md-icon class="material-icons">description</md-icon>
@@ -38,24 +58,4 @@
     <div>
         <md-button data-ng-click="disciplinaCtrl.adicionarAluno()" class="md-raised md-primary">Cadastar Aluno</md-button>
     </div>
-
-    <section>
-        <md-list flex class="listagem">
-            <md-toolbar layout="row" class="md-hue-3">
-                <div class="md-toolbar-tools">
-                    <span>Alunos Matriculados</span>
-                </div>
-            </md-toolbar>
-            <md-list-item>
-                <p>Nome</p>
-                <p>Sobrenome</p>
-                <p>Email</p>
-            </md-list-item>
-            <md-list-item ng-repeat="aluno in disciplinaCtrl.disciplina._alunos">
-                <p> {{ aluno.nome }} </p>
-                <p> {{ aluno.sobrenome }} </p>
-                <p> {{ aluno.email }} </p>
-            </md-list-item>
-        </md-list>
-    </section>
 </md-content>

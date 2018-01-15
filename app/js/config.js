@@ -187,7 +187,7 @@ app.config(function ($stateProvider, $locationProvider, $urlRouterProvider, $mdT
             }
         });
 
-    $urlRouterProvider.otherwise('/home');
+    $urlRouterProvider.otherwise('admin/home');
     $locationProvider.html5Mode(false);
     $locationProvider.hashPrefix('');
 
