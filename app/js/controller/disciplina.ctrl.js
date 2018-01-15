@@ -12,6 +12,6 @@
         self.adicionarAluno = function() {
             self.disciplina.adicionarAluno(self.alunoNovo);
             self.alunoNovo = {}
-        }
+        };
     })
 })();
