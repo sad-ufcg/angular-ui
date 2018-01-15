@@ -62,7 +62,7 @@ md-content {
 .listagem-questionarios md-whiteframe {
     background: #fff;
     margin: 30px;
-    height: 100px; 
+    height: 100px;
 }
 
 .formulario {
@@ -75,7 +75,16 @@ md-content {
     margin-top: 10px;
 }
 
+.form-header {
+  padding: 1%;
+}
+
 .center {
     margin: auto;
     width: 80%;
+}
+
+.fix-to-top {
+  position: fixed;
+  top: 0;
 }

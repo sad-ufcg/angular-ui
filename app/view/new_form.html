@@ -11,6 +11,14 @@
 
 <section ng-if="newformCtrl.view == 'Form'" layout="column" layout-align="center stretch">
 
+  <section>
+    <sad-question-card-header nome-questionario="newformCtrl.nomeQuestionario"
+        nome-disciplina="newformCtrl.disciplina.nome"
+        semestre="newformCtrl.disciplina.semestre"
+        turma="newformCtrl.disciplina.turma">
+    </sad-question-card-header>
+  </section>
+
     <!-- Question card -->
     <div class='wrapper'>
       <div ng-repeat="questao in newformCtrl.questionario" style="position:relative">

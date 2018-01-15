@@ -79,10 +79,7 @@
 
             const titulo = 'Obrigado! Questionário Concluído.';
             const texto = 'Você respondeu todas as questões do formulário ' +
-                          newformCtrl.nomeQuestionario +  ' da disciplina ' +
-                          newformCtrl.disciplina.nome + ', turma ' +
-                          newformCtrl.disciplina.turma + ' do semestre ' +
-                          newformCtrl.disciplina.semestre + '. Confirme o envio!';
+                          '. Confirme o envio!';
             const ariaLabel = 'Lucky day';
             const confirmacao = 'Enviar Formulário';
             const cancelar = 'Cancelar Formulário';
