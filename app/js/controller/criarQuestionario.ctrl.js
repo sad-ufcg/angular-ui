@@ -27,7 +27,6 @@
       self.questionario = self.getQuestionarioVazio();
       $scope.criarQuestionarioForm.$setPristine();
       $scope.criarQuestionarioForm.$setUntouched();
-      $scope.$apply();
     }
 
     self.criarQuestionario = function() {
