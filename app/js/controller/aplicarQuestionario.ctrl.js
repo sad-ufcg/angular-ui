@@ -11,9 +11,12 @@
         self.questionarioSelecionado;
 
         self.aplicarQuestionario = function() {
-            const turmasSelecionadas = self.disciplinas.filter(questionario => questionario.aplicar == true);
+            const turmasSelecionadas = self.disciplinas.filter(questionario => questionario.aplicar === true);
             const promise = AplicarQuestionarioService.aplicarQuestionario(turmasSelecionadas, self.questionarioSelecionado);
-            promise.then(data => ToastService.criaToastSimples("Questionário Aplicado com Sucesso!"));
+            promise.then(data => {
+                ToastService.criaToastSimples("Questionário Aplicado com Sucesso!");
+                self.questionarioSelecionado="";
+            });
         };
     });
 })();

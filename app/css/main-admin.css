@@ -4,6 +4,10 @@
     font-family: 'Source Sans Pro', sans-serif;
 }
 
+.header-subtitle {
+    font-size: 30px;
+}
+
 .main-admin .md-toolbar-tools {
     padding: 1%;
     background-color:white;
@@ -88,3 +92,13 @@ md-content {
   position: fixed;
   top: 0;
 }
+
+
+ .text-capitalize {
+  text-transform: capitalize; }
+
+ .md-fab:hover, .md-fab.md-focused {
+  background-color: #000 !important; }
+
+ p.note {
+  font-size: 1.2rem; }
