@@ -38,8 +38,13 @@
 				icon: 'create',
 				title: 'Aplicar Questionário',
 				state: 'sad-admin.aplicar-questionario'
+			},
+			{
+				icon: 'create',
+				title: 'Visualizar Questionários Aplicados',
+				state: 'sad-admin.visualizar-questionario-aplicado'
 			}
-		];
+			];
 
 		adminCtrl.goTo = (state) => {
 			console.log(state);
