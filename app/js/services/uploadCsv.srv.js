@@ -6,12 +6,13 @@
 
         var service = this;
 
-        service.uploadArquivoCsv = (file) => {
-
-            console.log(file)
-            let deffered = $q.defer(); 
+        service.uploadArquivoCsv = (files) => {
+            console.log(files);
+            let deffered = $q.defer();
             let formFile = new FormData();
-            formFile.append('csv', file);
+            for(let i = 0; i < files.length; i++) {
+                formFile.append('csv', files[i]);
+            }
             $http.post(config.URI_UPLOAD_CSV, formFile, {
                 transformRequest: angular.identity,
                 headers: { 'Content-Type': undefined }
@@ -21,9 +22,8 @@
                 }, function error(response) {
                     deffered.reject(response);
                 });
-            return deffered.promise; 
+            return deffered.promise;
         };
-
-    })
+    });
 
 })();
