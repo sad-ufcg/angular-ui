@@ -28,10 +28,8 @@
 
         vm.enviarEmailSelecionados = () => {
             const listaIds = vm.questionarios.map((item) => item.id);
-            console.log(listaIds);
             EmailService.enviaParaUmaListaDeQuestionariosAplicados(listaIds).then(
                 function success(response) {
-                    console.log(response);
                     ToastService.criaToastComTema("Questionários enviados para a lista de email dos alunos!", "blue-toast");
                     vm.questionariosMarcados = [];
                 }, function error(response) {
@@ -45,11 +43,10 @@
         vm.carregarQuestionarios = () => {
             QuestionarioAplicadoService.getTodosQuestionariosAplicados().then(
                 function success(response) {
-                    //console.log(response);
-                    console.log(response);
                     vm.questionarios = response.data;
                 }, function error(error) {
-                    console.log(error);
+                    ToastService.criaToastComTema("Ocorreu um erro ao acessar os recursos do sistema. Por favor, contate o administrador.", "orange-toast");
+
                 }
             );
 

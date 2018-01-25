@@ -48,7 +48,6 @@
                                 return acc;
                             }, []);
 
-                            console.log(quest);
                             deffered.resolve({data:quest});
 
                         }
