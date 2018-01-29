@@ -81,6 +81,7 @@ app.config(function ($stateProvider, $locationProvider, $urlRouterProvider, $mdT
             },
             resolve : {
                 disciplinas: function(DisciplinasService) {
+                    console.log("resolve disc aplicar")
                     return carregarDisciplinas(DisciplinasService);
                 },
                 questionarios: function(QuestionariosService) {
@@ -108,6 +109,25 @@ app.config(function ($stateProvider, $locationProvider, $urlRouterProvider, $mdT
                 }
             }
         })
+
+        .state("sad-admin.visualizar-respostas", {
+            url: "/visualizar-respostas",
+            views: {
+                content: {
+                    templateUrl: 'view/visualizar-respostas.html',
+                    controller: 'VisualizarRespostasController as visualizarRespostasCtrl'
+                },
+                resolve : {
+                    disciplinas: function(DisciplinasService) {
+                    console.log("resolve disc")
+                        return carregarDisciplinas(DisciplinasService);
+                    },
+                    questionarios: function(QuestionariosService) {
+                        return carregarQuestionarios(QuestionariosService);
+                    }
+                }
+            }
+         })
 
         .state("sad-admin.disciplina", {
             url: "/disciplina/:idDisciplina",

@@ -38,7 +38,12 @@
 				icon: 'create',
 				title: 'Aplicar Questionário',
 				state: 'sad-admin.aplicar-questionario'
-			}
+			},
+			{
+                icon: 'list',
+                title: 'Visualizar Respostas',
+                state: 'sad-admin.visualizar-respostas'
+            }
 		];
 
 		adminCtrl.goTo = (state) => {
