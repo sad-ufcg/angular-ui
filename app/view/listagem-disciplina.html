@@ -1,17 +1,19 @@
-<md-toolbar layout="row" class="md-hue-3">
-    <div class="md-toolbar-tools">
-        <span>Disciplinas Cadastradas</span>
-    </div>
-</md-toolbar>
-<md-list class="listagem" ng-init="disciplinasCtrl.carregarDisciplinas()" ng-cloak>
-    <md-list-item>
-        <p flex="30">Nome</p>
-        <p flex="30">Turma</p>
-        <p flex="30">Período</p>
-    </md-list-item>
-    <md-list-item ng-repeat="disciplina in disciplinasCtrl.disciplinas" ng-click="disciplinasCtrl.irParaDisciplina(disciplina.id)">
-        <p flex="30"> {{ disciplina.nome }}</p>
-        <p flex="30"> {{ disciplina.turma }}</p>
-        <p flex="30"> {{ disciplina.semestre }} </p>
-    </md-list-item>
-</md-list>
+<md-content>
+  <md-toolbar layout="row" class="md-hue-3">
+      <div class="md-toolbar-tools">
+          <span>Disciplinas Cadastradas</span>
+      </div>
+  </md-toolbar>
+  <md-list class="listagem" ng-init="disciplinasCtrl.carregarDisciplinas()" ng-cloak>
+      <md-list-item>
+          <p flex="30">Nome</p>
+          <p flex="30">Turma</p>
+          <p flex="30">Período</p>
+      </md-list-item>
+      <md-list-item ng-repeat="disciplina in disciplinasCtrl.disciplinas" ng-click="disciplinasCtrl.irParaDisciplina(disciplina.id)">
+          <p flex="30"> {{ disciplina.nome }}</p>
+          <p flex="30"> {{ disciplina.turma }}</p>
+          <p flex="30"> {{ disciplina.semestre }} </p>
+      </md-list-item>
+  </md-list>
+<md-content>

@@ -7,20 +7,20 @@
         var cadastraTurmasCtrl = this;
 
         cadastraTurmasCtrl.onSubmitClick = function () {
-            cadastraTurmasCtrl.files.map((file) => {
-                if (!file.isRemote) {
-                    UploadCsvService.uploadArquivoCsv(file.lfFile).then(
-                        function success(response) {
-                            ToastService.criaToastSimples(`${file.lfFile.name} foi salvo corretamente.`);
-                        }, function error(response) {
-                            console.log(response)
-                            ToastService.criaToastSimples(`Ocorreu um erro. ${file.lfFile.name} não foi salvo corretamente.`);
-                        }
-                    );
+            var files = [];
+            for(let i = 0; i < cadastraTurmasCtrl.files.length; i++) {
+                if(!cadastraTurmasCtrl.files[i].isRemote) {
+                    files.push(cadastraTurmasCtrl.files[i].lfFile);
                 }
-            });
+            }
 
-        };
+            UploadCsvService.uploadArquivoCsv(files).then(
+                function success(response) {
+                    ToastService.criaToastSimples(`Arquivos foram salvos corretamente.`);
+                }, function error(response) {
+                    ToastService.criaToastSimples(`Ocorreu um erro em um dos CSVs.`);
+                });
+            };
 
-    });
+        });
 })();
