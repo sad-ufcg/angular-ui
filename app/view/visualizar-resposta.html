@@ -1,4 +1,4 @@
-<md-content>
+<md-content ng-init="VisualizarRespostaCtrl.getQuestionarioByID(visualizarRespostaCtrl.questionariosAplicados);">
   <md-toolbar layout="row" class="md-hue-3">
       <div class="md-toolbar-tools">
           <span>Turmas</span>
@@ -10,4 +10,15 @@
               md-removable="false" md-require-match="true" md-highlight-flags="i">
     </md-chips>
   </div>
+
+    <md-list class="listagem" ng-cloak>
+        <md-list-item>
+            <p flex="30">Enunciado</p>
+            <p flex="30">Respota</p>
+        </md-list-item>
+        <md-list-item ng-repeat="resposta in visualizarRespostaCtrl.respostas">
+            <p flex="30"> {{ resposta.enunciado }}</p>
+            <p flex="30"> {{ resposta.respostas }}</p>
+        </md-list-item>
+    </md-list>
 <md-content>

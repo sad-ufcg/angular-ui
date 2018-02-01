@@ -144,7 +144,12 @@ app.config(function ($stateProvider, $locationProvider, $urlRouterProvider, $mdT
              resolve: {
                  questionariosAplicados: function (QuestionarioService, $stateParams) {
                     return QuestionarioService.getQuestionariosAplicados($stateParams.idQuestionario);
-                 }
+                 },
+                 questionarioByID: function (QuestionarioService, $stateParams) {
+                                               console.log("aqui")
+                                               console.log(QuestionarioService.getQuestionarioByID($stateParams.idQuestionario))
+                                               return QuestionarioService.getQuestionarioByID($stateParams.idQuestionario);
+                                           }
              }
          })
         .state("sad-admin.disciplina", {

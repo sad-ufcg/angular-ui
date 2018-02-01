@@ -50,7 +50,7 @@
 
         questionarioService.getQuestionariosAplicados = (id) => {
             let deffered = $q.defer();
-            $http.get(`${uri}/${id}/questionariosAplicados`).then(
+            $http.get(`${uri}/${id}/questionariosAplicados/`).then(
                 function success(response){
                     deffered.resolve(response);
                 }, function error(response){

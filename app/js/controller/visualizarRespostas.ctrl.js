@@ -7,8 +7,6 @@
         var self = this;
         self.questionarios = questionarios || [];
 
-        console.log(self.questionarios);
-
         self.irParaResposta = function(id) {
             $state.go("sad-admin.resposta", {idQuestionario : id});
         }
