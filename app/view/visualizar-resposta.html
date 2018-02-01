@@ -17,6 +17,32 @@
       </div>
   </md-toolbar>
 
-  <p>{{visualizarRespostaCtrl.questionariosAplicados[0].respostas}}</p>
+    <div class="card" layout="row" layout-align="start center">
+        <div class="content">
+            <div class="question-card question-card-left">
+                <md-card class="card" ng-repeat="resposta in visualizarRespostaCtrl.respostas">
+                    <div class="card-header-question">
+                        <span class="md-title">{{$index + 1}}. {{resposta.enunciado}}</span>
+                        <label class="md-title">Tipo da Questão: {{resposta.tipo}}</label>
+                    </div>
+                    <br/>
+                    <br/>
+
+                    <div ng-if="resposta.tipo == 'ESCOLHA_SIMPLES'" class="card-content">
+                      <h4 class="md-toolbar-tools">Escolha Simples - Mediana: {{resposta.mediana}}</h4>
+                      <md-container ng-repeat="res in resposta.respostas track by $index" class="md-block" flex-gt-sm>
+                          <p style="display:inline; font-size: 20px">{{res}}</p>
+                      </md-container>
+                    </div>
+
+                    <h4 class="md-toolbar-tools">Comentários</h4>
+                    <md-container ng-repeat="comment in resposta.comentarios track by $index" class="md-block" flex-gt-sm>
+                        <p>{{comment}}</p>
+                        <br/>
+                    </md-container>
+                </md-card>
+            </div>
+        </div>
+    </div>
 
 <md-content>
