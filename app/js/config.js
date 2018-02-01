@@ -51,6 +51,16 @@ app.config(function ($stateProvider, $locationProvider, $urlRouterProvider, $mdT
             }
         })
 
+        .state('sad-admin.visualizar-questionario-aplicado', {
+            url: "/visualizar-questionarios-aplicados",
+            views: {
+                content: {
+                    templateUrl: "view/questionarios-aplicados.html",
+                    controller: "QuestionariosAplicadosController as vm"
+                }
+            }
+        })
+
         .state("sad-admin.cadastra-turmas", {
             url: "/cadastrar-turmas",
             views: {
@@ -81,7 +91,6 @@ app.config(function ($stateProvider, $locationProvider, $urlRouterProvider, $mdT
             },
             resolve : {
                 disciplinas: function(DisciplinasService) {
-                    console.log("resolve disc aplicar")
                     return carregarDisciplinas(DisciplinasService);
                 },
                 questionarios: function(QuestionariosService) {
@@ -116,19 +125,28 @@ app.config(function ($stateProvider, $locationProvider, $urlRouterProvider, $mdT
                 content: {
                     templateUrl: 'view/visualizar-respostas.html',
                     controller: 'VisualizarRespostasController as visualizarRespostasCtrl'
-                },
-                resolve : {
-                    disciplinas: function(DisciplinasService) {
-                    console.log("resolve disc")
-                        return carregarDisciplinas(DisciplinasService);
-                    },
-                    questionarios: function(QuestionariosService) {
-                        return carregarQuestionarios(QuestionariosService);
-                    }
+                }
+            },
+            resolve : {
+                questionarios: function(QuestionariosService) {
+                    return carregarQuestionarios(QuestionariosService);
                 }
             }
          })
-
+         .state("sad-admin.resposta", {
+             url: "/visualizar-respostas/:idQuestionario",
+             views:{
+                 content: {
+                     templateUrl: 'view/visualizar-resposta.html',
+                     controller: 'VisualizarRespostaController as visualizarRespostaCtrl',
+                 }
+             },
+             resolve: {
+                 questionariosAplicados: function (QuestionarioService, $stateParams) {
+                    return QuestionarioService.getQuestionariosAplicados($stateParams.idQuestionario);
+                 }
+             }
+         })
         .state("sad-admin.disciplina", {
             url: "/disciplina/:idDisciplina",
             views:{
@@ -144,7 +162,6 @@ app.config(function ($stateProvider, $locationProvider, $urlRouterProvider, $mdT
                 }
             }
         })
-
         .state("sad-admin.questionario-detalhe", {
             url: "/questionario/:id",
             views:{

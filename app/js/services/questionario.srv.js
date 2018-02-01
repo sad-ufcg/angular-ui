@@ -37,8 +37,20 @@
         };
 
         questionarioService.getQuestionarioByID = (id) => {
-            let deffered = $q.defer(); 
+            let deffered = $q.defer();
             $http.get(`${uri}/${id}`).then(
+                function success(response){
+                    deffered.resolve(response);
+                }, function error(response){
+                    deffered.reject(response);
+                }
+            );
+            return deffered.promise;
+        };
+
+        questionarioService.getQuestionariosAplicados = (id) => {
+            let deffered = $q.defer();
+            $http.get(`${uri}/${id}/questionariosAplicados`).then(
                 function success(response){
                     deffered.resolve(response);
                 }, function error(response){

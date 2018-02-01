@@ -1,13 +1,14 @@
 <md-content class="md-no-momentum" ng-init='aplicarQuestionarioCtrl.getQuestionarios()'>
 
-        <md-toolbar md-scroll-shrink>
-            <div style="font-size: 30px" class="md-toolbar-tools">Aplicar Questionário</div>
-        </md-toolbar>
+    <md-toolbar md-scroll-shrink>
+        <div style="font-size: 30px" class="md-toolbar-tools">Aplicar Questionário</div>
+    </md-toolbar>
 
     <h3 class="md-title">Selecione um Questionário</h3>
 
     <md-input-container>
         <md-select ng-model="aplicarQuestionarioCtrl.questionarioSelecionado" placeholder="Selecione um Questionário">
+            <md-option><em>Selecione um questionario</em></md-option>
             <md-option ng-value="questionario" ng-repeat="questionario in aplicarQuestionarioCtrl.questionarios">{{ questionario.nome }}</md-option>
         </md-select>
     </md-input-container>
@@ -31,6 +32,5 @@
 </md-content>
 
 <md-content>
-    <md-button class="md-raised md-primary"
-    data-ng-click="aplicarQuestionarioCtrl.aplicarQuestionario()"> Aplicar Questionário</md-button>
+    <md-button class="md-raised md-primary" data-ng-click="aplicarQuestionarioCtrl.aplicarQuestionario()"> Aplicar Questionário</md-button>
 </md-content>

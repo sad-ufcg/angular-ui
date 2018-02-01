@@ -40,11 +40,15 @@
 				state: 'sad-admin.aplicar-questionario'
 			},
 			{
-                icon: 'list',
-                title: 'Visualizar Respostas',
-                state: 'sad-admin.visualizar-respostas'
-            }
-		];
+        icon: 'list',
+        title: 'Visualizar Respostas',
+        state: 'sad-admin.visualizar-respostas'
+      },
+			{
+				icon: 'create',
+				title: 'Visualizar Questionários Aplicados',
+				state: 'sad-admin.visualizar-questionario-aplicado'
+			}];
 
 		adminCtrl.goTo = (state) => {
 			console.log(state);

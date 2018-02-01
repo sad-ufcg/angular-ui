@@ -2,14 +2,15 @@
 (function () {
     const app = angular.module("sadApp");
 
-    app.controller("VisualizarRespostasController", function VisualizarRespostasController(disciplinas, questionarios) {
+    app.controller("VisualizarRespostasController", function VisualizarRespostasController($state, $stateParams, questionarios) {
 
         var self = this;
+        self.questionarios = questionarios || [];
 
-        //var self.questionarios = questionarios || [];
-        //var self.disciplinas = disciplinas || [];
-        //var questionariosSelecionado;
+        console.log(self.questionarios);
 
-        console.log("oe");
+        self.irParaResposta = function(id) {
+            $state.go("sad-admin.resposta", {idQuestionario : id});
+        }
     });
 })();
