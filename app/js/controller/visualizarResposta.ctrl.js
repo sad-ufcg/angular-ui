@@ -8,6 +8,8 @@
         self.questionariosAplicados = questionariosAplicados.data || [];
         self.disciplinas = get_disciplinas();
 
+        console.log(questionariosAplicados);
+
         function get_disciplinas() {
           let disciplinas = [];
           for(let i = 0; i < self.questionariosAplicados.length; i++) {
