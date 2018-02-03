@@ -1,5 +1,5 @@
 'use strict';
-const app = angular.module('sadApp', ['ngAnimate', 'ngAria', 'ngSanitize', 'ngMaterial', 'ui.router', 'lfNgMdFileInput']);
+const app = angular.module('sadApp', ['ngAnimate', 'ngAria', 'ngSanitize', 'ngMaterial', 'ui.router', 'lfNgMdFileInput', 'nvd3']);
 
 app.constant('baseUrl', 'http://localhost:8080');
 

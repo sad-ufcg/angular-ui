@@ -2,7 +2,7 @@
 (function () {
     const app = angular.module("sadApp");
 
-    app.controller("VisualizarRespostaController", function VisualizarRespostaController(questionariosAplicados, questionarioByID) {
+    app.controller("VisualizarRespostaController", function VisualizarRespostaController($scope, questionariosAplicados, questionarioByID) {
 
         var self = this;
         self.questionariosAplicados = questionariosAplicados.data || [];
@@ -11,7 +11,59 @@
 
         self.respostas = get_respostas();
 
-        console.log(self.questionariosAplicados)
+        $scope.options = {
+            chart: {
+                type: 'discreteBarChart',
+                height: 450,
+                margin : {
+                    top: 20,
+                    right: 20,
+                    bottom: 50,
+                    left: 55
+                },
+                x: function(d){return d.label;},
+                y: function(d){return d.value;},
+                showValues: true,
+                color: (d) => '#428ff4',
+                valueFormat: function(d){
+                    return d;
+                },
+                duration: 500,
+                xAxis: {
+                    axisLabel: 'Escolha'
+                },
+                yAxis: {
+                    axisLabel: 'Frequência',
+                    axisLabelDistance: -10
+                },
+                tooltip: {
+                    enabled: false
+                }
+            }
+        };
+
+        function formata_dados(lista) {
+            var frequencia = {}
+            for (var i = 0; i < lista.length; i++) {
+                frequencia[lista[i]] = frequencia[lista[i]]? frequencia[lista[i]]+1 : 1;
+            }
+
+            var dados_grafico = [{
+                key: "Cumulative Return",
+                values: []
+            }];
+            for (var key in frequencia) {
+                if (frequencia.hasOwnProperty(key)) {
+                    var dado = {
+                        'label': key,
+                        'value': frequencia[key]
+                    };
+                    dados_grafico[0].values.push(dado);
+                }
+            }
+
+            return dados_grafico;
+        }
 
         function get_respostas() {
             let respostas = [];
@@ -40,6 +92,8 @@
                       resposta['mediana'] = reposta['respostas'][half];
                   else
                       resposta['mediana'] = (resposta['respostas'][half-1] + resposta['respostas'][half]) / 2.0;
+
+                  resposta['dados_grafico'] = formata_dados(resposta['respostas']);
                 }
                 respostas.push(resposta);
             }
