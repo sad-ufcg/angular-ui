@@ -39,8 +39,6 @@
             }
         };
 
-      console.log(self.questionariosAplicados)
-
         function formata_dados(lista) {
             var frequencia = {}
             for (var i = 0; i < lista.length; i++) {
