@@ -51,6 +51,22 @@ app.config(function ($stateProvider, $locationProvider, $urlRouterProvider, $mdT
             }
         })
 
+        .state("sad-resposta", {
+            abstract: true,
+            url: '/respostas',
+            views: {
+                main: {
+                  templateUrl: "view/main-content.html",
+                  controller: "MainController as mainCtrl"
+                }
+            },
+            resolve : {
+                questionarios: function(QuestionariosService) {
+                    return carregarQuestionarios(QuestionariosService);
+                }
+            }
+        })
+
         .state('sad-admin.visualizar-questionario-aplicado', {
             url: "/visualizar-questionarios-aplicados",
             views: {
@@ -119,7 +135,7 @@ app.config(function ($stateProvider, $locationProvider, $urlRouterProvider, $mdT
             }
         })
 
-        .state("sad-admin.visualizar-respostas", {
+        .state("sad-resposta.visualizar-respostas", {
             url: "/visualizar-respostas",
             views: {
                 content: {
@@ -133,8 +149,8 @@ app.config(function ($stateProvider, $locationProvider, $urlRouterProvider, $mdT
                 }
             }
          })
-         .state("sad-admin.resposta", {
-             url: "/visualizar-respostas/:idQuestionario",
+         .state("sad-resposta.visualizar-resposta", {
+             url: "/respostas/:idQuestionario",
              views:{
                  content: {
                      templateUrl: 'view/visualizar-resposta.html',
@@ -146,10 +162,8 @@ app.config(function ($stateProvider, $locationProvider, $urlRouterProvider, $mdT
                     return QuestionarioService.getQuestionariosAplicados($stateParams.idQuestionario);
                  },
                  questionarioByID: function (QuestionarioService, $stateParams) {
-                                               console.log("aqui")
-                                               console.log(QuestionarioService.getQuestionarioByID($stateParams.idQuestionario))
-                                               return QuestionarioService.getQuestionarioByID($stateParams.idQuestionario);
-                                           }
+                    return QuestionarioService.getQuestionarioByID($stateParams.idQuestionario);
+                 }
              }
          })
         .state("sad-admin.disciplina", {

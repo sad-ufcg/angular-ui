@@ -8,7 +8,7 @@
         self.questionarios = questionarios || [];
 
         self.irParaResposta = function(id) {
-            $state.go("sad-admin.resposta", {idQuestionario : id});
+            $state.go("sad-resposta.visualizar-resposta", {idQuestionario : id});
         }
     });
 })();

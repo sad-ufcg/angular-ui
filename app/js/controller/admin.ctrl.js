@@ -42,7 +42,7 @@
 			{
         icon: 'list',
         title: 'Visualizar Respostas',
-        state: 'sad-admin.visualizar-respostas'
+        state: 'sad-resposta.visualizar-respostas'
       },
 			{
 				icon: 'create',
