@@ -30,9 +30,7 @@
 
                     <div ng-if="resposta.tipo == 'ESCOLHA_SIMPLES'" class="card-content">
                       <h4 class="md-toolbar-tools">Escolha Simples - Mediana: {{resposta.mediana}}</h4>
-                      <md-container ng-repeat="res in resposta.respostas track by $index" class="md-block" flex-gt-sm>
-                          <p style="display:inline; font-size: 20px">{{res}}</p>
-                      </md-container>
+                      <nvd3 options="options" data="resposta.dados_grafico"></nvd3>
                     </div>
 
                     <h4 class="md-toolbar-tools">Comentários</h4>
@@ -45,4 +43,6 @@
         </div>
     </div>
 
-<md-content>
+</md-content>
+
+
