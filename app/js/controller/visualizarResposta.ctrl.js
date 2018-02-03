@@ -35,6 +35,9 @@
                 yAxis: {
                     axisLabel: 'Frequência',
                     axisLabelDistance: -10
+                },
+                tooltip: {
+                    enabled: false
                 }
             }
         };
