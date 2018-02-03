@@ -1,20 +1,52 @@
 <md-content>
-  <md-toolbar layout="row" class="md-hue-3">
-      <div class="md-toolbar-tools">
-          <span>Escolha o Questionário para visualizar as respostas</span>
+  <section layout="row" class="md-hue-3 mini-wrapper">
+
+    <div flex-gt-sm="80">
+      <h3>Escolha o Questionário para visualizar as respostas</h3>
+    </div>
+
+    <div flex-gt-sm="20" class="botao-icone">
+      <input placeholder="Pesquisar" type="text" ng-model="search.color">
+      <i class="material-icons">search</i>
+    </div>
+  </section>
+  <hr/>
+
+
+  <div layout="row" class="outer-no-scroll">
+    <section ng-class='questionario' flex-gt-sm="30" layout-wrap class='mini-wrapper'>
+      <div flex-gt-sm="80">
+        <h4>Escolha um semestre:</h4>
       </div>
-  </md-toolbar>
-  <md-list class="listagem" ng-cloak>
-      <md-list-item>
-          <p flex="30">Nome</p>
-          <p flex="30">Data de Criação</p>
-          <p flex="30">Autor</p>
-      </md-list-item>
-      <md-list-item ng-repeat="questionario in visualizarRespostasCtrl.questionarios"
-                    ng-click="visualizarRespostasCtrl.irParaResposta(questionario.id)">
-          <p flex="30"> {{ questionario.nome }}</p>
-          <p flex="30"> {{ questionario.dataCriacao }}</p>
-          <p flex="30"> {{ questionario.autor.nome }} </p>
-      </md-list-item>
-  </md-list>
+
+      <div flex-gt-sm="80">
+        <form name="formSemestre">
+          <md-input-container>
+              <label>Semestre</label>
+              <input ng-model="visualizarRespostasCtrl.semestre" name="semestre"
+              ng-pattern="/(^\d{4}[.]\d{1})$/">
+            </md-input-container>
+          <span ng-show="formSemestre.semestre.$error.pattern">Semestre inválido!</span>
+        </form>
+        <span>Se o semestre for inválido ou vazio serão mostradas todas as respostas disponíveis.<span>
+      </div>
+    </section>
+
+    <section ng-class="questionario" layout="row" layout-wrap class='mini-wrapper inner-no-scroll'>
+        <md-whiteframe
+            ng-repeat="questionario in visualizarRespostasCtrl.questionarios | filter: { nome : search.color }"
+            ng-style="questionario.style" class="resposta-box md-whiteframe-1dp"
+            layout-gt-xs layout-align="center center"
+            ng-click="visualizarRespostasCtrl.irParaResposta(questionario.id)"
+            style="min-width: 350px; max-height: 150px;">
+            <md-list-item class="crop">
+              <div class="md-list-item-text" layout="column">
+                  <h3>{{ questionario.nome }}</h3>
+                  <h4>{{ questionario.descricao }}</h4>
+              </div>
+            </md-list-item>
+        </md-whiteframe>
+    </section>
+  </div>
+
 <md-content>

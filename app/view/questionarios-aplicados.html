@@ -7,45 +7,31 @@
     <br><br>
     <div ng-show="vm.questionariosMarcados.length > 0"layout="row" layout-align="right center">
         <md-fab-speed-dial md-direction="right right" ng-class='md-fling'>
-            <md-fab-trigger>
-                <md-button title="Mais Ações" aria-label="menu" class="md-fab md-warn">
-                    Ações 
-                </md-button>
-            </md-fab-trigger>
-
             <md-fab-actions>
-                <md-button ng-click="vm.enviarEmailSelecionados()"title="Enviar email" aria-label="Twitter" class="md-fab md-raised md-mini">
+                <md-button ng-click="vm.enviarEmailSelecionados()"
+                           title="Enviar email" aria-label="Twitter" class="md-raised md-mini botao-icone">
                     <i class="material-icons">email</i>
                 </md-button>
-
             </md-fab-actions>
         </md-fab-speed-dial>
     </div>
 
 
     <section ng-class="questionario" layout="row" layout-wrap>
-
-
         <md-whiteframe ng-repeat="questionario in vm.questionarios" ng-style="questionario.style" class="md-whiteframe-1dp" flex="25"
             layout layout-align="center center" ng-click="">
             <md-checkbox ng-checked="vm.checked(questionario)" ng-click="vm.checkQuestionario(questionario)">
                 <md-list-item class="md-3-line">
                     <div class="md-list-item-text" layout="column">
-                        <h4> <strong> Nome: </strong>{{ questionario.nome }}</h4>
-                        <h4> <strong> Disciplina: </strong>{{ questionario.disciplina }}</h4>
-                        <h4> <strong> Descrição: </strong>{{ questionario.descricao }}</h4>
-                        <h4> <strong> Resposta: </strong>{{ questionario.respostas.length }} <strong> Enviados: </strong>{{ questionario.tokens.length
+                        <h4 class='texto-longo'> <strong> Nome: </strong>{{ questionario.nome }}</h4>
+                        <h4 class='texto-longo'> <strong> Disciplina: </strong>{{ questionario.disciplina }}</h4>
+                        <h4 class='texto-longo'> <strong> Descrição: </strong>{{ questionario.descricao }}</h4>
+                        <h4 class='texto-longo'> <strong> Resposta: </strong>{{ questionario.respostas.length }} <strong> Enviados: </strong>{{ questionario.tokens.length
                             }} </h4>
                     </div>
                 </md-list-item>
             </md-checkbox>
-
         </md-whiteframe>
-
-
-
     </section>
-
-
 
 </md-content>
