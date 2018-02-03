@@ -6,14 +6,14 @@
     </div>
 
     <div flex-gt-sm="20" class="botao-icone">
-      <input placeholder="Pesquisar" type="text" ng-model="search.color">
+      <input placeholder="Pesquisar" type="text" ng-model="search.semestre">
       <i class="material-icons">search</i>
     </div>
   </section>
   <hr/>
 
 
-  <div layout="row" class="outer-no-scroll">
+  <div layout="row">
     <section ng-class='questionario' flex-gt-sm="30" layout-wrap class='mini-wrapper'>
       <div flex-gt-sm="80">
         <h4>Escolha um semestre:</h4>
@@ -32,21 +32,26 @@
       </div>
     </section>
 
-    <section ng-class="questionario" layout="row" layout-wrap class='mini-wrapper inner-no-scroll'>
-        <md-whiteframe
-            ng-repeat="questionario in visualizarRespostasCtrl.questionarios | filter: { nome : search.color }"
-            ng-style="questionario.style" class="resposta-box md-whiteframe-1dp"
-            layout-gt-xs layout-align="center center"
-            ng-click="visualizarRespostasCtrl.irParaResposta(questionario.id)"
-            style="min-width: 350px; max-height: 150px;">
-            <md-list-item class="crop">
-              <div class="md-list-item-text" layout="column">
-                  <h3>{{ questionario.nome }}</h3>
-                  <h4>{{ questionario.descricao }}</h4>
-              </div>
-            </md-list-item>
-        </md-whiteframe>
-    </section>
+    <div flex-gt-sm="80" class='outer-no-scroll'>
+        <section ng-class="questionario" layout="row" layout-wrap class='mini-wrapper inner-no-scroll'>
+            <h2 ng-hide="questionarioFiltrado.length">
+              Nenhum questionário disponível.
+            </h2>
+            <md-whiteframe
+                ng-repeat="questionario in questionarioFiltrado = (visualizarRespostasCtrl.questionarios | filter: { nome : search.semestre })"
+                ng-style="questionario.style" class="resposta-box md-whiteframe-1dp"
+                layout-gt-xs layout-align="center center"
+                ng-click="visualizarRespostasCtrl.irParaResposta(questionario.id)"
+                style="min-width: 350px; max-height: 150px;">
+                <md-list-item class="crop">
+                  <div class="md-list-item-text" layout="column">
+                      <h3>{{ questionario.nome }}</h3>
+                      <h4>{{ questionario.descricao }}</h4>
+                  </div>
+                </md-list-item>
+            </md-whiteframe>
+        </section>
+      </div>
   </div>
 
 <md-content>

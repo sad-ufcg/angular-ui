@@ -2,16 +2,18 @@
 (function () {
     const app = angular.module("sadApp");
 
-    app.controller("VisualizarRespostaController", function VisualizarRespostaController(questionariosAplicados, questionarioByID) {
+    app.controller("VisualizarRespostaController", function VisualizarRespostaController(questionariosAplicados, questionarioByID, semestre) {
 
         var self = this;
         self.questionariosAplicados = questionariosAplicados.data || [];
-        self.disciplinas = get_disciplinas();
-        self.questionarioByID = questionarioByID.data || [];
 
+        self.disciplinas = get_disciplinas();
+        self.disciplinasSelecionadas = get_disciplinas();
+
+        self.questionarioByID = questionarioByID.data || [];
         self.respostas = get_respostas();
 
-        console.log(self.questionariosAplicados)
+        console.log(self.questionariosAplicados);
 
         function get_respostas() {
             let respostas = [];
@@ -47,21 +49,19 @@
             return respostas;
         }
 
+        console.log(get_respostas());
         console.log(questionariosAplicados);
 
         function get_disciplinas() {
           let disciplinas = [];
           for(let i = 0; i < self.questionariosAplicados.length; i++) {
-            disciplinas.push(self.questionariosAplicados[i].disciplina +
-                             ' - Turma - ' +
-                             self.questionariosAplicados[i].turma);
+            disciplinas.push({turma: self.questionariosAplicados[i].disciplina +
+                                     ' - Turma ' +
+                                     self.questionariosAplicados[i].turma,
+                              id: self.questionariosAplicados[i].disciplinaId});
           }
 
           return disciplinas;
-        }
-
-        function querySearch (criteria) {
-          return criteria ? self.questionariosAplicados.filter(createFilterFor(criteria)) : [];
         }
 
     });

@@ -1,15 +1,70 @@
 <md-content>
-  <md-toolbar layout="row" class="md-hue-3">
-      <div class="md-toolbar-tools">
-          <span>Turmas</span>
-      </div>
-  </md-toolbar>
 
-  <div>
-    <md-chips ng-model="visualizarRespostaCtrl.disciplinas" readonly="false"
-              md-removable="false" md-require-match="true" md-highlight-flags="i">
-    </md-chips>
+  <section layout="row" class="md-hue-3 mini-wrapper">
+
+    <div flex-gt-sm="80">
+      <h3>Escolha o Questionário para visualizar as respostas</h3>
+    </div>
+
+    <div flex-gt-sm="20" class="botao-icone">
+      <input placeholder="Pesquisar" type="text" ng-model="search.semestre">
+      <i class="material-icons">search</i>
+    </div>
+  </section>
+  <hr/>
+
+
+  <div layout="row">
+    <section ng-class='questionario' flex-gt-sm="80" layout-wrap class='mini-wrapper'>
+      <div flex-gt-sm="80">
+        <h4>Filtrar por turma:</h4>
+      </div>
+
+      <div flex-gt-sm="80">
+        <form name="formSemestre">
+          <md-input-container>
+              <label>Turma</label>
+              <md-select ng-model="visualizarRespostaCtrl.turmaSelecionada"
+                placeholder="Selecione uma turma">
+                <md-option ng-value="opt" ng-repeat="opt in visualizarRespostaCtrl.disciplinas">
+                  {{ opt.turma }}</md-option>
+              </md-select>
+            </md-input-container>
+        </form>
+      </div>
+    </section>
   </div>
+</section>
+
+  <section layout="column" class="mini-wrapper">
+    <div flex="100">
+      <h2>Turmas</h2>
+    </div>
+    <div flex="100" class="md-padding autocomplete" layout="column">
+      <md-chips
+          ng-model="visualizarRespostaCtrl.disciplinasSelecionadas"
+          md-autocomplete-snap
+          md-require-match="true"
+          placeholder="Turma">
+
+          <md-autocomplete
+            md-selected-item="visualizarRespostaCtrl.selectedItem"
+            md-search-text="visualizarRespostaCtrl.searchText"
+            md-items="disciplina in visualizarRespostaCtrl.disciplinas"
+            md-item-text="disciplina.turma"
+            placeholder="Turma">
+          <span md-highlight-text="visualizarRespostaCtrl.searchText">{{disciplina.turma}}</span>
+        </md-autocomplete>
+        <md-chip-template>
+          <span>
+            <strong>{{$chip.turma}}</strong>
+          </span>
+        </md-chip-template>
+      </md-chips>
+      <span>{{visualizarRespostaCtrl.searchText}}</span>
+    </div>
+  <section/>
+  <hr/>
 
   <md-toolbar layout="row" class="md-hue-3">
       <div class="md-toolbar-tools">
@@ -20,7 +75,8 @@
     <div class="card" layout="row" layout-align="start center">
         <div class="content">
             <div class="question-card question-card-left">
-                <md-card class="card" ng-repeat="resposta in visualizarRespostaCtrl.respostas">
+                <md-card class="card"
+                ng-repeat="resposta in visualizarRespostaCtrl.respostas">
                     <div class="card-header-question">
                         <span class="md-title">{{$index + 1}}. {{resposta.enunciado}}</span>
                         <label class="md-title">Tipo da Questão: {{resposta.tipo}}</label>
