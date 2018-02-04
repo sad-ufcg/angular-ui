@@ -139,6 +139,6 @@ md-toast.md-grey-toast-theme div.md-toast-content{
   line-height:50px;
 }​
 
-.resposta-box {
-  min-width: 400px;
+.top-padding {
+  padding-top: 10%;
 }

@@ -150,7 +150,7 @@ app.config(function ($stateProvider, $locationProvider, $urlRouterProvider, $mdT
             }
          })
          .state("sad-resposta.visualizar-resposta", {
-             url: "/respostas/:idQuestionario/:semestre",
+             url: "/respostas/?idQuestionario&idDisciplina&semestre",
              views:{
                  content: {
                      templateUrl: 'view/visualizar-resposta.html',
@@ -159,12 +159,11 @@ app.config(function ($stateProvider, $locationProvider, $urlRouterProvider, $mdT
              },
              resolve: {
                  questionariosAplicados: function (QuestionarioService, $stateParams) {
-                    return QuestionarioService.getQuestionariosAplicados($stateParams.idQuestionario);
+                    return QuestionarioService.getQuestionariosAplicados($stateParams);
                  },
                  questionarioByID: function (QuestionarioService, $stateParams) {
                     return QuestionarioService.getQuestionarioByID($stateParams.idQuestionario);
-                 },
-                 semestre: function($stateParams) { return $stateParams.semestre; }
+                 }
              }
          })
         .state("sad-admin.disciplina", {

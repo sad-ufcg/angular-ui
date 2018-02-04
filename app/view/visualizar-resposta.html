@@ -1,95 +1,36 @@
 <md-content>
 
+
   <section layout="row" class="md-hue-3 mini-wrapper">
 
     <div flex-gt-sm="80">
-      <h3>Escolha o Questionário para visualizar as respostas</h3>
+      <h2>Respostas: {{visualizarRespostaCtrl.questionarioByID.nome}}</h2>
     </div>
-
-    <section ng-class='questionario' flex-gt-sm="20" layout-wrap class='mini-wrapper'>
-      <div flex-gt-sm="80">
-        <h4>Filtrar por turma:</h4>
-      </div>
-
-      <div flex-gt-sm="80">
-          <md-input-container>
-              <label>Turma</label>
-              <md-select ng-model="visualizarRespostaCtrl.turmaSelecionada"
-                placeholder="Selecione uma turma">
-                <md-option ng-value="opt.id" ng-repeat="opt in visualizarRespostaCtrl.disciplinas">
-                  {{ opt.turma }}
-                </md-option>
-              </md-select>
-            </md-input-container>
-        <h2>{{visualizarRespostaCtrl.turmaSelecionada}}<h2>
-      </div>
-    </section>
   </section>
-  <hr/>
-
-
-  <div layout="row">
-
-  </div>
-</section>
-
-  <section layout="column" class="mini-wrapper">
-    <div flex="100">
-      <h2>Turmas</h2>
-    </div>
-    <div flex="100" class="md-padding autocomplete" layout="column">
-      <md-chips
-          ng-model="visualizarRespostaCtrl.disciplinasSelecionadas"
-          md-autocomplete-snap
-          md-require-match="true"
-          placeholder="Turma">
-
-          <md-autocomplete
-            md-selected-item="visualizarRespostaCtrl.selectedItem"
-            md-search-text="visualizarRespostaCtrl.searchText"
-            md-items="disciplina in visualizarRespostaCtrl.disciplinas"
-            md-item-text="disciplina.turma"
-            placeholder="Turma">
-          <span md-highlight-text="visualizarRespostaCtrl.searchText">{{disciplina.turma}}</span>
-        </md-autocomplete>
-        <md-chip-template>
-          <span>
-            <strong>{{$chip.turma}}</strong>
-          </span>
-        </md-chip-template>
-      </md-chips>
-      <span>{{visualizarRespostaCtrl.searchText}}</span>
-    </div>
-  <section/>
-  <hr/>
-
-  <md-toolbar layout="row" class="md-hue-3">
-      <div class="md-toolbar-tools">
-          <span>Respostas</span>
-      </div>
-  </md-toolbar>
 
     <div class="card" layout="row" layout-align="start center">
-        <div class="content">
+        <div class="content" ng-repeat="turma in visualizarRespostaCtrl.turmas">
+            <h3>{{turma.disciplina}} {{turma.semestre}} - Turma {{turma.turma}}</h3>
             <div class="question-card question-card-left">
                 <md-card class="card"
-                ng-repeat="resposta in visualizarRespostaCtrl.respostas">
+                ng-repeat="questao in turma.questoes">
                     <div class="card-header-question">
-                        <span class="md-title">{{$index + 1}}. {{resposta.enunciado}}</span>
-                        <label class="md-title">Tipo da Questão: {{resposta.tipo}}</label>
+                        <label class="md-title">{{$index + 1}}. {{questao.enunciado}}</label>
+                    </div>
+                    <div>
+                        <label class>Tipo da Questão: {{questao.tipo}}</label>
                     </div>
                     <br/>
-                    <br/>
 
-                    <div ng-if="resposta.tipo == 'ESCOLHA_SIMPLES'" class="card-content">
-                      <h4 class="md-toolbar-tools">Escolha Simples - Mediana: {{resposta.mediana}}</h4>
-                      <nvd3 options="options" data="resposta.dados_grafico"></nvd3>
+                    <div ng-if="questao.tipo == 'ESCOLHA_SIMPLES'" class="card-content">
+                      <h4 class="md-toolbar-tools">Escolha Simples - Mediana: {{questao.mediana}}</h4>
+                      <nvd3 options="options" data="questao.dados_grafico"></nvd3>
                     </div>
 
                     <h4 class="md-toolbar-tools">Comentários</h4>
-                    <md-container ng-repeat="r in resposta.respostas track by $index"
+                    <md-container ng-repeat="comentario in questao.comentarios track by $index"
                       class="md-block" flex-gt-sm>
-                        <p>{{r.comentario}}</p>
+                        <p>{{comentario}}</p>
                         <br/>
                     </md-container>
                 </md-card>

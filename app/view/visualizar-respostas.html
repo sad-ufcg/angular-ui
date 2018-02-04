@@ -2,7 +2,7 @@
   <section layout="row" class="md-hue-3 mini-wrapper">
 
     <div flex-gt-sm="80">
-      <h3>Escolha o Questionário para visualizar as respostas</h3>
+      <h3>Escolha um Questionário</h3>
     </div>
 
     <div flex-gt-sm="20" class="botao-icone">
@@ -11,7 +11,6 @@
     </div>
   </section>
   <hr/>
-
 
   <div layout="row">
     <section ng-class='questionario' flex-gt-sm="30" layout-wrap class='mini-wrapper'>
@@ -28,7 +27,7 @@
             </md-input-container>
           <span ng-show="formSemestre.semestre.$error.pattern">Semestre inválido!</span>
         </form>
-        <span>Se o semestre for inválido ou vazio serão mostradas todas as respostas disponíveis.<span>
+        <span>Se o semestre for vazio serão mostradas turmas de todos os semestres.<span>
       </div>
     </section>
 
@@ -39,9 +38,9 @@
             </h2>
             <md-whiteframe
                 ng-repeat="questionario in questionarioFiltrado = (visualizarRespostasCtrl.questionarios | filter: { nome : search.questionario })"
-                ng-style="questionario.style" class="resposta-box md-whiteframe-1dp"
+                ng-style="questionario.style" class="background-azul md-whiteframe-1dp"
                 layout-gt-xs layout-align="center center"
-                ng-click="visualizarRespostasCtrl.irParaResposta(questionario.id)"
+                ng-click="visualizarRespostasCtrl.buscarDisciplinas(questionario.id, visualizarRespostasCtrl.semestre)"
                 style="min-width: 350px; max-height: 150px;">
                 <md-list-item class="crop">
                   <div class="md-list-item-text" layout="column">
@@ -53,5 +52,41 @@
         </section>
       </div>
   </div>
+  </hr>
+
+  <section layout="row" class="md-hue-3 mini-wrapper top-padding">
+
+    <div flex-gt-sm="80">
+      <h3>Escolha a Turma</h3>
+      <span>Para visualizar as respostas de todas as turmas selecione a opção "Todas as Turmas".<span>
+    </div>
+
+    <div flex-gt-sm="20" class="botao-icone">
+      <input placeholder="Pesquisar" type="text" ng-model="search.disciplina">
+      <i class="material-icons">search</i>
+    </div>
+  </section>
+  <hr/>
+
+    <div layout="row">
+      <div flex-gt-sm="100" class='outer-no-scroll'>
+          <section ng-class="questionario" layout="row" layout-wrap class='mini-wrapper inner-no-scroll'>
+              <md-whiteframe
+                  ng-repeat="disciplina in visualizarRespostasCtrl.disciplinasFiltradas = (visualizarRespostasCtrl.disciplinas | filter: { nome : search.disciplina })"
+                  ng-style="questionario.style" class="background-azul md-whiteframe-1dp"
+                  layout-gt-xs layout-align="center center"
+                  ng-click="visualizarRespostasCtrl.irParaResposta(disciplina.id)"
+                  style="min-width: 200px; max-height: 250px;">
+                  <md-list-item class="crop">
+                    <div class="md-list-item-text" layout="column">
+                        <h4>{{ disciplina.nome }}</h4>
+                        <h5><strong>Semestre</strong>: {{ disciplina.semestre }}</h5>
+                        <h5><strong>Turma</strong>: {{ disciplina.turma }}</h5>
+                    </div>
+                  </md-list-item>
+              </md-whiteframe>
+          </section>
+        </div>
+    </div>
 
 <md-content>
