@@ -88,3 +88,8 @@ md-toast.md-grey-toast-theme div.md-toast-content{
     width: 30%;
     align-self: center;
 }
+
+.login md-card {
+    margin-top: 50px;
+    width: 400px;
+}

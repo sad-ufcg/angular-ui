@@ -1,0 +1,31 @@
+<div layout="row" layout-fill ng-cloak>
+    <section layout="column" flex layout-align="center center" class="login">
+        <md-card class="md-whiteframe-4dp">
+            <md-toolbar>
+                <div layout="column" layout-padding layout-align="center center">
+                    <div class="image-card" align="center">
+                        <img src="view/img/brasaoUfcg.png"></img>
+                    </div>
+                    <div class="md-headline md-padding">Sistema de Avaliação Docente</div>
+                </div>
+            </md-toolbar>
+            <md-card-content>
+                <form name="login">
+                    <md-input-container class="md-block">
+                        <label for="login">Login</label>
+                        <input type="login" name="login" ng-model="vm.auth.login" required />
+                    </md-input-container>
+                    <md-input-container class="md-block">
+                        <label for="senha">senha</label>
+                        <input type="password" name="senha" ng-model="vm.auth.senha" required />
+                    </md-input-container>
+                    <md-input-container class="md-block">
+                        <div layout="row" layout-align="center center">
+                            <md-button ng-click="vm.doLogin()"class="md-raised md-accent" flex="50">Login</md-button>
+                        </div>
+                    </md-input-container>
+                </form>
+            </md-card-content>
+        </md-card>
+    </section>
+</div>

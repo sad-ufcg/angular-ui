@@ -51,6 +51,16 @@ app.config(function ($stateProvider, $locationProvider, $urlRouterProvider, $mdT
             }
         })
 
+        .state("sad-login", {
+            url: '/login',
+            views: {
+                main: {
+                    templateUrl: "view/login.html",
+                    controller: "LoginController as vm"
+                }
+            }
+        })
+
         .state('sad-admin.visualizar-questionario-aplicado', {
             url: "/visualizar-questionarios-aplicados",
             views: {
