@@ -6,33 +6,30 @@
       <h3>Escolha o Questionário para visualizar as respostas</h3>
     </div>
 
-    <div flex-gt-sm="20" class="botao-icone">
-      <input placeholder="Pesquisar" type="text" ng-model="search.semestre">
-      <i class="material-icons">search</i>
-    </div>
-  </section>
-  <hr/>
-
-
-  <div layout="row">
-    <section ng-class='questionario' flex-gt-sm="80" layout-wrap class='mini-wrapper'>
+    <section ng-class='questionario' flex-gt-sm="20" layout-wrap class='mini-wrapper'>
       <div flex-gt-sm="80">
         <h4>Filtrar por turma:</h4>
       </div>
 
       <div flex-gt-sm="80">
-        <form name="formSemestre">
           <md-input-container>
               <label>Turma</label>
               <md-select ng-model="visualizarRespostaCtrl.turmaSelecionada"
                 placeholder="Selecione uma turma">
-                <md-option ng-value="opt" ng-repeat="opt in visualizarRespostaCtrl.disciplinas">
-                  {{ opt.turma }}</md-option>
+                <md-option ng-value="opt.id" ng-repeat="opt in visualizarRespostaCtrl.disciplinas">
+                  {{ opt.turma }}
+                </md-option>
               </md-select>
             </md-input-container>
-        </form>
+        <h2>{{visualizarRespostaCtrl.turmaSelecionada}}<h2>
       </div>
     </section>
+  </section>
+  <hr/>
+
+
+  <div layout="row">
+
   </div>
 </section>
 
@@ -86,14 +83,13 @@
 
                     <div ng-if="resposta.tipo == 'ESCOLHA_SIMPLES'" class="card-content">
                       <h4 class="md-toolbar-tools">Escolha Simples - Mediana: {{resposta.mediana}}</h4>
-                      <md-container ng-repeat="res in resposta.respostas track by $index" class="md-block" flex-gt-sm>
-                          <p style="display:inline; font-size: 20px">{{res}}</p>
-                      </md-container>
+                      <nvd3 options="options" data="resposta.dados_grafico"></nvd3>
                     </div>
 
                     <h4 class="md-toolbar-tools">Comentários</h4>
-                    <md-container ng-repeat="comment in resposta.comentarios track by $index" class="md-block" flex-gt-sm>
-                        <p>{{comment}}</p>
+                    <md-container ng-repeat="r in resposta.respostas track by $index"
+                      class="md-block" flex-gt-sm>
+                        <p>{{r.comentario}}</p>
                         <br/>
                     </md-container>
                 </md-card>
@@ -101,4 +97,4 @@
         </div>
     </div>
 
-<md-content>
+</md-content>

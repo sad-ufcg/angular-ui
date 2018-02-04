@@ -6,7 +6,7 @@
     </div>
 
     <div flex-gt-sm="20" class="botao-icone">
-      <input placeholder="Pesquisar" type="text" ng-model="search.semestre">
+      <input placeholder="Pesquisar" type="text" ng-model="search.questionario">
       <i class="material-icons">search</i>
     </div>
   </section>
@@ -38,7 +38,7 @@
               Nenhum questionário disponível.
             </h2>
             <md-whiteframe
-                ng-repeat="questionario in questionarioFiltrado = (visualizarRespostasCtrl.questionarios | filter: { nome : search.semestre })"
+                ng-repeat="questionario in questionarioFiltrado = (visualizarRespostasCtrl.questionarios | filter: { nome : search.questionario })"
                 ng-style="questionario.style" class="resposta-box md-whiteframe-1dp"
                 layout-gt-xs layout-align="center center"
                 ng-click="visualizarRespostasCtrl.irParaResposta(questionario.id)"
