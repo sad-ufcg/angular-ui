@@ -22,7 +22,7 @@
         <form name="formSemestre">
           <md-input-container>
               <label>Semestre</label>
-              <input ng-model="visualizarRespostasCtrl.semestre" name="semestre"
+              <input ng-model="preVisualizarRespostaCtrl.semestre" name="semestre"
               ng-pattern="/(^\d{4}[.]\d{1})$/">
             </md-input-container>
           <span ng-show="formSemestre.semestre.$error.pattern">Semestre inválido!</span>
@@ -37,10 +37,10 @@
               Nenhum questionário disponível.
             </h2>
             <md-whiteframe
-                ng-repeat="questionario in questionarioFiltrado = (visualizarRespostasCtrl.questionarios | filter: { nome : search.questionario })"
+                ng-repeat="questionario in questionarioFiltrado = (preVisualizarRespostaCtrl.questionarios | filter: { nome : search.questionario })"
                 ng-style="questionario.style" class="background-azul md-whiteframe-1dp"
                 layout-gt-xs layout-align="center center"
-                ng-click="visualizarRespostasCtrl.buscarDisciplinas(questionario.id, visualizarRespostasCtrl.semestre)"
+                ng-click="preVisualizarRespostaCtrl.buscarDisciplinas(questionario.id, preVisualizarRespostaCtrl.semestre)"
                 style="min-width: 350px; max-height: 150px;">
                 <md-list-item class="crop">
                   <div class="md-list-item-text" layout="column">
@@ -72,10 +72,10 @@
       <div flex-gt-sm="100" class='outer-no-scroll'>
           <section ng-class="questionario" layout="row" layout-wrap class='mini-wrapper inner-no-scroll'>
               <md-whiteframe
-                  ng-repeat="disciplina in visualizarRespostasCtrl.disciplinasFiltradas = (visualizarRespostasCtrl.disciplinas | filter: { nome : search.disciplina })"
+                  ng-repeat="disciplina in preVisualizarRespostaCtrl.disciplinasFiltradas = (preVisualizarRespostaCtrl.disciplinas | filter: { nome : search.disciplina })"
                   ng-style="questionario.style" class="background-azul md-whiteframe-1dp"
                   layout-gt-xs layout-align="center center"
-                  ng-click="visualizarRespostasCtrl.irParaResposta(disciplina.id)"
+                  ng-click="preVisualizarRespostaCtrl.irParaResposta(disciplina.id)"
                   style="min-width: 200px; max-height: 250px;">
                   <md-list-item class="crop">
                     <div class="md-list-item-text" layout="column">

@@ -2,7 +2,7 @@
 (function () {
     const app = angular.module("sadApp");
 
-    app.controller("VisualizarRespostasController", function VisualizarRespostasController($state, $stateParams, questionarios, QuestionarioService, ToastService) {
+    app.controller("PreVisualizarRespostaController", function PreVisualizarRespostaController($state, $stateParams, questionarios, QuestionarioService, ToastService) {
 
         var self = this;
 

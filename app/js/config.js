@@ -135,12 +135,12 @@ app.config(function ($stateProvider, $locationProvider, $urlRouterProvider, $mdT
             }
         })
 
-        .state("sad-resposta.visualizar-respostas", {
-            url: "/visualizar-respostas",
+        .state("sad-resposta.pre-visualizar-resposta", {
+            url: "/pre-visualizar-respostas",
             views: {
                 content: {
-                    templateUrl: 'view/visualizar-respostas.html',
-                    controller: 'VisualizarRespostasController as visualizarRespostasCtrl'
+                    templateUrl: 'view/pre-visualizar-resposta.html',
+                    controller: 'PreVisualizarRespostaController as preVisualizarRespostaCtrl'
                 }
             },
             resolve : {
@@ -150,7 +150,7 @@ app.config(function ($stateProvider, $locationProvider, $urlRouterProvider, $mdT
             }
          })
          .state("sad-resposta.visualizar-resposta", {
-             url: "/respostas/?idQuestionario&idDisciplina&semestre",
+             url: "/visualizar-resposta/?idQuestionario&idDisciplina&semestre",
              views:{
                  content: {
                      templateUrl: 'view/visualizar-resposta.html',
