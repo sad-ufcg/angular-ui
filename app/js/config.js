@@ -3,7 +3,7 @@ const app = angular.module('sadApp', ['ngAnimate', 'ngAria', 'ngSanitize', 'ngMa
 
 app.constant('baseUrl', 'http://localhost:8080');
 
-app.config(function ($stateProvider, $locationProvider, $urlRouterProvider, $mdThemingProvider) {
+app.config(function ($stateProvider, $locationProvider, $urlRouterProvider, $mdThemingProvider, $httpProvider) {
 
     // Setando Temas
     $mdThemingProvider.theme('default')
@@ -210,6 +210,8 @@ app.config(function ($stateProvider, $locationProvider, $urlRouterProvider, $mdT
     $urlRouterProvider.otherwise('admin/home');
     $locationProvider.html5Mode(false);
     $locationProvider.hashPrefix('');
+
+    $httpProvider.interceptors.push('AuthInterceptor');
 
     app.run(['$rootScope', '$state', function ($rootScope, $state) {
 

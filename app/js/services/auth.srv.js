@@ -8,10 +8,11 @@
         const URI = baseUrl + "/auth";
 
         service.logar = (obj) => {
+            console.log(obj)
             let deffered = $q.defer();
-            $http.post(URI, JSON.stringify(obj)).then(
+            $http.post('http://localhost:8080/auth', obj).then(
                 function success(response) {
-                    console.log(response);
+                    console.log(response.headers);
                     //TODO: salvar token no localStorage
                     deffered.resolve(response);
                 }, function error(response) {
