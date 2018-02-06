@@ -135,7 +135,7 @@ app.config(function ($stateProvider, $locationProvider, $urlRouterProvider, $mdT
             }
         })
 
-        .state("sad-resposta.pre-visualizar-resposta", {
+        .state("sad-admin.pre-visualizar-resposta", {
             url: "/pre-visualizar-respostas",
             views: {
                 content: {

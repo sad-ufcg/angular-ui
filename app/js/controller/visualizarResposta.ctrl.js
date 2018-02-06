@@ -7,9 +7,13 @@
         var self = this;
         self.questionariosAplicados = questionariosAplicados.data || [];
         self.questionarioByID = questionarioByID.data || [];
-
+        self.tipoQuestaoWrapper = {
+                    'ABERTA': 'Aberta',
+                    'ESCOLHA_SIMPLES': 'Escolha Simples'
+        };
         self.turmaSelecionada = -1;
         self.turmas = getRespostasPorTurma();
+        self.isRespostaAberta = inicializaEstadoRespostas();
 
         $scope.options = {
             chart: {
@@ -41,6 +45,19 @@
                 }
             }
         };
+
+        self.abrirResposta = function(index) {
+            self.isRespostaAberta[index] = !self.isRespostaAberta[index];
+        }
+
+        function inicializaEstadoRespostas() {
+            let mostraRespostas = [];
+
+            for (var i = 0; i < self.questionarioByID.questoes.length; i++)
+                mostraRespostas.push(false);
+
+            return mostraRespostas;
+        }
 
         function formataDados(respostas) {
             var frequencia = {};
@@ -123,6 +140,8 @@
 
                        turma["questoes"][id]['dados_grafico'] = formataDados(turma["questoes"][id]["respostas"]);
                     }
+
+                    turma["questoes"][id].tipo = self.tipoQuestaoWrapper[turma["questoes"][id].tipo];
                 }
 
                 turmas.push(turma);

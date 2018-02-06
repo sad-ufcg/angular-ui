@@ -47,7 +47,7 @@
 			{
         icon: 'description',
         title: 'Visualizar Respostas',
-        state: 'sad-resposta.pre-visualizar-resposta'
+        state: 'sad-admin.pre-visualizar-resposta'
       }];
 
 		adminCtrl.goTo = (state) => {
