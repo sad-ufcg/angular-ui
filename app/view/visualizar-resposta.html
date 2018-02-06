@@ -1,10 +1,8 @@
 <md-content>
-
-
   <section layout="row" class="md-hue-3 mini-wrapper">
 
-    <div flex-gt-sm="80">
-      <h2>Respostas: {{visualizarRespostaCtrl.questionarioByID.nome}}</h2>
+    <div flex-gt-sm="80" class="md-toolbar-tools">
+      <h4 >Respostas: {{visualizarRespostaCtrl.questionarioByID.nome}}</h4>
     </div>
   </section>
 
@@ -14,25 +12,27 @@
             <div class="question-card question-card-left">
                 <md-card class="card"
                 ng-repeat="questao in turma.questoes">
-                    <div class="card-header-question">
+                    <div class="card-header-question" data-ng-click="visualizarRespostaCtrl.abrirResposta($index)">
                         <label class="md-title">{{$index + 1}}. {{questao.enunciado}}</label>
-                    </div>
-                    <div>
+                        <br>
                         <label class>Tipo da Questão: {{questao.tipo}}</label>
                     </div>
+
                     <br/>
 
-                    <div ng-if="questao.tipo == 'ESCOLHA_SIMPLES'" class="card-content">
-                      <h4 class="md-toolbar-tools">Escolha Simples - Mediana: {{questao.mediana}}</h4>
-                      <nvd3 options="options" data="questao.dados_grafico"></nvd3>
-                    </div>
+                    <div ng-if="visualizarRespostaCtrl.isRespostaAberta[$index]">
+                        <div ng-if="questao.tipo == 'Escolha Simples'" class="card-content">
+                          <h2 class="md-toolbar-tools"> Mediana: {{questao.mediana}}</h2>
+                          <nvd3 options="options" data="questao.dados_grafico"></nvd3>
+                        </div>
 
-                    <h4 class="md-toolbar-tools">Comentários</h4>
-                    <md-container ng-repeat="comentario in questao.comentarios track by $index"
-                      class="md-block" flex-gt-sm>
-                        <p>{{comentario}}</p>
-                        <br/>
-                    </md-container>
+                        <h4 class="md-toolbar-tools">Comentários</h4>
+                        <md-container ng-repeat="comentario in questao.comentarios track by $index"
+                          class="md-block" flex-gt-sm>
+                            <p>{{comentario}}</p>
+                            <br/>
+                        </md-container>
+                    </div>
                 </md-card>
             </div>
         </div>
