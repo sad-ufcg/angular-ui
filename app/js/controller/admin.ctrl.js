@@ -25,14 +25,14 @@
 				state: 'sad-admin.criar-disciplina'
 			},
 			{
+				icon: 'fiber_new',
+				title: 'Criar Questionário',
+				state: 'sad-admin.criar-questionario'
+			},
+			{
 				icon: 'list',
 				title: 'Visualizar Disciplinas',
 				state: 'sad-admin.visualizar-disciplinas'
-			},
-			{
-				icon: 'description',
-				title: 'Criar Questionário',
-				state: 'sad-admin.criar-questionario'
 			},
 			{
 				icon: 'create',
@@ -40,11 +40,15 @@
 				state: 'sad-admin.aplicar-questionario'
 			},
 			{
-				icon: 'create',
-				title: 'Visualizar Questionários Aplicados',
+				icon: 'email',
+				title: 'Enviar Questionário Aplicado',
 				state: 'sad-admin.visualizar-questionario-aplicado'
-			}
-			];
+			},
+			{
+        icon: 'description',
+        title: 'Visualizar Respostas',
+        state: 'sad-admin.pre-visualizar-resposta'
+      }];
 
 		adminCtrl.goTo = (state) => {
 			console.log(state);
