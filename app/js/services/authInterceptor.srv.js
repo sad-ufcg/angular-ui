@@ -8,19 +8,12 @@
             var authInterceptorServiceFactory = {};
 
             var _request = function (config) {
-
-                console.log(config);
-                // config.headers = config.headers || {};
-
-                // if (config.url.indexOf('token') == -1) {
-                //     config.headers["Accept"] = 'application/json'
-                //     config.headers["Content-Type"] = 'application/json';
-                // }
-
+                
                 // var authData = localStorage.getItem('authorizationData');
                 // if (authData) {
                 //     config.headers.Authorization = 'Bearer ' + authData.token;
                 // }
+                console.log(config);
 
                 return config;
             };

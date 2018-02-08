@@ -10,9 +10,10 @@
         service.logar = (obj) => {
             console.log(obj)
             let deffered = $q.defer();
-            $http.post('http://localhost:8080/auth', obj).then(
+            $http.post(URI, obj).then(
                 function success(response) {
-                    console.log(response.headers);
+                    console.log(response);
+                    localStorage.setItem('authorizationData', 'aquideviaserumtoken');
                     //TODO: salvar token no localStorage
                     deffered.resolve(response);
                 }, function error(response) {
@@ -21,6 +22,15 @@
                 }
             );
             return deffered.promise;
+        };
+
+        service.isLogged = () => {
+            return localStorage.getItem('authorizationData');
+
+        };
+
+        service.logOut = () => {
+            return localStorage.removeItem;
         };
 
 
