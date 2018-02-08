@@ -1,6 +1,7 @@
 'use strict';
 var app = angular.module('sadApp', ['ngAnimate', 'ngAria', 'ngSanitize', 'ngMaterial', 'ui.router', 'lfNgMdFileInput']);
 
+
 app.constant('baseUrl', 'http://localhost:8080');
 
 app.config(function ($stateProvider, $locationProvider, $urlRouterProvider, $mdThemingProvider, $httpProvider) {
@@ -57,6 +58,22 @@ app.config(function ($stateProvider, $locationProvider, $urlRouterProvider, $mdT
                 main: {
                     templateUrl: "view/login.html",
                     controller: "LoginController as vm"
+                }
+            }
+         })
+
+        .state("sad-resposta", {
+            abstract: true,
+            url: '/respostas',
+            views: {
+                main: {
+                  templateUrl: "view/main-content.html",
+                  controller: "MainController as mainCtrl"
+                }
+            },
+            resolve : {
+                questionarios: function(QuestionariosService) {
+                    return carregarQuestionarios(QuestionariosService);
                 }
             }
         })
@@ -129,6 +146,37 @@ app.config(function ($stateProvider, $locationProvider, $urlRouterProvider, $mdT
             }
         })
 
+        .state("sad-admin.pre-visualizar-resposta", {
+            url: "/pre-visualizar-respostas",
+            views: {
+                content: {
+                    templateUrl: 'view/pre-visualizar-resposta.html',
+                    controller: 'PreVisualizarRespostaController as preVisualizarRespostaCtrl'
+                }
+            },
+            resolve : {
+                questionarios: function(QuestionariosService) {
+                    return carregarQuestionarios(QuestionariosService);
+                }
+            }
+         })
+         .state("sad-resposta.visualizar-resposta", {
+             url: "/visualizar-resposta/?idQuestionario&idDisciplina&semestre",
+             views:{
+                 content: {
+                     templateUrl: 'view/visualizar-resposta.html',
+                     controller: 'VisualizarRespostaController as visualizarRespostaCtrl',
+                 }
+             },
+             resolve: {
+                 questionariosAplicados: function (QuestionarioService, $stateParams) {
+                    return QuestionarioService.getQuestionariosAplicados($stateParams);
+                 },
+                 questionarioByID: function (QuestionarioService, $stateParams) {
+                    return QuestionarioService.getQuestionarioByID($stateParams.idQuestionario);
+                 }
+             }
+         })
         .state("sad-admin.disciplina", {
             url: "/disciplina/:idDisciplina",
             views: {
@@ -144,7 +192,6 @@ app.config(function ($stateProvider, $locationProvider, $urlRouterProvider, $mdT
                 }
             }
         })
-
         .state("sad-admin.questionario-detalhe", {
             url: "/questionario/:id",
             views: {

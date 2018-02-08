@@ -3,6 +3,11 @@
     margin-right: 5%;
 }
 
+.question-card-left {
+    margin-left: 0%;
+    margin-right: 5%;
+}
+
 .question-card .card {
     min-height: 50%;
     width: auto !important;

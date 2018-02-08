@@ -1,0 +1,92 @@
+<md-content>
+  <section layout="row" class="md-hue-3 mini-wrapper">
+
+    <div flex-gt-sm="80">
+      <h3 class="md-toolbar-tools">Escolha um Questionário</h3>
+    </div>
+
+    <div flex-gt-sm="20" class="botao-icone">
+      <input placeholder="Pesquisar" type="text" ng-model="search.questionario">
+      <i class="material-icons">search</i>
+    </div>
+  </section>
+  <hr/>
+
+  <div layout="row">
+    <section ng-class='questionario' flex-gt-sm="30" layout-wrap class='mini-wrapper'>
+      <div flex-gt-sm="80">
+        <h4>Escolha um semestre:</h4>
+      </div>
+
+      <div flex-gt-sm="80">
+        <form name="formSemestre">
+          <md-input-container>
+              <label>Semestre</label>
+              <input ng-model="preVisualizarRespostaCtrl.semestre" name="semestre"
+              ng-pattern="/(^\d{4}[.]\d{1})$/">
+            </md-input-container>
+          <span ng-show="formSemestre.semestre.$error.pattern">Semestre inválido!</span>
+        </form>
+        <span>Se o semestre for vazio serão mostradas turmas de todos os semestres.<span>
+      </div>
+    </section>
+
+    <div flex-gt-sm="80" class='outer-no-scroll'>
+        <section ng-class="questionario" layout="row" layout-wrap class='mini-wrapper inner-no-scroll'>
+            <h2 ng-hide="questionarioFiltrado.length">
+              Nenhum questionário disponível.
+            </h2>
+            <md-whiteframe
+                ng-repeat="questionario in questionarioFiltrado = (preVisualizarRespostaCtrl.questionarios | filter: { nome : search.questionario })"
+                ng-style="questionario.style" class="background-azul md-whiteframe-1dp"
+                layout-gt-xs layout-align="center center"
+                ng-click="preVisualizarRespostaCtrl.buscarDisciplinas(questionario.id, preVisualizarRespostaCtrl.semestre)"
+                style="min-width: 350px; max-height: 150px;">
+                <md-list-item class="crop">
+                  <div class="md-list-item-text" layout="column">
+                      <h3>{{ questionario.nome }}</h3>
+                      <h4>{{ questionario.descricao }}</h4>
+                  </div>
+                </md-list-item>
+            </md-whiteframe>
+        </section>
+      </div>
+  </div>
+  </hr>
+
+  <section layout="row" class="md-hue-3 mini-wrapper top-padding">
+
+    <div flex-gt-sm="80">
+      <h3>Escolha a Turma</h3>
+      <span>Para visualizar as respostas de todas as turmas selecione a opção "Todas as Turmas".<span>
+    </div>
+
+    <div flex-gt-sm="20" class="botao-icone">
+      <input placeholder="Pesquisar" type="text" ng-model="search.disciplina">
+      <i class="material-icons">search</i>
+    </div>
+  </section>
+  <hr/>
+
+    <div layout="row">
+      <div flex-gt-sm="100" class='outer-no-scroll'>
+          <section ng-class="questionario" layout="row" layout-wrap class='mini-wrapper inner-no-scroll'>
+              <md-whiteframe
+                  ng-repeat="disciplina in preVisualizarRespostaCtrl.disciplinasFiltradas = (preVisualizarRespostaCtrl.disciplinas | filter: { nome : search.disciplina })"
+                  ng-style="questionario.style" class="background-azul md-whiteframe-1dp"
+                  layout-gt-xs layout-align="center center"
+                  ng-click="preVisualizarRespostaCtrl.irParaResposta(disciplina.id)"
+                  style="min-width: 200px; max-height: 250px;">
+                  <md-list-item class="crop">
+                    <div class="md-list-item-text" layout="column">
+                        <h4>{{ disciplina.nome }}</h4>
+                        <h5><strong>Semestre</strong>: {{ disciplina.semestre }}</h5>
+                        <h5><strong>Turma</strong>: {{ disciplina.turma }}</h5>
+                    </div>
+                  </md-list-item>
+              </md-whiteframe>
+          </section>
+        </div>
+    </div>
+
+</md-content>

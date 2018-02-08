@@ -26,6 +26,11 @@ html, body {
     padding: 2%;
 }
 
+.mini-wrapper {
+  padding: 1%;
+  overflow: auto;
+}
+
 .wrapper {
   padding: 8%;
   overflow: auto;
@@ -92,4 +97,52 @@ md-toast.md-grey-toast-theme div.md-toast-content{
 .login md-card {
     margin-top: 50px;
     width: 400px;
+}
+.botao-icone {
+    align-items: center;
+    border-radius: 20px;
+}
+
+.botao-icone i {
+    color: #88B7F7;
+    display: inline-flex;
+    vertical-align: middle !important;
+}
+
+.outer-no-scroll {
+ overflow: hidden;
+}
+ .inner-no-scroll {
+ margin-right: -16px;
+ overflow-y: scroll;
+ overflow-x: hidden;
+}
+
+/* Crop e text-longo devem ser utilizadas em situacoes em que o texto é muito
+   longo e pode ultrapassar a div.
+
+   texto-longo: usada como classe no texto, vai limitar o comprimento do texto
+   ate 210px.
+    Exemplo: Texto muuuuuuuuuuuuuito longo
+    Resultado na tela: Texto muuuu...
+
+   crop: usada na propria div e irá simplesmente cortar ("crop") o texto
+   no limite da div.
+*/
+.texto-longo {
+    max-width: 210px;
+    white-space: nowrap;
+    overflow: hidden;
+    padding: 5px;
+    text-overflow: ellipsis;(...)
+}
+
+.crop {
+  width:100px;
+  overflow:hidden;
+  line-height:50px;
+}​
+
+.top-padding {
+  padding-top: 10%;
 }
