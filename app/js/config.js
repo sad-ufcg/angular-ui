@@ -1,9 +1,10 @@
 'use strict';
-const app = angular.module('sadApp', ['ngAnimate', 'ngAria', 'ngSanitize', 'ngMaterial', 'ui.router', 'lfNgMdFileInput', 'nvd3']);
+var app = angular.module('sadApp', ['ngAnimate', 'ngAria', 'ngSanitize', 'ngMaterial', 'ui.router', 'lfNgMdFileInput']);
+
 
 app.constant('baseUrl', 'http://localhost:8080');
 
-app.config(function ($stateProvider, $locationProvider, $urlRouterProvider, $mdThemingProvider) {
+app.config(function ($stateProvider, $locationProvider, $urlRouterProvider, $mdThemingProvider, $httpProvider) {
 
     // Setando Temas
     $mdThemingProvider.theme('default')
@@ -15,16 +16,16 @@ app.config(function ($stateProvider, $locationProvider, $urlRouterProvider, $mdT
     $mdThemingProvider.theme("blue-toast");
     $mdThemingProvider.theme("grey-toast");
 
-    const carregaDisciplina = function(Disciplina, id) {
+    const carregaDisciplina = function (Disciplina, id) {
         return new Disciplina(id);
     };
 
-    const carregarDisciplinas = function(DisciplinasService) {
+    const carregarDisciplinas = function (DisciplinasService) {
         const promise = DisciplinasService.carregarDisciplinas();
         return promise.then(data => data.data);
     };
 
-    const carregarQuestionarios = function(QuestionariosService) {
+    const carregarQuestionarios = function (QuestionariosService) {
         const promise = QuestionariosService.carregarQuestionarios();
         return promise.then(data => data.data);
     };
@@ -50,6 +51,16 @@ app.config(function ($stateProvider, $locationProvider, $urlRouterProvider, $mdT
                 }
             }
         })
+
+        .state("sad-login", {
+            url: '/login',
+            views: {
+                main: {
+                    templateUrl: "view/login.html",
+                    controller: "LoginController as vm"
+                }
+            }
+         })
 
         .state("sad-resposta", {
             abstract: true,
@@ -105,11 +116,11 @@ app.config(function ($stateProvider, $locationProvider, $urlRouterProvider, $mdT
                     controller: 'AplicarQuestionarioController as aplicarQuestionarioCtrl'
                 }
             },
-            resolve : {
-                disciplinas: function(DisciplinasService) {
+            resolve: {
+                disciplinas: function (DisciplinasService) {
                     return carregarDisciplinas(DisciplinasService);
                 },
-                questionarios: function(QuestionariosService) {
+                questionarios: function (QuestionariosService) {
                     return carregarQuestionarios(QuestionariosService);
                 }
             }
@@ -168,7 +179,7 @@ app.config(function ($stateProvider, $locationProvider, $urlRouterProvider, $mdT
          })
         .state("sad-admin.disciplina", {
             url: "/disciplina/:idDisciplina",
-            views:{
+            views: {
                 content: {
                     templateUrl: 'view/disciplina.html',
                     controller: 'DisciplinaController as disciplinaCtrl',
@@ -183,7 +194,7 @@ app.config(function ($stateProvider, $locationProvider, $urlRouterProvider, $mdT
         })
         .state("sad-admin.questionario-detalhe", {
             url: "/questionario/:id",
-            views:{
+            views: {
                 content: {
                     templateUrl: 'view/questionario-detalhe.html',
                     controller: 'QuestionarioDetalheController as questDetalheCtrl'
@@ -247,11 +258,44 @@ app.config(function ($stateProvider, $locationProvider, $urlRouterProvider, $mdT
     $locationProvider.html5Mode(false);
     $locationProvider.hashPrefix('');
 
-    app.run(['$rootScope', '$state', function ($rootScope, $state) {
 
-        $state.defaultErrorHandler(function (error) {
-            console.log(error);
-        })
-    }]);
+
+
+
+
+    $httpProvider.interceptors.push('AuthInterceptor');
+    $httpProvider.defaults.headers.common = {};
+    $httpProvider.defaults.headers.post = {};
+    $httpProvider.defaults.headers.put = {};
+    $httpProvider.defaults.headers.patch = {};
+
+
 
 });
+
+
+
+app.run(['$rootScope', '$state', '$location', 'AuthService', function ($rootScope, $state, $location, AuthService) {
+
+    $state.defaultErrorHandler(function (error) {
+        console.log(error);
+    });
+
+    $rootScope.$on('$locationChangeSuccess', function () {
+        console.log($location.path());
+        const path = $location.path().substring(0, 13);
+        if (path === "/login") {
+            console.log("LOGIN");
+            return;
+        }
+
+
+        if (AuthService.isLogged()) {
+            console.log("ISLOOGGED");
+            return;
+        }
+        $state.go('sad-login');
+        //$state.go('');
+    });
+
+}]);

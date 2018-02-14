@@ -94,6 +94,10 @@ md-toast.md-grey-toast-theme div.md-toast-content{
     align-self: center;
 }
 
+.login md-card {
+    margin-top: 50px;
+    width: 400px;
+}
 .botao-icone {
     align-items: center;
     border-radius: 20px;
