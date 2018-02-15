@@ -12,14 +12,10 @@
             let deffered = $q.defer();
             $http.post(URI, obj).then(
                 function success(response) {
-                    console.log("Resposta")
-                    console.log(response);
                     localStorage.setItem('authorizationData', response.data.Authorization);
                     //TODO: salvar token no localStorage
                     deffered.resolve(response);
                 }, function error(response) {
-                    console.log("deu erro")
-                    console.log(response);
                     deffered.reject(response);
                 }
             );
