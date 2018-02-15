@@ -11,6 +11,7 @@
 
                 var authData = localStorage.getItem('authorizationData');
                 if (authData) {
+                    // FIXME: ha solucoes melhores que podem ser adotadas
                     if(config.url == "http://localhost:8080/disciplinas/csv") {
                       config.headers = {
                           "Authorization" : authData,
