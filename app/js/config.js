@@ -1,5 +1,5 @@
 'use strict';
-var app = angular.module('sadApp', ['ngAnimate', 'ngAria', 'ngSanitize', 'ngMaterial', 'ui.router', 'lfNgMdFileInput']);
+var app = angular.module('sadApp', ['ngAnimate', 'ngAria', 'ngSanitize', 'ngMaterial', 'ui.router', 'lfNgMdFileInput', 'nvd3']);
 
 
 app.constant('baseUrl', 'http://localhost:8080');
@@ -268,9 +268,6 @@ app.config(function ($stateProvider, $locationProvider, $urlRouterProvider, $mdT
     $httpProvider.defaults.headers.post = {};
     $httpProvider.defaults.headers.put = {};
     $httpProvider.defaults.headers.patch = {};
-
-
-
 });
 
 
