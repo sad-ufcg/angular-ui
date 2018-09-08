@@ -2,7 +2,7 @@
 var app = angular.module('sadApp', ['ngAnimate', 'ngAria', 'ngSanitize', 'ngMaterial', 'ui.router', 'lfNgMdFileInput', 'nvd3']);
 
 
-app.constant('baseUrl', 'http://localhost:8080');
+app.constant('baseUrl', 'https://sad.splab.ufcg.edu.br:8081');
 
 app.config(function ($stateProvider, $locationProvider, $urlRouterProvider, $mdThemingProvider, $httpProvider) {
 
@@ -291,7 +291,7 @@ app.run(['$rootScope', '$state', '$location', 'AuthService', function ($rootScop
             console.log("ISLOOGGED");
             return;
         }
-        $state.go('sad-login');
+        //$state.go('sad-login');
         //$state.go('');
     });
 

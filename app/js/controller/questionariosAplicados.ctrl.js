@@ -27,7 +27,7 @@
         };
 
         vm.enviarEmailSelecionados = () => {
-            const listaIds = vm.questionarios.map((item) => item.id);
+            const listaIds = vm.questionariosMarcados.map((item) => item.id);
             EmailService.enviaParaUmaListaDeQuestionariosAplicados(listaIds).then(
                 function success(response) {
                     ToastService.criaToastComTema("Questionários enviados para a lista de email dos alunos!", "blue-toast");

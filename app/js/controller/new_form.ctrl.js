@@ -42,10 +42,6 @@
             const confirmacao = 'Ok';
 
             let promise = DialogService.alerta(titulo, texto, ariaLabel, confirmacao);
-
-            promise.then(function() {
-                newformCtrl.responderQuestionario();
-            }, function() {});
         };
 
         newformCtrl.responderQuestionario = function() {

@@ -25,8 +25,7 @@
                 .title(titulo)
                 .textContent(texto)
                 .ariaLabel(ariaLabel)
-                .ok(confirmacao)
-                .cancel(cancelar);
+                .ok(confirmacao);
 
             return $mdDialog.show(confirm);
         };

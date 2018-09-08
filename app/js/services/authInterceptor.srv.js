@@ -12,7 +12,7 @@
                 var authData = localStorage.getItem('authorizationData');
                 if (authData) {
                     // FIXME: ha solucoes melhores que podem ser adotadas
-                    if(config.url == "http://localhost:8080/disciplinas/csv") {
+                    if(config.url == "https://sad.splab.ufcg.edu.br:8081/disciplinas/csv") {
                       config.headers = {
                           "Authorization" : authData,
                           "Content-Type": undefined,
@@ -27,6 +27,11 @@
                     }
 
                     console.log(authData);
+                } else {
+                      config.headers = {
+                          "Content-Type": "application/json",
+                          "Accept": "application/json"
+                      }
                 }
                 console.log(config);
 
